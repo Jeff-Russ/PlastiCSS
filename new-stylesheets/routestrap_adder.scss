@@ -1,0 +1,455 @@
+/* By Jeff Russ https://github.com/Jeff-Russ
+based on Twitter Bootstrap
+~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._*/
+
+$primary: #337ab7;
+$success: #3c763d;
+$info:    #31708f;
+$warning: #8a6d3b;
+$danger:  #a94442;
+$bg-primary: #337ab7;
+$bg-success: #dff0d8;
+$bg-info:    #d9edf7;
+$bg-warning: #fcf8e3;
+$bg-danger:  #f2dede;
+
+
+@if $alert == true { .alert { @extend%alert; } }
+@if $alert-dismissible == true { .alert-dismissible { @extend%alert-dismissible; } }
+@if $alert-dismissable == true { .alert-dismissable { @extend%alert-dismissable; } }
+@if $alert-success == true { .alert-success { @extend%alert-success; } }
+@if $alert-info == true { .alert-info { @extend%alert-info; } }
+@if $alert-warning == true { .alert-warning { @extend%alert-warning; } }
+@if $alert-danger == true { .alert-danger { @extend%alert-danger; } }
+@if $progress == true { .progress { @extend%progress; } }
+@if $progress-bar == true { .progress-bar { @extend%progress-bar; } }
+@if $progress-striped == true { .progress-striped { @extend%progress-striped; } }
+@if $progress-bar-success == true { .progress-bar-success { @extend%progress-bar-success; } }
+@if $progress-bar-info == true { .progress-bar-info { @extend%progress-bar-info; } }
+@if $progress-bar-warning == true { .progress-bar-warning { @extend%progress-bar-warning; } }
+@if $progress-bar-danger == true { .progress-bar-danger { @extend%progress-bar-danger; } }
+@if $breadcrumb == true { .breadcrumb { @extend%breadcrumb; } }
+@if $btn == true { .btn { @extend%btn; } }
+@if $btn-default == true { .btn-default { @extend%btn-default; } }
+@if $btn-primary == true { .btn-primary { @extend%btn-primary; } }
+@if $btn-success == true { .btn-success { @extend%btn-success; } }
+@if $btn-info == true { .btn-info { @extend%btn-info; } }
+@if $btn-warning == true { .btn-warning { @extend%btn-warning; } }
+@if $btn-danger == true { .btn-danger { @extend%btn-danger; } }
+@if $btn-link == true { .btn-link { @extend%btn-link; } }
+@if $btn-lg == true { .btn-lg { @extend%btn-lg; } }
+@if $btn-sm == true { .btn-sm { @extend%btn-sm; } }
+@if $btn-xs == true { .btn-xs { @extend%btn-xs; } }
+@if $btn-block == true { .btn-block { @extend%btn-block; } }
+@if $btn-toolbar == true { .btn-toolbar { @extend%btn-toolbar; } }
+@if $btn-group == true { .btn-group { @extend%btn-group; } }
+@if $btn-lg == true { .btn-lg { @extend%btn-lg; } }
+@if $btn-group-vertical == true { .btn-group-vertical { @extend%btn-group-vertical; } }
+@if $btn-group-justified == true { .btn-group-justified { @extend%btn-group-justified; } }
+@if $dropdown == true { .dropdown { @extend%dropdown; } }
+@if $dropdown-toggle == true { .dropdown-toggle { @extend%dropdown-toggle; } }
+@if $dropdown-menu == true { .dropdown-menu { @extend%dropdown-menu; } }
+@if $dropdown-menu-right == true { .dropdown-menu-right { @extend%dropdown-menu-right; } }
+@if $dropdown-menu-left == true { .dropdown-menu-left { @extend%dropdown-menu-left; } }
+@if $dropdown-header == true { .dropdown-header { @extend%dropdown-header; } }
+@if $dropdown-backdrop == true { .dropdown-backdrop { @extend%dropdown-backdrop; } }
+@if $pull-right == true { .pull-right { @extend%pull-right; } }
+@if $dropup == true { .dropup { @extend%dropup; } }
+@if $dropup == true { .dropup { @extend%dropup; } }
+@if $navbar-fixed-bottom == true { .navbar-fixed-bottom { @extend%navbar-fixed-bottom; } }
+@if $open == true { .open { @extend%open; } }
+@if $close == true { .close { @extend%close; } }
+@if $form-inline == true { .form-inline { @extend%form-inline; } }
+@if $form-horizontal == true { .form-horizontal { @extend%form-horizontal; } }
+@if $form-control == true { .form-control { @extend%form-control; } }
+@if $form-group == true { .form-group { @extend%form-group; } }
+@if $form-control-static == true { .form-control-static { @extend%form-control-static; } }
+@if $form-group-sm == true { .form-group-sm { @extend%form-group-sm; } }
+@if $form-group-lg == true { .form-group-lg { @extend%form-group-lg; } }
+@if $form-control-feedback == true { .form-control-feedback { @extend%form-control-feedback; } }
+@if $input-sm == true { .input-sm { @extend%input-sm; } }
+@if $input-lg == true { .input-lg { @extend%input-lg; } }
+@if $input-group == true { .input-group { @extend%input-group; } }
+@if $input-group-sm == true { .input-group-sm { @extend%input-group-sm; } }
+@if $input-group-lg == true { .input-group-lg { @extend%input-group-lg; } }
+@if $input-group-addon == true { .input-group-addon { @extend%input-group-addon; } }
+@if $input-group-btn == true { .input-group-btn { @extend%input-group-btn; } }
+@if $radio == true { .radio { @extend%radio; } }
+@if $checkbox == true { .checkbox { @extend%checkbox; } }
+@if $radio-inline == true { .radio-inline { @extend%radio-inline; } }
+@if $checkbox-inline == true { .checkbox-inline { @extend%checkbox-inline; } }
+@if $has-feedback == true { .has-feedback { @extend%has-feedback; } }
+@if $has-success == true { .has-success { @extend%has-success; } }
+@if $has-warning == true { .has-warning { @extend%has-warning; } }
+@if $has-error == true { .has-error { @extend%has-error; } }
+@if $help-block == true { .help-block { @extend%help-block; } }
+@if $jumbotron == true { .jumbotron { @extend%jumbotron; } }
+@if $well == true { .well { @extend%well; } }
+@if $well-lg == true { .well-lg { @extend%well-lg; } }
+@if $well-sm == true { .well-sm { @extend%well-sm; } }
+@if $label == true { .label { @extend%label; } }
+@if $label-default == true { .label-default { @extend%label-default; } }
+@if $label-primary == true { .label-primary { @extend%label-primary; } }
+@if $label-success == true { .label-success { @extend%label-success; } }
+@if $label-info == true { .label-info { @extend%label-info; } }
+@if $label-warning == true { .label-warning { @extend%label-warning; } }
+@if $label-danger == true { .label-danger { @extend%label-danger; } }
+@if $badge == true { .badge { @extend%badge; } }
+@if $list-group == true { .list-group { @extend%list-group; } }
+@if $list-group-item == true { .list-group-item { @extend%list-group-item; } }
+@if $list-group-item-success == true { .list-group-item-success { @extend%list-group-item-success; } }
+@if $list-group-item-info == true { .list-group-item-info { @extend%list-group-item-info; } }
+@if $list-group-item-warning == true { .list-group-item-warning { @extend%list-group-item-warning; } }
+@if $list-group-item-danger == true { .list-group-item-danger { @extend%list-group-item-danger; } }
+@if $list-group-item-heading == true { .list-group-item-heading { @extend%list-group-item-heading; } }
+@if $list-group-item-text == true { .list-group-item-text { @extend%list-group-item-text; } }
+
+
+@if $visible-xs-block == true { .visible-xs-block { @extend%visible-xs-block; } }
+@if $visible-xs-inline == true { .visible-xs-inline { @extend%visible-xs-inline; } }
+@if $visible-xs-inline-block == true { .visible-xs-inline-block { @extend%visible-xs-inline-block; } }
+@if $visible-sm-block == true { .visible-sm-block { @extend%visible-sm-block; } }
+@if $visible-sm-inline == true { .visible-sm-inline { @extend%visible-sm-inline; } }
+@if $visible-sm-inline-block == true { .visible-sm-inline-block { @extend%visible-sm-inline-block; } }
+@if $visible-md-block == true { .visible-md-block { @extend%visible-md-block; } }
+@if $visible-md-inline == true { .visible-md-inline { @extend%visible-md-inline; } }
+@if $visible-md-inline-block == true { .visible-md-inline-block { @extend%visible-md-inline-block; } }
+@if $visible-lg-block == true { .visible-lg-block { @extend%visible-lg-block; } }
+@if $visible-lg-inline == true { .visible-lg-inline { @extend%visible-lg-inline; } }
+@if $visible-lg-inline-block == true { .visible-lg-inline-block { @extend%visible-lg-inline-block; } }
+@if $visible-print-block == true { .visible-print-block { @extend%visible-print-block; } }
+@if $visible-print-inline == true { .visible-print-inline { @extend%visible-print-inline; } }
+@if $visible-print-inline-block == true { .visible-print-inline-block { @extend%visible-print-inline-block; } }
+@if $hidden-xs == true { .hidden-xs { @extend%hidden-xs; } }
+@if $hidden-sm == true { .hidden-sm { @extend%hidden-sm; } }
+@if $hidden-md == true { .hidden-md { @extend%hidden-md; } }
+@if $hidden-lg == true { .hidden-lg { @extend%hidden-lg; } }
+@if $hidden-print == true { .hidden-print { @extend%hidden-print; } }
+@if $visible-xs == true { .visible-xs { @extend%visible-xs; } }
+@if $visible-sm == true { .visible-sm { @extend%visible-sm; } }
+@if $visible-md == true { .visible-md { @extend%visible-md; } }
+@if $visible-lg == true { .visible-lg { @extend%visible-lg; } }
+@if $visible-print == true { .visible-print { @extend%visible-print; } }
+@if $embed-responsive == true { .embed-responsive { @extend%embed-responsive; } }
+@if $embed-responsive-16by9 == true { .embed-responsive-16by9 { @extend%embed-responsive-16by9; } }
+@if $embed-responsive-4by3 == true { .embed-responsive-4by3 { @extend%embed-responsive-4by3; } }
+@if $media == true { .media { @extend%media; } }
+@if $media-body == true { .media-body { @extend%media-body; } }
+@if $media-object == true { .media-object { @extend%media-object; } }
+@if $media-right == true { .media-right { @extend%media-right; } }
+@if $media-left == true { .media-left { @extend%media-left; } }
+@if $media-middle == true { .media-middle { @extend%media-middle; } }
+@if $media-bottom == true { .media-bottom { @extend%media-bottom; } }
+@if $media-heading == true { .media-heading { @extend%media-heading; } }
+@if $media-list == true { .media-list { @extend%media-list; } }
+@if $img-responsive == true { .img-responsive { @extend%img-responsive; } }
+@if $img-rounded == true { .img-rounded { @extend%img-rounded; } }
+@if $img-thumbnail == true { .img-thumbnail { @extend%img-thumbnail; } }
+@if $img-circle == true { .img-circle { @extend%img-circle; } }
+@if $thumbnail == true { .thumbnail { @extend%thumbnail; } }
+@if $carousel == true { .carousel { @extend%carousel; } }
+@if $carousel-inner == true { .carousel-inner { @extend%carousel-inner; } }
+@if $carousel-control == true { .carousel-control { @extend%carousel-control; } }
+@if $carousel-indicators == true { .carousel-indicators { @extend%carousel-indicators; } }
+@if $carousel-caption == true { .carousel-caption { @extend%carousel-caption; } }
+@if $modal == true { .modal { @extend%modal; } }
+@if $modal-open == true { .modal-open { @extend%modal-open; } }
+@if $modal-dialog == true { .modal-dialog { @extend%modal-dialog; } }
+@if $modal-content == true { .modal-content { @extend%modal-content; } }
+@if $modal-backdrop == true { .modal-backdrop { @extend%modal-backdrop; } }
+@if $modal-header == true { .modal-header { @extend%modal-header; } }
+@if $modal-title == true { .modal-title { @extend%modal-title; } }
+@if $modal-body == true { .modal-body { @extend%modal-body; } }
+@if $modal-footer == true { .modal-footer { @extend%modal-footer; } }
+@if $modal-scrollbar-measure == true { .modal-scrollbar-measure { @extend%modal-scrollbar-measure; } }
+@if $modal-sm == true { .modal-sm { @extend%modal-sm; } }
+@if $modal-lg == true { .modal-lg { @extend%modal-lg; } }
+@if $nav == true { .nav { @extend%nav; } }
+@if $nav-tabs == true { .nav-tabs { @extend%nav-tabs; } }
+@if $nav-pills == true { .nav-pills { @extend%nav-pills; } }
+@if $nav-stacked == true { .nav-stacked { @extend%nav-stacked; } }
+@if $nav-justified == true { .nav-justified { @extend%nav-justified; } }
+@if $nav-tabs-justified == true { .nav-tabs-justified { @extend%nav-tabs-justified; } }
+@if $tab-content == true { .tab-content { @extend%tab-content; } }
+@if $navbar == true { .navbar { @extend%navbar; } }
+@if $navbar-collapse == true { .navbar-collapse { @extend%navbar-collapse; } }
+@if $navbar-fixed-top == true { .navbar-fixed-top { @extend%navbar-fixed-top; } }
+@if $navbar-static-top == true { .navbar-static-top { @extend%navbar-static-top; } }
+@if $navbar-fixed-bottom == true { .navbar-fixed-bottom { @extend%navbar-fixed-bottom; } }
+@if $navbar-brand == true { .navbar-brand { @extend%navbar-brand; } }
+@if $navbar-form == true { .navbar-form { @extend%navbar-form; } }
+@if $navbar-nav == true { .navbar-nav { @extend%navbar-nav; } }
+@if $navbar-btn == true { .navbar-btn { @extend%navbar-btn; } }
+@if $navbar-text == true { .navbar-text { @extend%navbar-text; } }
+@if $navbar-default == true { .navbar-default { @extend%navbar-default; } }
+@if $navbar-inverse == true { .navbar-inverse { @extend%navbar-inverse; } }
+@if $navbar-right == true { .navbar-right { @extend%navbar-right; } }
+@if $nav-justified == true { .nav-justified { @extend%nav-justified; } }
+@if $nav-tabs-justified == true { .nav-tabs-justified { @extend%nav-tabs-justified; } }
+@if $navbar == true { .navbar { @extend%navbar; } }
+@if $navbar-header == true { .navbar-header { @extend%navbar-header; } }
+@if $navbar-collapse == true { .navbar-collapse { @extend%navbar-collapse; } }
+@if $navbar-fixed-top == true { .navbar-fixed-top { @extend%navbar-fixed-top; } }
+@if $navbar-static-top == true { .navbar-static-top { @extend%navbar-static-top; } }
+@if $navbar-fixed-bottom == true { .navbar-fixed-bottom { @extend%navbar-fixed-bottom; } }
+@if $navbar-collapse == true { .navbar-collapse { @extend%navbar-collapse; } }
+@if $navbar-static-top == true { .navbar-static-top { @extend%navbar-static-top; } }
+@if $navbar-fixed-top == true { .navbar-fixed-top { @extend%navbar-fixed-top; } }
+@if $navbar-fixed-bottom == true { .navbar-fixed-bottom { @extend%navbar-fixed-bottom; } }
+@if $navbar == true { .navbar { @extend%navbar; } }
+@if $navbar-toggle == true { .navbar-toggle { @extend%navbar-toggle; } }
+@if $navbar-nav == true { .navbar-nav { @extend%navbar-nav; } }
+@if $navbar-form == true { .navbar-form { @extend%navbar-form; } }
+@if $navbar-text == true { .navbar-text { @extend%navbar-text; } }
+@if $navbar-form == true { .navbar-form { @extend%navbar-form; } }
+@if $navbar-text == true { .navbar-text { @extend%navbar-text; } }
+@if $navbar-left == true { .navbar-left { @extend%navbar-left; } }
+@if $navbar-right == true { .navbar-right { @extend%navbar-right; } }
+@if $navbar-default == true { .navbar-default { @extend%navbar-default; } }
+@if $navbar-inverse == true { .navbar-inverse { @extend%navbar-inverse; } }
+@if $navbar == true { .navbar { @extend%navbar; } }
+@if $fade == true { .fade { @extend%fade; } }
+@if $collapse == true { .collapse { @extend%collapse; } }
+@if $collapsing == true { .collapsing { @extend%collapsing; } }
+@if $caret == true { .caret { @extend%caret; } }
+@if $pagination == true { .pagination { @extend%pagination; } }
+@if $pagination-lg == true { .pagination-lg { @extend%pagination-lg; } }
+@if $pagination-sm == true { .pagination-sm { @extend%pagination-sm; } }
+@if $pager == true { .pager { @extend%pager; } }
+@if $panel == true { .panel { @extend%panel; } }
+@if $panel-body == true { .panel-body { @extend%panel-body; } }
+@if $panel-heading == true { .panel-heading { @extend%panel-heading; } }
+@if $panel-title == true { .panel-title { @extend%panel-title; } }
+@if $panel-footer == true { .panel-footer { @extend%panel-footer; } }
+@if $list-group == true { .list-group { @extend%list-group; } }
+@if $panel-group == true { .panel-group { @extend%panel-group; } }
+@if $panel-default == true { .panel-default { @extend%panel-default; } }
+@if $panel-primary == true { .panel-primary { @extend%panel-primary; } }
+@if $panel-success == true { .panel-success { @extend%panel-success; } }
+@if $panel-info == true { .panel-info { @extend%panel-info; } }
+@if $panel-warning == true { .panel-warning { @extend%panel-warning; } }
+@if $panel-danger == true { .panel-danger { @extend%panel-danger; } }
+@if $table == true { .table { @extend%table; } }
+@if $table-bordered == true { .table-bordered { @extend%table-bordered; } }
+@if $table-responsive == true { .table-responsive { @extend%table-responsive; } }
+@if $table-condensed == true { .table-condensed { @extend%table-condensed; } }
+@if $table-striped == true { .table-striped { @extend%table-striped; } }
+@if $table-hover == true { .table-hover { @extend%table-hover; } }
+@if $tooltip == true { .tooltip { @extend%tooltip; } }
+@if $tooltip-inner == true { .tooltip-inner { @extend%tooltip-inner; } }
+@if $tooltip-arrow == true { .tooltip-arrow { @extend%tooltip-arrow; } }
+@if $popover == true { .popover { @extend%popover; } }
+@if $popover-title == true { .popover-title { @extend%popover-title; } }
+@if $popover-content == true { .popover-content { @extend%popover-content; } }
+@if $center-block == true { .center-block { @extend%center-block; } }
+@if $pull-right == true { .pull-right { @extend%pull-right; } }
+@if $pull-left == true { .pull-left { @extend%pull-left; } }
+@if $hide == true { .hide { @extend%hide; } }
+@if $show == true { .show { @extend%show; } }
+@if $invisible == true { .invisible { @extend%invisible; } }
+@if $text-hide == true { .text-hide { @extend%text-hide; } }
+@if $hidden == true { .hidden { @extend%hidden; } }
+@if $affix == true { .affix { @extend%affix; } }
+
+
+
+
+
+
+
+
+@if $progress-striped == true {
+	@-webkit-keyframes progress-bar-stripes 
+		{ from { background-position: 40px 0; } to { background-position: 0 0; }}
+	@-o-keyframes progress-bar-stripes 
+		{ from { background-position: 40px 0; } to { background-position: 0 0; }}
+	@keyframes progress-bar-stripes 
+		{ from { background-position: 40px 0; } to { background-position: 0 0; }}
+}
+@if $close == true {
+	button.close { padding: 0; cursor: pointer; background: transparent; border: 0; -webkit-appearance: none; }
+}
+@if $btn == true {
+	[role="button"] { cursor: pointer; }
+
+	[data-toggle="buttons"] > .btn input[type="radio"],
+	[data-toggle="buttons"] > .btn input[type="checkbox"] {
+		position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
+}
+@if $btn-group == true {
+	[data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
+	[data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"] {
+		position: absolute; clip: rect(0, 0, 0, 0); pointer-events: none; }
+}
+@if $btn-block == true {
+	input[type="submit"].btn-block,
+	input[type="reset"].btn-block,
+	input[type="button"].btn-block { width: 100%; }
+
+	fieldset[disabled] { background-color: #eeeeee; opacity: 1; }
+	fieldset[disabled] { cursor: not-allowed; }
+	input[type="search"] { -webkit-appearance: none; }
+
+	textarea.form-control { height: auto; }
+	@media screen and (-webkit-min-device-pixel-ratio: 0) {
+		input[type="date"].form-control,
+		input[type="time"].form-control,
+		input[type="datetime-local"].form-control,
+		input[type="month"].form-control { line-height: 34px; }}
+}
+@if $input-sm == true {
+	select.input-sm { height: 30px; line-height: 30px; }
+	textarea.input-sm, select[multiple].input-sm { height: auto; }
+}
+
+// @media screen and (-webkit-min-device-pixel-ratio: 0) {
+// 	input[type="date"].input-sm, input[type="time"].input-sm,
+// 	input[type="datetime-local"].input-sm, input[type="month"].input-sm, // MISSING?
+// }
+@if $input-sm == true {
+	select.input-lg { height: 46px; line-height: 46px; }
+	textarea.input-lg, select[multiple].input-lg { height: auto; }
+}
+
+// @media screen and (-webkit-min-device-pixel-ratio: 0) {
+// 	input[type="date"].input-lg,
+// 	input[type="time"].input-lg,
+// 	input[type="datetime-local"].input-lg,
+// 	input[type="month"].input-lg,  // MISSING?
+// }
+@if $input-group-sm == true {
+	select.input-group-sm > .form-control,
+	select.input-group-sm > .input-group-addon,
+	select.input-group-sm > .input-group-btn > .btn { height: 30px; line-height: 30px; }
+
+	textarea.input-group-sm > .form-control,
+	textarea.input-group-sm > .input-group-addon,
+	textarea.input-group-sm > .input-group-btn > .btn,
+	select[multiple].input-group-sm > .form-control,
+	select[multiple].input-group-sm > .input-group-addon,
+	select[multiple].input-group-sm > .input-group-btn > .btn { height: auto; }
+}
+@if $input-group-lg == true {
+	select.input-group-lg > .form-control,
+	select.input-group-lg > .input-group-addon,
+	select.input-group-lg > .input-group-btn > .btn { height: 46px; line-height: 46px;}
+
+	textarea.input-group-lg > .form-control,
+	textarea.input-group-lg > .input-group-addon,
+	textarea.input-group-lg > .input-group-btn > .btn,
+	select[multiple].input-group-lg > .form-control,
+	select[multiple].input-group-lg > .input-group-addon,
+	select[multiple].input-group-lg > .input-group-btn > .btn { height: auto; }
+}
+
+// input[type="radio"][disabled],
+// input[type="checkbox"][disabled],
+// input[type="radio"].disabled,
+// input[type="checkbox"].disabled,
+// fieldset[disabled] input[type="radio"],
+// fieldset[disabled] input[type="checkbox"] { cursor: not-allowed; }
+
+@if $label == true {
+	a.label:hover, a.label:focus { color: #ffffff; text-decoration: none; cursor: pointer; }
+}
+@if $badge == true {
+	a.badge:hover, a.badge:focus { color: #ffffff; text-decoration: none; cursor: pointer; }
+}
+@if $thumbnail == true {
+	a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active { border-color: #337ab7; }
+}
+
+
+// table-hover??
+// fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
+// legend { display: block; width: 100%; padding: 0; margin-bottom: 20px; font-size: 21px; line-height: inherit; color: #333333; border: 0; border-bottom: 1px solid #e5e5e5; }
+// label { display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: bold; }
+// input[type="search"] { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+// input[type="radio"], input[type="checkbox"] { margin: 4px 0 0; margin-top: 1px \9; line-height: normal; }
+// input[type="file"] { display: block; }
+// input[type="range"] { display: block; width: 100%; }
+// select[multiple], select[size] { height: auto; }
+// input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus { outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px; }
+// output { display: block; padding-top: 7px; font-size: 14px; line-height: 1.42857143; color: #555555; }
+
+// // table-striped?
+// table col[class*="col-"] { position: static; float: none; display: table-column; }
+// table td[class*="col-"], table th[class*="col-"] { position: static; float: none; display: table-cell; }
+
+@if $collapse == true {
+	tr.collapse.in { display: table-row; }
+	body.collapse.in { display: table-row-group; }
+}
+
+@if $list-group-item == true {
+	a.list-group-item, button.list-group-item { color: #555555; }
+	a.list-group-item .list-group-item-heading, button.list-group-item .list-group-item-heading {
+		color: #333333; }
+	a.list-group-item:hover, button.list-group-item:hover, a.list-group-item:focus, button.list-group-item:focus {
+		text-decoration: none; color: #555555; background-color: #f5f5f5; }
+	button.list-group-item { width: 100%; text-align: left; }
+}
+@if $list-group-item-success == true {
+	a.list-group-item-success, button.list-group-item-success { color: #3c763d; }
+	a.list-group-item-success .list-group-item-heading, button.list-group-item-success .list-group-item-heading {
+		color: inherit; }
+	a.list-group-item-success:hover, button.list-group-item-success:hover,
+	a.list-group-item-success:focus, button.list-group-item-success:focus {
+		color: #3c763d; background-color: #d0e9c6; }
+	a.list-group-item-success.active, button.list-group-item-success.active,
+	a.list-group-item-success.active:hover, button.list-group-item-success.active:hover,
+	a.list-group-item-success.active:focus, button.list-group-item-success.active:focus {
+		color: #fff; background-color: #3c763d; border-color: #3c763d; }
+}
+@if $list-group-item-info == true {
+	a.list-group-item-info, button.list-group-item-info { color: #31708f; }
+	a.list-group-item-info .list-group-item-heading, button.list-group-item-info .list-group-item-heading {
+		color: inherit; }
+	a.list-group-item-info:hover, button.list-group-item-info:hover,
+	a.list-group-item-info:focus, button.list-group-item-info:focus {
+		color: #31708f; background-color: #c4e3f3; }
+	a.list-group-item-info.active, button.list-group-item-info.active,
+	a.list-group-item-info.active:hover, button.list-group-item-info.active:hover,
+	a.list-group-item-info.active:focus, button.list-group-item-info.active:focus {
+		color: #fff; background-color: #31708f; border-color: #31708f; }
+}
+@if $list-group-item-warning == true {
+	a.list-group-item-warning, button.list-group-item-warning {
+		color: #8a6d3b; }
+	a.list-group-item-warning .list-group-item-heading, button.list-group-item-warning .list-group-item-heading {
+		color: inherit; }
+	a.list-group-item-warning:hover, button.list-group-item-warning:hover,
+	a.list-group-item-warning:focus, button.list-group-item-warning:focus {
+		color: #8a6d3b; background-color: #faf2cc; }
+	a.list-group-item-warning.active, button.list-group-item-warning.active, a.list-group-item-warning.active:hover,
+	button.list-group-item-warning.active:hover, a.list-group-item-warning.active:focus,
+	button.list-group-item-warning.active:focus {
+		color: #fff; background-color: #8a6d3b; border-color: #8a6d3b; }
+}
+@if $list-group-item-danger == true {
+	a.list-group-item-danger, button.list-group-item-danger { color: #a94442; }
+	a.list-group-item-danger .list-group-item-heading, button.list-group-item-danger .list-group-item-heading {
+		color: inherit; }
+	a.list-group-item-danger:hover, button.list-group-item-danger:hover,
+	a.list-group-item-danger:focus, button.list-group-item-danger:focus {
+		color: #a94442; background-color: #ebcccc; }
+	a.list-group-item-danger.active, button.list-group-item-danger.active, a.list-group-item-danger.active:hover,
+	button.list-group-item-danger.active:hover, a.list-group-item-danger.active:focus,
+	button.list-group-item-danger.active:focus {
+		color: #fff; background-color: #a94442; border-color: #a94442; }
+}
+
+@if $var == true ($name, $color1, $bg-color1, $color2, $bg-color2, $bord-color) {
+	a.list-group-item-#{$name}, button.list-group-item-#{$name} {
+		color: $color1; }
+	a.list-group-item-#{$name} .list-group-item-heading,
+	button.list-group-item-#{$name} .list-group-item-heading {
+		color: inherit; }
+	a.list-group-item-#{$name}:hover,button.list-group-item-#{$name}:hover,
+	a.list-group-item-#{$name}:focus, button.list-group-item-#{$name}:focus {
+		color: $color1; background-color: $bg-color1; }
+	a.list-group-item-#{$name}.active, button.list-group-item-#{$name}.active,
+	a.list-group-item-#{$name}.active:hover, button.list-group-item-#{$name}.active:hover,
+	a.list-group-item-#{$name}.active:focus, button.list-group-item-#{$name}.active:focus {
+		color: $color2; background-color: $bg-color2; border-color: #a94442; }
+}

@@ -1,0 +1,64 @@
+/* By Jeff Russ https://github.com/Jeff-Russ
+based on Twitter Bootstrap
+~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._.~~._*/
+
+@if $twbs_h == true { 
+	.h1 { font-size: 36px; }
+	.h2 { font-size: 30px; }
+	.h3 { font-size: 24px; }
+	.h4 { font-size: 18px; }
+	.h5 { font-size: 14px; }
+	.h6 { font-size: 12px; }
+	.h1, .h2, .h3, .h4, .h5, .h6 {
+		font-family: inherit; font-weight: 500; line-height: 1.1; color: inherit; }
+	.h1, .h2, .h3 {
+		margin-top: 20px; margin-bottom: 10px; }
+	.h4, .h5, .h6 {
+		margin-top: 10px; margin-bottom: 10px; }
+}
+@if $twbs_small == true {
+	.small { font-size: 85%; }
+	.h1 .small, .h2 .small, .h3 .small, .h4 .small, .h5 .small, .h6 .small {
+		font-weight: normal; line-height: 1; color: #777777; }
+	.h1 .small, .h2 .small, .h3 .small { font-size: 65%; }
+	.h4 .small, .h5 .small, .h6 .small { font-size: 75%; }
+}
+@if $text-HELPERS == true {
+	.text-left    { text-align: left;  }
+	.text-right   { text-align: right; }
+	.text-center  { text-align: center;  }
+	.text-justify { text-align: justify; }
+	.text-nowrap  { white-space: nowrap; }
+	.text-lowercase  { text-transform: lowercase;  }
+	.text-uppercase  { text-transform: uppercase;  }
+	.text-capitalize { text-transform: capitalize; }
+	.text-muted { color: #777777; }
+}
+@if $page-header__initialism__lead == true {
+	%page-header { padding-bottom: 9px; margin: 40px 0 20px; border-bottom: 1px solid #eeeeee; }
+	%initialism  { font-size: 90%; text-transform: uppercase; }
+	%lead { margin-bottom: 20px; font-size: 16px; font-weight: 300; line-height: 1.4; 
+		@media (min-width: 768px) { font-size: 21px; }
+	}
+}
+@if $text-COLOR == true {
+	.text-primary { color: #337ab7; }
+	.text-success { color: #3c763d; }
+	.text-info    { color: #31708f; }
+	.text-warning { color: #8a6d3b; }
+	.text-danger  { color: #a94442; }
+	.bg-primary   { color: #fff; background-color: #337ab7; }
+	.bg-success   { background-color: #dff0d8; }
+	.bg-info      { background-color: #d9edf7; }
+	.bg-warning   { background-color: #fcf8e3; }
+	.bg-danger    { background-color: #f2dede; }
+}
+@if $sr-only == true {
+	%sr-only { position: absolute; width: 1px; height: 1px;
+		margin: -1px; padding: 0; overflow: hidden;
+		clip: rect(0, 0, 0, 0); border: 0;}
+	%sr-only-focusable { 
+		&:active, &:focus {
+			position: static; width: auto; height: auto;
+			margin: 0; overflow: visible; clip: auto; }}
+}
