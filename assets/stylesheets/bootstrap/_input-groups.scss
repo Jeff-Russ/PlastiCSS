@@ -119,7 +119,7 @@
   /* END input-groups ========================================================
   */
 }
-@mixin make_input-groups_classes ($classes...) {
+@mixin make_input-group_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
 			$classes: ?????;

@@ -115,7 +115,7 @@
   /* END dropdowns ========================================================
   */
 }
-@mixin make_dropdowns_classes ($classes...) {
+@mixin make_dropdown_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
 			$classes: ?????;

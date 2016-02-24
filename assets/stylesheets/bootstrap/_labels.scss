@@ -1,7 +1,7 @@
 // Labels
 // --------------------------------------------------
-@if $label == true {
-  /* BEGIN label ========================================================
+@if $labels == true {
+  /* BEGIN labels ========================================================
   */
 
   %label {
@@ -30,7 +30,7 @@
   %label-warning { @include label-variant($label-warning-bg); }
   %label-danger  { @include label-variant($label-danger-bg); }
   
-  /* END label ========================================================
+  /* END labels ========================================================
   */
 }
 @mixin make_label_classes ($classes...) {

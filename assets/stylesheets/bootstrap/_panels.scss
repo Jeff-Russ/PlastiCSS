@@ -1,8 +1,8 @@
 // Panels
 // --------------------------------------------------
 
-@if $panel == true {
-  /* BEGIN panel ========================================================
+@if $panels == true {
+  /* BEGIN panels ========================================================
   */
 
   %panel { // Base class
@@ -103,7 +103,7 @@
   %panel-warning { @include panel-variant($panel-warning-border, $panel-warning-text, $panel-warning-heading-bg, $panel-warning-border); }
   %panel-danger  { @include panel-variant($panel-danger-border, $panel-danger-text, $panel-danger-heading-bg, $panel-danger-border); }
 
-  /* END panel ========================================================
+  /* END panels ========================================================
   */
 }
 @mixin make_panel_classes ($classes...) {

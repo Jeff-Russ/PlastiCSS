@@ -1,7 +1,7 @@
 // Modals
 // --------------------------------------------------
-@if $modal == true {
-  /* BEGIN modal ========================================================
+@if $modals == true {
+  /* BEGIN modals ========================================================
   */
 
   // .modal-open      - body class for killing the scroll
@@ -79,7 +79,7 @@
   }
   @media (min-width: $screen-md-min) { %modal-lg { width: $modal-lg; } }
 
-  /* END modal ========================================================
+  /* END modals ========================================================
   */
 }
 @mixin make_modal_classes ($classes...) {

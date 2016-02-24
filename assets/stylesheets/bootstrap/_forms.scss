@@ -379,7 +379,7 @@
   /* END forms ========================================================
   */
 }
-  @mixin make_forms_classes ($classes...) {
+  @mixin make_form_classes ($classes...) {
   	@if nth($classes, 1) != false {
   		@if nth($classes, 1) == all or nth($classes, 1) == true {
   			$classes: ?????;

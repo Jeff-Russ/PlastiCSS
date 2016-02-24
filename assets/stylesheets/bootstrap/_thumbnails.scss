@@ -1,7 +1,7 @@
 // Thumbnails
 // --------------------------------------------------
-@if $ == true {
-  /* BEGIN  ========================================================
+@if $thumbnails == true {
+  /* BEGIN thumbnails ========================================================
   */
 
   // Mixin and adjust the regular image class
@@ -21,6 +21,6 @@
   // Add a hover state for linked versions only
   a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {  border-color: $link-color; }
 
-  /* END  ========================================================
+  /* END thumbnails ========================================================
   */
 }

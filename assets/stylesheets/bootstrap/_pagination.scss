@@ -1,7 +1,7 @@
 // Pagination (multiple pages)
 // --------------------------------------------------
-@if $ == true {
-  /* BEGIN  ========================================================
+@if $pagination == true {
+  /* BEGIN pagination ========================================================
   */
 
   .pagination {
@@ -40,6 +40,6 @@
     @include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
   }
 
-  /* END  ========================================================
+  /* END pagination ========================================================
   */
 }

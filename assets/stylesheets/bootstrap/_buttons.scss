@@ -108,7 +108,7 @@
   /* END buttons ========================================================
   */
 }
-@mixin make_buttons_classes ($classes...) {
+@mixin make_button_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
 			$classes: btn btn-default btn-default btn-primary btn-success btn-info btn-warning btn-danger btn-link btn-lg btn-sm btn-xs btn-block;

@@ -73,7 +73,7 @@
   */
 }
 
-@mixin make_scaffolds ($classes...) {
+@mixin make_scaffolding_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($names, 1) == all or nth($classes, 1) == true {
 			$classes: img-responsive img-rounded img-thumbnail img-circle sr-only sr-only-focusable;

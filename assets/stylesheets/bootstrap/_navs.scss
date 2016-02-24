@@ -1,7 +1,7 @@
 // Navs
 // --------------------------------------------------
-@if $nav == true {
-  /* BEGIN nav ========================================================
+@if $navs == true {
+  /* BEGIN navs ========================================================
   */
 
   // Base class
@@ -122,7 +122,7 @@
     margin-top: -1px; // make dropdown border overlap tab border
     @include border-top-radius(0); } // Remove the top rounded corners here since there is a hard edge above the menu
 
-  /* END nav ========================================================
+  /* END navs ========================================================
   */
 }
 @mixin make_nav_classes ($classes...) {

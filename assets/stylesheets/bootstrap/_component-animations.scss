@@ -3,8 +3,8 @@
 // Heads up!
 // We don't use the `.opacity()` mixin here since it causes a bug with text
 // fields in IE7-8. Source: https://github.com/twbs/bootstrap/pull/3552.
-@if $animation == true {
-  /* BEGIN animation ========================================================
+@if $component-animations == true {
+  /* BEGIN component-animations ========================================================
   */
 
   %fade { opacity: 0; @include transition(opacity .15s linear);
@@ -24,10 +24,10 @@
     @include transition-timing-function(ease);
   }
 
-  /* END animation ========================================================
+  /* END component-animations ========================================================
   */
 }
-@mixin make_animation_classes ($classes...) {
+@mixin make_component-animations_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
 			$classes: fade collpase collapsing;
