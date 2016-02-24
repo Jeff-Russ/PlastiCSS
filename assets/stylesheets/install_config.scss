@@ -1,0 +1,26 @@
+// run $ sass _bootstrap.scss bootstrap.css
+
+$browser_normalize: false;
+$print_styles: false;
+$glyphicons: false;
+/* Install each glyphicon here:
+example: .glyphicon-asterisk {@extend%glyphicon-asterisk;} */
+
+$scaffolding: false;
+/* Install additional classes from placeholders here. Placeholders are: 
+%img-responsive, %img-rounded, %img-thumbnail, %img-circle, %sr-only, %sr-only-focusable */
+
+$html_h_size: false; 
+$twbs_h_size: false; 
+$html_p_small_mark: false; 
+$text-color_classes: false;
+$html_lists_w_classes: false; 
+$html_blockquote_w_reverse: false; 
+$html_abbr_address: false; 
+$text_helpers_classes: false; 
+$html_code_tags: false;
+
+
+// .glyphicon-asterisk {@extend%container;}
+// .glyphicon-asterisk {@extend%container-fluid;}
+// .glyphicon-asterisk {@extend%row;}

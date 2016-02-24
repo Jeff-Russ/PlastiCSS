@@ -1,0 +1,32 @@
+// _mixin-6-layout.scss
+
+
+//// Layout ////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+// _clearfix.scss ==============================================================
+// Clearfix For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the contenteditable 
+//    attribute is included anywhere else in the document. Otherwise it causes space 
+//    to appear at the top and bottom of elements that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using `:before` to 
+//    contain the top-margins of child elements. 
+//    Source: http://nicolasgallagher.com/micro-clearfix-hack/   
+@mixin clearfix() {
+  &:before, &:after { content: " ";    // 1
+                      display: table; }// 2
+  &:after { clear: both; }
+}
+
+// _center-block.scss ==========================================================
+//  Center-align a block level element 
+@mixin center-block() { display: block; margin-left: auto; margin-right: auto; }
+
+// _nav-vertical-align.scss ====================================================
+// Navbar vertical align - Vertically center elements in the navbar.
+// Example: an element has a height of 30px, so write out 
+// `.navbar-vertical-align(30px);` to calculate the appropriate top margin. 
+@mixin navbar-vertical-align($element-height) {
+  margin-top: (($navbar-height - $element-height) / 2);
+  margin-bottom: (($navbar-height - $element-height) / 2);
+}

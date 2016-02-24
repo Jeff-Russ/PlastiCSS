@@ -1,5 +1,9 @@
+// _mixin-2-vendor-prefixes.scss
+
+//// Utilities - cont. /////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
 // Vendor Prefixes
-//
 // All vendor mixins are deprecated as of v3.2.0 due to the introduction of
 // Autoprefixer in our Gruntfile. They have been removed in v4.
 
@@ -13,7 +17,6 @@
 // - Transformations
 // - Transitions
 // - User Select
-
 
 // Animations
 @mixin animation($animation) {
@@ -53,7 +56,6 @@
 // Backface visibility
 // Prevent browsers from flickering when using CSS 3D transforms.
 // Default value is `visible`, but can be changed to `hidden`
-
 @mixin backface-visibility($visibility) {
   -webkit-backface-visibility: $visibility;
      -moz-backface-visibility: $visibility;
@@ -61,10 +63,8 @@
 }
 
 // Drop shadows
-//
 // Note: Deprecated `.box-shadow()` as of v3.1.0 since all of Bootstrap's
 // supported browsers that have box shadow capabilities now support it.
-
 @mixin box-shadow($shadow...) {
   -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
           box-shadow: $shadow;
@@ -179,9 +179,7 @@
           transform-origin: $origin;
 }
 
-
 // Transitions
-
 @mixin transition($transition...) {
   -webkit-transition: $transition;
        -o-transition: $transition;
@@ -210,10 +208,8 @@
           transition: transform $transition;
 }
 
-
 // User select
 // For selecting text on the page
-
 @mixin user-select($select) {
   -webkit-user-select: $select;
      -moz-user-select: $select;
