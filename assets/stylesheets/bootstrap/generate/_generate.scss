@@ -1,7 +1,0 @@
-@mixin make_classes ($names...) {
-	@if nth($names, 1) != false {   
-		@each $name in $names {
-			.#{$num} { @extend%#{$num};}
-		}
-	}
-} 
