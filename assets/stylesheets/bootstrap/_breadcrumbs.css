@@ -1,0 +1,50 @@
+/*
+Error: Invalid CSS after "@if ": expected expression (e.g. 1px, bold), was "$ == true {"
+        on line 4 of /home/ubuntu/workspace/routestrap/assets/stylesheets/bootstrap/_breadcrumbs.scss
+
+1: // Breadcrumbs
+2: // --------------------------------------------------
+3: // compiles to empty file
+4: @if $ == true {
+5:   /* BEGIN  ========================================================
+6:   *\/
+7:   /* END  ========================================================
+8:   *\/
+9: }
+
+Backtrace:
+/home/ubuntu/workspace/routestrap/assets/stylesheets/bootstrap/_breadcrumbs.scss:4
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:1179:in `expected'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/script/lexer.rb:227:in `expected!'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/script/parser.rb:673:in `assert_expr'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/script/parser.rb:63:in `parse'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:1041:in `sass_script'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:315:in `if_directive'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:220:in `special_directive'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:195:in `directive'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:673:in `block_child'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:663:in `block_contents'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:123:in `stylesheet'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/scss/parser.rb:39:in `parse'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/engine.rb:403:in `_to_tree'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/engine.rb:378:in `_render_with_sourcemap'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/engine.rb:295:in `render_with_sourcemap'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `each'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/plugin.rb:82:in `update_stylesheets'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:363:in `watch_or_update'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/exec/base.rb:52:in `parse'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/lib/sass/exec/base.rb:19:in `parse!'
+/usr/local/rvm/gems/ruby-2.2.1/gems/sass-3.4.21/bin/scss:13:in `<top (required)>'
+/usr/local/rvm/gems/ruby-2.2.1/bin/scss:23:in `load'
+/usr/local/rvm/gems/ruby-2.2.1/bin/scss:23:in `<main>'
+/usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+/usr/local/rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Invalid CSS after \"@if \": expected expression (e.g. 1px, bold), was \"$ == true {\"\A         on line 4 of /home/ubuntu/workspace/routestrap/assets/stylesheets/bootstrap/_breadcrumbs.scss\A \A 1: // Breadcrumbs\A 2: // --------------------------------------------------\A 3: // compiles to empty file\A 4: @if $ == true {\A 5:   /* BEGIN  ========================================================\A 6:   */\A 7:   /* END  ========================================================\A 8:   */\A 9: }"; }

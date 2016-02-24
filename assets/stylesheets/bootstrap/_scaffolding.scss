@@ -72,3 +72,14 @@
   /* END Scaffolding ========================================================
   */
 }
+
+@mixin make_scaffolds ($classes...) {
+	@if nth($classes, 1) != false {
+		@if nth($names, 1) == all or nth($classes, 1) == true {
+			$classes: img-responsive img-rounded img-thumbnail img-circle sr-only sr-only-focusable;
+		}
+		@each $class in $classes {
+			.#{$class} { @extend%#{$class};}
+		}
+	}
+} 

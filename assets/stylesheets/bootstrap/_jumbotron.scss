@@ -1,7 +1,10 @@
 // Jumbotron
 // --------------------------------------------------
+@if $jumbotron == true {
+  /* BEGIN jumbotron ========================================================
+  */
 
-%jumbotron {
+.jumbotron {
   padding-top:    $jumbotron-padding; padding-bottom: $jumbotron-padding;
   margin-bottom: $jumbotron-padding;  color: $jumbotron-color;
   background-color: $jumbotron-bg;
@@ -32,4 +35,8 @@
 
     h1, %h1 { font-size: $jumbotron-heading-font-size; }
   }
+}
+
+  /* ENDjumbotron  ========================================================
+  */
 }

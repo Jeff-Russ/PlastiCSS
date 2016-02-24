@@ -1,9 +1,49 @@
+// run $ sass _bootstrap.scss bootstrap.css
+
+
+$browser_normalize: false;
+$print_styles: false;
+// Install each glyphicon by listing them here in the argument. Omit the starting dot:
+$include_glyphs: false;
+// Install additional classes by listing them here, This is the full list (or type `all`):
+// img-responsive img-rounded img-thumbnail img-circle sr-only sr-only-focusable
+$include_scaffolds: false;
+$html_h_size: false; 
+$twbs_h_size: false; 
+$html_p_small_mark: false; 
+$text-color_classes: false;
+$html_lists_w_classes: false; 
+$html_blockquote_w_reverse: false; 
+$html_abbr_address: false; 
+$text_helpers_classes: false; 
+$html_code_tags: false;
+
+$grid_system: false;
+$include_col-xs: false;
+$include_col-sm: false;
+$include_col-md: false;
+$include_col-lg: false;
+$include_col-xs-push: false;
+$include_col-sm-push: false;
+$include_col-md-push: false;
+$include_col-lg-push: false;
+$include_col-xs-pull: false;
+$include_col-sm-pull: false;
+$include_col-md-pull: false;
+$include_col-lg-pull: false;
+$include_col-xs-offset: false;
+$include_col-sm-offset: false;
+$include_col-md-offset: false;
+$include_col-lg-offset: false;
+
+// table-condensed table-bordered table-striped table-hover table-responsive;
+$include_table_classes: false;
 // user config
-@import "install_config";
+// @import "install_config";
+
 
 // Core variables
 @import "bootstrap/import/variables";
-
 
 // Mixins (no ouptput)
 @import "bootstrap/import/mixin-1";
@@ -14,18 +54,42 @@
 @import "bootstrap/import/mixin-6-layout"; 
 @import "bootstrap/import/mixin-7-grid"; 
 
-
+// Reset and dependencies
 @import "bootstrap/normalize";
-
 @import "bootstrap/print";
+$glyphicons:"";
+@if nth($include_glyphs, 1) != false {$glyphicons: true;} @else { $glyphicons: false; }
 @import "bootstrap/glyphicons"; 
+@include make_glyphs($include_glyphs);
 
-// // Core CSS
+// Core CSS
+$scaffolding:"";
+@if nth($include_scaffolds, 1) != false { $scaffolding: true;} @else { $scaffolding: false; }
 @import "bootstrap/scaffolding";
+@include make_scaffolds($include_scaffolds);
 @import "bootstrap/type";
 @import "bootstrap/code";
 @import "bootstrap/grid"; // has a little output
-// @import "bootstrap/tables"; // has a little output
+@include make_cols("xs", $include_col-xs);
+@include make_cols("sm", $include_col-sm);
+@include make_cols("md", $include_col-md);
+@include make_cols("lg", $include_col-lg);
+@include make_cols("xs-push", $include_col-xs-push);
+@include make_cols("sm-push", $include_col-sm-push);
+@include make_cols("md-push", $include_col-md-push);
+@include make_cols("lg-push", $include_col-lg-push);
+@include make_cols("xs-pull", $include_col-xs-pull);
+@include make_cols("sm-pull", $include_col-sm-pull);
+@include make_cols("md-pull", $include_col-md-pull);
+@include make_cols("lg-pull", $include_col-lg-pull);
+@include make_cols("xs-offset", $include_col-xs-offset);
+@include make_cols("sm-offset", $include_col-sm-offset);
+@include make_cols("md-offset", $include_col-md-offset);
+@include make_cols("lg-offset", $include_col-lg-offset);
+$tables:"";
+@if nth($include_table_classes, 1) != false { $tables: true;} @else { $tables: false; }
+@import "bootstrap/tables"; 
+@include make_table_classes($tables);
 // @import "bootstrap/forms";
 // @import "bootstrap/buttons"; // has a little output
 

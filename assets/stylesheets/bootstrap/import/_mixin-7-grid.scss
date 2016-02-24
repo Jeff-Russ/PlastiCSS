@@ -6,6 +6,7 @@
 // _grid-framework.scss ==========================================================
 // Framework grid generation 
 
+
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `$grid-columns`.
 
@@ -76,6 +77,7 @@
 
 // Create grid for specific class
 @mixin make-grid($class) {
+  
   @include float-grid-columns($class);
   @include loop-grid-columns($grid-columns, $class, width);
   @include loop-grid-columns($grid-columns, $class, pull);
