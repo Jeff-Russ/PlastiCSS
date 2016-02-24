@@ -1,12 +1,9 @@
-// List groups
-// --------------------------------------------------
 @if $list-groups == true {
   /* BEGIN list-groups ========================================================
   */
  
   // Base class
   // Easily usable on <ul>, <ol>, or <div>.
-  
   %list-group {
     // No need to set list-style: none; since .list-group-item is block level
     margin-bottom: 20px; padding-left: 0; // reset padding because ul and ol
@@ -14,7 +11,6 @@
   
   // Individual list items
   // Use on `li`s or `div`s within the `.list-group` parent.
-  
   %list-group-item {
     position: relative; display: block; padding: 10px 15px;
     // Place the border on the list items and negative margin up for better styling
@@ -83,7 +79,7 @@
 @mixin make_list-groups_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: ?????;
+			$classes: list-group list-group-item list-group-item-heading list-group-item-text;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

@@ -1,9 +1,119 @@
-// Forms
-// --------------------------------------------------
-@if $forms == true {
-  /* BEGIN forms ========================================================
+// _tables.scss, _forms.scss and _buttons.scss in one file.
+
+@if $tables == true {
+  /* BEGIN Tables ===============================================================
   */
+  table { background-color: $table-bg; }
+  caption { padding-top: $table-cell-padding; padding-bottom: $table-cell-padding; color: $text-muted; text-align: left;}
+  th { text-align: left; }
   
+  // Baseline styles
+  %table { width: 100%; max-width: 100%; margin-bottom: $line-height-computed;
+    // Cells
+    > thead, > tbody, > tfoot { > tr { > th, > td {
+          padding: $table-cell-padding; line-height: $line-height-base;
+          vertical-align: top; border-top: 1px solid $table-border-color; } } }
+    // Bottom align for column headings
+    > thead > tr > th { vertical-align: bottom; border-bottom: 2px solid $table-border-color; }
+    // Remove top border from thead by default
+    > caption + thead, > colgroup + thead, > thead:first-child { > tr:first-child { > th, > td { border-top: 0; } } }
+    > tbody + tbody { border-top: 2px solid $table-border-color; } // Account for multiple tbody instances
+    .table { background-color: $body-bg; } // Nesting
+  }
+  
+  // Condensed table w/ half padding
+  
+  %table-condensed { > thead, > tbody, > tfoot { > tr { > th, > td { padding: $table-condensed-cell-padding; } } } }
+  
+  // Bordered version
+  // Add borders all around the table and between all the columns.
+  %table-bordered { border: 1px solid $table-border-color;
+    > thead, > tbody, > tfoot {  > tr {  > th, > td { border: 1px solid $table-border-color; } } }
+    > thead > tr { > th, > td { border-bottom-width: 2px; } }
+  }
+  
+  // Zebra-striping
+  // Default zebra-stripe styles (alternating gray and transparent backgrounds)
+  
+  %table-striped { > tbody > tr:nth-of-type(odd) { background-color: $table-bg-accent; } }
+  
+  // Hover effect
+  // Placed here since it has to come after the potential zebra striping
+  
+  %table-hover { > tbody > tr:hover { background-color: $table-bg-hover; } }
+  
+  // Table cell sizing
+  // Reset default table behavior
+  table col[class*="col-"] {
+    position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+    float: none; display: table-column;
+  }
+  table { td, th { &[class*="col-"] {
+        position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+        float: none; display: table-cell; } }
+  }
+  
+  // Table backgrounds
+  // Exact selectors below required to override `.table-striped` and prevent
+  // inheritance to nested tables.
+  
+  // Generate the contextual variants
+  @include table-row-variant('active', $table-bg-active);
+  @include table-row-variant('success', $state-success-bg);
+  @include table-row-variant('info', $state-info-bg);
+  @include table-row-variant('warning', $state-warning-bg);
+  @include table-row-variant('danger', $state-danger-bg);
+  
+  // Responsive tables
+  // Wrap your tables in `.table-responsive` and we'll make them mobile friendly
+  // by enabling horizontal scrolling. Only applies <768px. Everything above that
+  // will display normally.
+  
+  %table-responsive { overflow-x: auto;
+    min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+  
+    @media screen and (max-width: $screen-xs-max) {
+      width: 100%; margin-bottom: ($line-height-computed * 0.75); overflow-y: hidden;
+      -ms-overflow-style: -ms-autohiding-scrollbar; border: 1px solid $table-border-color;
+  
+      // Tighten up spacing
+      > .table { margin-bottom: 0;
+        // Ensure the content doesn't wrap
+        > thead, > tbody, > tfoot { > tr { > th, > td { white-space: nowrap; } } } }
+      // Special overrides for the bordered tables
+      > .table-bordered { border: 0;
+        // Nuke the appropriate borders so that the parent can handle them
+        > thead, > tbody, > tfoot { > tr {
+            > th:first-child, > td:first-child {
+              border-left: 0; }
+            > th:last-child, > td:last-child {
+              border-right: 0; } } }
+        // Only nuke the last row's bottom-border in `tbody` and `tfoot` since
+        // chances are there will be only one `tr` in a `thead` and that would
+        // remove the border altogether.
+        > tbody, > tfoot { > tr:last-child { > th, > td { border-bottom: 0; } } } } }
+  }
+  /* END Tables ========================================================
+  */
+}
+
+@mixin make_table_classes ($classes...) {
+	@if nth($classes, 1) != false {
+		@if nth($classes, 1) == all or nth($classes, 1) == true {
+			$classes: table-condensed table-bordered table-striped table-hover table-responsive;
+		}
+		@each $class in $classes {
+			.#{$class} { @extend%#{$class};}
+		}
+	}
+} 
+
+
+// _forms.scss and _buttons.scss in one file.
+
+@if $forms == true {
+  /* BEGIN forms ===============================================================
+  */
   // Normalize non-controls
   // Restyle and baseline non-control form elements.
   fieldset {
@@ -19,7 +129,8 @@
     border: 0; border-bottom: 1px solid $legend-border-color;
   }
   label {
-    display: inline-block; max-width: 100%; // Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)
+    /* Force IE8 to wrap long content (see https://github.com/twbs/bootstrap/issues/13141)*/
+    display: inline-block; max-width: 100%; 
     margin-bottom: 5px; font-weight: bold;
   }
   // Normalize form controls
@@ -286,47 +397,6 @@
     color: lighten($text-color, 25%); // lighten the text some for contrast
   }
   
-  // Inline forms
-  // Make forms appear inline(-block) by adding the `.form-inline` class. Inline
-  // forms begin stacked on extra small (mobile) devices and then go inline when
-  // viewports reach <768px.
-  // Requires wrapping inputs and labels with `.form-group` for proper display of
-  // default HTML form controls and our custom form controls (e.g., input groups).
-  // Heads up! This is mixin-ed into `.navbar-form` in navbars.less.
-  
-  // [converter] extracted from `.form-inline` for libsass compatibility
-  @mixin form-inline {
-  
-    // Kick in the inline
-    @media (min-width: $screen-sm-min) {
-      // Inline-block all the things for "inline"
-      %form-group { display: inline-block; margin-bottom: 0; vertical-align: middle; }
-  
-      // In navbar-form, allow folks to *not* use `.form-group`
-      %form-control { display: inline-block;
-        width: auto; // Prevent labels from stacking above inputs in `.form-group`
-        vertical-align: middle; }
-        
-      %form-control-static { display: inline-block; } // Make static controls behave like regular ones
-      %input-group { display: inline-table; vertical-align: middle;
-        %input-group-addon,%input-group-btn,  %form-control { width: auto; }
-      }
-      %input-group > %form-control { width: 100%; } // Input groups need that 100% width though
-      %control-label { margin-bottom: 0; vertical-align: middle; }
-  
-      // Remove default margin on radios/checkboxes that were used for stacking, and
-      // then undo the floating of radios and checkboxes to match.
-      %radio, %checkbox { display: inline-block; margin-top: 0; margin-bottom: 0; vertical-align: middle;
-  
-        label { padding-left: 0; }
-      }
-      %radio input[type="radio"], %checkbox input[type="checkbox"] {
-        position: relative; margin-left: 0; }
-  
-      // Re-override the feedback icon.
-      %has-feedback %form-control-feedback { top: 0; }
-    }
-  }
   // [converter] extracted as `@mixin form-inline` for libsass compatibility
   %form-inline {  @include form-inline; }
   
@@ -375,17 +445,136 @@
         %control-label {
           padding-top: ($padding-small-vertical + 1); font-size: $font-size-small; }}}
   }
-
-  /* END forms ========================================================
+  /* END forms ===============================================================
   */
 }
-  @mixin make_form_classes ($classes...) {
-  	@if nth($classes, 1) != false {
-  		@if nth($classes, 1) == all or nth($classes, 1) == true {
-  			$classes: ?????;
-  		}
-  		@each $class in $classes {
-  			.#{$class} { @extend%#{$class};}
-  		}
-  	}
-  } 
+@mixin make_form_classes ($classes...) {
+	@if nth($classes, 1) != false {
+		@if nth($classes, 1) == all or nth($classes, 1) == true {
+			$classes: form-control form-control-feedback form-control-static control-label 
+			form-group form-group-lg form-group-sm form-horizontal form-inline input-lg 
+			input-sm input-group input-group-addon input-group-btn input-group-lg 
+			input-group-sm checkbox checkbox-inline radio radio-inline help-block 
+			has-error has-feedback has-success has-warning;
+		}
+		@each $class in $classes {
+			.#{$class} { @extend%#{$class};}
+		}
+	}
+} 
+  
+@if $buttons == true {
+  /* BEGIN buttons ===============================================================
+  */
+  // Base styles
+  %btn {
+    display: inline-block;
+    margin-bottom: 0; // For input.btn
+    font-weight: $btn-font-weight;  text-align: center; 
+    vertical-align: middle; touch-action: manipulation; cursor: pointer;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent; white-space: nowrap;
+    @include button-size($padding-base-vertical, $padding-base-horizontal, 
+                      $font-size-base, $line-height-base, $btn-border-radius-base);
+    @include user-select(none);
+  
+    &, &:active, &.active { &:focus, &.focus { @include tab-focus;} }
+    
+    &:hover, &:focus, &.focus { color: $btn-default-color; text-decoration: none;}
+  
+    &:active, &.active { outline: 0; background-image: none;
+      @include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));}
+  
+    &.disabled, &[disabled], fieldset[disabled] & { cursor: $cursor-disabled;
+      @include opacity(.65);  @include box-shadow(none); }
+  
+    // [converter] extracted a& to a.btn
+  }
+  
+  a.btn {
+    &.disabled, fieldset[disabled] & {
+      pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
+    }
+  }
+  
+  // Alternate buttons
+  // --------------------------------------------------
+  %btn-default {
+    @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
+  }
+  %btn-primary {
+    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+  }
+  // Success appears as green
+  %btn-success {
+    @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
+  }
+  // Info appears as blue-green
+  %btn-info {
+    @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+  }
+  // Warning appears as orange
+  %btn-warning {
+    @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
+  }
+  // Danger and error appear as red
+  %btn-danger {
+    @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
+  }
+  
+  // Link buttons
+  // -------------------------
+  
+  // Make a button look and behave like a link
+  %btn-link { color: $link-color; font-weight: normal; border-radius: 0;
+  
+    &, &:active, &.active, &[disabled], fieldset[disabled] & {
+      background-color: transparent;
+      @include box-shadow(none);
+    }
+    &, &:hover, &:focus, &:active { border-color: transparent;}
+    &:hover, &:focus { color: $link-hover-color; text-decoration: $link-hover-decoration;
+                       background-color: transparent; }
+    &[disabled], fieldset[disabled] & {
+      &:hover, &:focus { color: $btn-link-disabled-color; text-decoration: none; }
+    }
+  }
+  
+  // Button Sizes
+  // --------------------------------------------------
+  
+  %btn-lg {
+    // line-height: ensure even-numbered height of button next to large input
+    @include button-size($padding-large-vertical, $padding-large-horizontal, 
+            $font-size-large, $line-height-large, $btn-border-radius-large); }
+  %btn-sm {
+    // line-height: ensure proper height of button next to small input
+    @include button-size($padding-small-vertical, $padding-small-horizontal, 
+            $font-size-small, $line-height-small, $btn-border-radius-small); }
+  %btn-xs {
+    @include button-size($padding-xs-vertical, $padding-xs-horizontal, 
+            $font-size-small, $line-height-small, $btn-border-radius-small); }
+  
+  // Block button
+  // --------------------------------------------------
+  %btn-block { display: block; width: 100%; }
+  %btn-block + %btn-block { margin-top: 5px; } // Vertically space out multiple block buttons
+  
+  // Specificity overrides
+  input[type="submit"], input[type="reset"], input[type="button"] {
+    &.btn-block { width: 100%; }
+  }
+  /* END buttons ===============================================================
+  */
+}
+@mixin make_button_classes ($classes...) {
+	@if nth($classes, 1) != false {
+		@if nth($classes, 1) == all or nth($classes, 1) == true {
+			$classes: btn btn-default btn-primary btn-success btn-info btn-warning 
+			          btn-danger btn-link btn-lg btn-sm btn-xs btn-block;
+		}
+		@each $class in $classes {
+			.#{$class} { @extend%#{$class};}
+		}
+	}
+} 

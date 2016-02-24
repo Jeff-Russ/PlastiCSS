@@ -1,7 +1,6 @@
 @if $media == true {
   /* BEGIN media ========================================================
   */
-
   %media {
     margin-top: 15px; // Proper spacing between instances of .media
     &:first-child { margin-top: 0; }
@@ -33,7 +32,8 @@
 @mixin make_media_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: ?????;
+			$classes: media media-body media-object media-right media-left 
+              media-middle media-bottom media-heading media-list;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

@@ -1,11 +1,8 @@
-// Input groups
-// --------------------------------------------------
 @if $input-groups == true {
   /* BEGIN input-groups ========================================================
   */
 
   // Base styles
-  // -------------------------
   %input-group {
     position: relative; // For dropdowns
     display: table;
@@ -115,14 +112,13 @@
     &:first-child { > %btn, > %btn-group { margin-right: -1px; } }
     &:last-child  { > %btn, > %btn-group { z-index: 2; margin-left: -1px; } }
   }
-
   /* END input-groups ========================================================
   */
 }
 @mixin make_input-group_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: ?????;
+			$classes: input-group input-group-lg input-group-sm input-group-addon input-group-btn;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

@@ -1,15 +1,8 @@
-/*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-
-// Load core variables and mixins
-// --------------------------------------------------
 @if $theme == true {
   /* BEGIN theme ========================================================
   */
-
+  // Load core variables and mixins
+  // --------------------------------------------------
   
   // Buttons
   // --------------------------------------------------
@@ -164,7 +157,6 @@
     $shadow: inset 0 1px 3px rgba(0,0,0,.05), 0 1px 0 rgba(255,255,255,.1);
     @include box-shadow($shadow);
   }
-  
   /* END theme ========================================================
   */
 }

@@ -1,9 +1,6 @@
-// Dropdown menus
-// --------------------------------------------------
 @if $dropdowns == true {
   /* BEGIN dropdowns ========================================================
   */
-
   // Dropdown arrow/caret
   %caret {
     display: inline-block; width: 0; height: 0; margin-left: 2px; vertical-align: middle;
@@ -111,14 +108,14 @@
       // Will remove come v4 in all likelihood.
       %dropdown-menu-left { left: 0; right: auto; } }
   }
-
   /* END dropdowns ========================================================
   */
 }
 @mixin make_dropdown_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: ?????;
+			$classes: caret dropup dropdown dropdown-toggle divider open pull-right caret
+      dropdown-menu dropdown-menu-right dropdown-menu-left dropdown-header dropdown-backdrop;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

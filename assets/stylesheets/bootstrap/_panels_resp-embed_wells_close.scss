@@ -1,5 +1,4 @@
-// Panels
-// --------------------------------------------------
+// _panels.scss _responsive-embed.scss _wells.scss and _close.scss in one file
 
 @if $panels == true {
   /* BEGIN panels ========================================================
@@ -109,7 +108,9 @@
 @mixin make_panel_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: ?????;
+			$classes: panel panel-default panel-collapse panel-group 
+          panel-heading panel-title panel-body panel-footer 
+          panel-primary panel-success panel-info panel-warning panel-danger;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}
@@ -117,3 +118,61 @@
 	}
 } 
   
+@if $embed-responsive == true {
+  /* BEGIN  ========================================================
+  */
+  // Embeds responsive
+  // Credit: Nicolas Gallagher and SUIT CSS.
+  .embed-responsive {
+    position: relative; display: block; height: 0; padding: 0; overflow: hidden;
+    .embed-responsive-item, iframe, embed, object, video {
+      position: absolute; top: 0; left: 0; bottom: 0; height: 100%; width: 100%; border: 0; }
+  }
+  
+  .embed-responsive-16by9 { padding-bottom: 56.25%; }// Modifier class for 16:9 aspect ratio
+  .embed-responsive-4by3 {  padding-bottom: 75%; }   // Modifier class for 4:3 aspect ratio
+
+  /* END embed-responsive ========================================================
+  */
+}
+
+@if $wells == true {
+  /* BEGIN wells ========================================================
+  */
+  // Base class
+  .well {
+    min-height: 20px; padding: 19px; margin-bottom: 20px; background-color: $well-bg;
+    border: 1px solid $well-border; border-radius: $border-radius-base;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.05));
+    blockquote { border-color: #ddd; border-color: rgba(0,0,0,.15); }
+  }
+  // Sizes
+  .well-lg { padding: 24px; border-radius: $border-radius-large; }
+  .well-sm { padding: 9px; border-radius: $border-radius-small; }
+
+  /* END wells ========================================================
+  */
+}
+
+@if $close == true {
+  /* BEGIN close ========================================================
+  */
+  .close {
+    float: right; font-size: ($font-size-base * 1.5); 
+    font-weight: $close-font-weight;line-height: 1; color: $close-color; 
+    text-shadow: $close-text-shadow; @include opacity(.2);
+    &:hover, &:focus {
+      color: $close-color; text-decoration: none; cursor: pointer; @include opacity(.5);
+    } // [converter] extracted button& to button.close
+  }
+  
+  // Additional properties for button version
+  // iOS requires the button element instead of an anchor tag.
+  // If you want the anchor version, it requires `href="#"`.
+  // See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+  button.close {
+    padding: 0; cursor: pointer; background: transparent; border: 0; -webkit-appearance: none; }
+    
+  /* END close ========================================================
+  */
+}

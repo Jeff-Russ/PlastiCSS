@@ -1,9 +1,6 @@
-// Button groups
-// --------------------------------------------------
 @if $btn-groups == true {
   /* BEGIN btn-groups ========================================================
   */
-
   // Make the div behave like a button
   %btn-group,
   %btn-group-vertical {
@@ -154,7 +151,9 @@
 @mixin make_btn-group_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: .btn-group .btn-group-vertical .btn-toolbar .btn-group-xs .btn-group-sm .btn-group-lg;
+			$classes: btn btn-group btn-group-justified btn-group-xs btn-group-lg 
+              btn-group-sm btn-group-vertical btn-xs btn-sm btn-lg btn-toolbar 
+              caret dropdown-menu dropdown-toggle dropup input-group
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

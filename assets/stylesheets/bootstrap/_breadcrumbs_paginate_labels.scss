@@ -1,0 +1,145 @@
+// _breadcrumbs.scss, _pagination.scss, _pager.scss and _labels.scss in one file.
+
+@if $breadcrumbs == true {
+  /* BEGIN breadcrumb ========================================================
+  */
+  .breadcrumb {
+    padding: $breadcrumb-padding-vertical $breadcrumb-padding-horizontal;
+    margin-bottom: $line-height-computed;
+    list-style: none;
+    background-color: $breadcrumb-bg;
+    border-radius: $border-radius-base;
+  
+    > li {
+      display: inline-block;
+  
+      + li:before {
+        // [converter] Workaround for https://github.com/sass/libsass/issues/1115
+        $nbsp: "\00a0";
+        content: "#{$breadcrumb-separator}#{$nbsp}"; // Unicode space added since inline-block means non-collapsing white-space
+        padding: 0 5px;
+        color: $breadcrumb-color;
+      }
+    }
+  
+    > .active {
+      color: $breadcrumb-active-color;
+    }
+  }
+  /* END breadcrumb ========================================================
+  */
+}
+
+@if $pagination == true {
+  /* BEGIN pagination (multiple pages) ========================================
+  */
+  .pagination {
+    display: inline-block; padding-left: 0; margin: $line-height-computed 0; border-radius: $border-radius-base;
+  
+    > li {
+      display: inline; // Remove list-style and block-level defaults
+      > a, > span {
+        position: relative; float: left; // Collapse white-space
+        padding: $padding-base-vertical $padding-base-horizontal;
+        line-height: $line-height-base; text-decoration: none; color: $pagination-color;
+        background-color: $pagination-bg; border: 1px solid $pagination-border; margin-left: -1px; }
+      &:first-child {> a, > span { margin-left: 0; @include border-left-radius($border-radius-base); }}
+      &:last-child { > a, > span { @include border-right-radius($border-radius-base); } } }
+    > li > a, > li > span {
+      &:hover, &:focus {
+        z-index: 2; color: $pagination-hover-color;
+        background-color: $pagination-hover-bg; border-color: $pagination-hover-border; } }
+    > %active > a, > %active > span {
+      &, &:hover, &:focus {
+        z-index: 3; color: $pagination-active-color; background-color: $pagination-active-bg;
+        border-color: $pagination-active-border; cursor: default; } }
+    > %disabled {
+      > span, > span:hover, > span:focus, > a, > a:hover, > a:focus {
+        color: $pagination-disabled-color; background-color: $pagination-disabled-bg;
+        border-color: $pagination-disabled-border; cursor: $cursor-disabled; } }
+  }
+  
+  // Sizing
+  // --------------------------------------------------
+  
+  .pagination-lg {
+    @include pagination-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
+  }
+  .pagination-sm {
+    @include pagination-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
+  }
+  /* END pagination (multiple pages) ===========================================
+  */
+}
+
+
+@if $pager == true {
+  /* BEGIN pager pagination ====================================================
+  */
+  .pager {
+    padding-left: 0; margin: $line-height-computed 0; list-style: none; text-align: center; @include clearfix;
+    li { display: inline;
+      > a, > span {
+        display: inline-block; padding: 5px 14px; background-color: $pager-bg;
+        border: 1px solid $pager-border; border-radius: $pager-border-radius; }
+  
+      > a:hover, > a:focus { text-decoration: none; background-color: $pager-hover-bg; } }
+  
+    .next {
+      > a, > span { float: right; } }
+  
+    .previous {
+      > a, > span { float: left; } }
+  
+    .disabled {
+      > a, > a:hover, > a:focus, > span { color: $pager-disabled-color; background-color: $pager-bg; cursor: $cursor-disabled; } }
+  }
+  /* END pager pagination ======================================================
+  */
+}
+
+
+@if $labels == true {
+  /* BEGIN labels ========================================================
+  */
+  %label {
+    display: inline; padding: .2em .6em .3em; font-size: 75%; font-weight: bold;
+    line-height: 1; color: $label-color; text-align: center; white-space: nowrap;
+    vertical-align: baseline; border-radius: .25em;
+  
+    // [converter] extracted a& to a.label
+  
+    // Empty labels collapse automatically (not available in IE8)
+    &:empty { display: none; }
+  
+    // Quick fix for labels in buttons
+    %btn & { position: relative; top: -1px; }
+  }
+  // Add hover effects, but only for links
+  a.label {  &:hover,&:focus {
+    color: $label-link-hover-color; text-decoration: none; cursor: pointer; }
+  }
+  // Colors
+  // Contextual variations (linked labels get darker on :hover)
+  %label-default { @include label-variant($label-default-bg); }
+  %label-primary { @include label-variant($label-primary-bg); }
+  %label-success { @include label-variant($label-success-bg); }
+  %label-info    { @include label-variant($label-info-bg); }
+  %label-warning { @include label-variant($label-warning-bg); }
+  %label-danger  { @include label-variant($label-danger-bg); }
+  
+  /* END labels ========================================================
+  */
+}
+@mixin make_label_classes ($classes...) {
+	@if nth($classes, 1) != false {
+		@if nth($classes, 1) == all or nth($classes, 1) == true {
+			$classes: label label-default label-primary label-success 
+			              label-info label-warning label-danger ;
+		}
+		@each $class in $classes {
+			.#{$class} { @extend%#{$class};}
+		}
+	}
+} 
+

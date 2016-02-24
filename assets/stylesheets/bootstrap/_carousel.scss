@@ -1,9 +1,6 @@
-// Carousel
-// --------------------------------------------------
 @if $carousel == true {
   /* BEGIN carousel ========================================================
   */
-
   // Wrapper for the slide container and indicators
   %carousel       { position: relative; }
   %carousel-inner { position: relative;  overflow: hidden; width: 100%;
@@ -131,14 +128,15 @@
     %carousel-caption { left: 20%; right: 20%; padding-bottom: 30px; }
     %carousel-indicators { bottom: 20px; } // Move up the indicators
   }
-
   /* END carousel ========================================================
   */
 }
 @mixin make_carousel_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: ?????;
+			$classes: carousel carousel-inner carousel-caption carousel-control 
+            carousel-indicators item active next prev next icon-prev icon-next
+            glyphicon-chevron-left glyphicon-chevron-right;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

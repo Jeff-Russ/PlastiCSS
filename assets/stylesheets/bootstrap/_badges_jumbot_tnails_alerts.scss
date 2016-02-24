@@ -1,0 +1,155 @@
+// _badges.scss, _jumbotron.scss, _thumbnails.scss and _alerts in one file
+
+@if $badges == true {
+  /* BEGIN badges ========================================================
+  */
+  // Base class
+  .badge {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: $font-size-small;
+    font-weight: $badge-font-weight;
+    color: $badge-color;
+    line-height: $badge-line-height;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-align: center;
+    background-color: $badge-bg;
+    border-radius: $badge-border-radius;
+  
+    // Empty badges collapse automatically (not available in IE8)
+    &:empty { display: none; } 
+    // Quick fix for badges in buttons
+    .btn & { position: relative; top: -1px; }
+    .btn-xs &, .btn-group-xs > .btn & { top: 0; padding: 1px 5px; }
+  
+    // [converter] extracted a& to a.badge
+    // Account for badges in navs
+    .list-group-item.active > &,
+    .nav-pills > .active > a > & { color: $badge-active-color;
+                                   background-color: $badge-active-bg;}
+    .list-group-item > &     { float: right; }
+    .list-group-item > & + & { margin-right: 5px; }
+    .nav-pills > li > a > &  { margin-left: 3px; }
+  }
+  a.badge {  // Hover state, but only for links
+    &:hover, &:focus { color: $badge-link-hover-color; text-decoration: none;
+                       cursor: pointer;}
+  }
+  /* END badges ========================================================
+  */
+}
+
+@if $jumbotron == true {
+  /* BEGIN jumbotron ========================================================
+  */
+
+.jumbotron {
+  padding-top:    $jumbotron-padding; padding-bottom: $jumbotron-padding;
+  margin-bottom: $jumbotron-padding;  color: $jumbotron-color;
+  background-color: $jumbotron-bg;
+
+  h1, %h1 { color: $jumbotron-heading-color; }
+
+  p {
+    margin-bottom: ($jumbotron-padding / 2);
+    font-size: $jumbotron-font-size;
+    font-weight: 200;
+  }
+  > hr { border-top-color: darken($jumbotron-bg, 10%); }
+
+  %container &, %container-fluid & {
+    border-radius: $border-radius-large; // Only round corners at higher resolutions if contained in a container
+    padding-left:  ($grid-gutter-width / 2);padding-right: ($grid-gutter-width / 2);
+  }
+  %container { max-width: 100%; }
+
+  @media screen and (min-width: $screen-sm-min) {
+    padding-top:    ($jumbotron-padding * 1.6);
+    padding-bottom: ($jumbotron-padding * 1.6);
+
+    %container &, %container-fluid & {
+      padding-left:  ($jumbotron-padding * 2);
+      padding-right: ($jumbotron-padding * 2);
+    }
+
+    h1, %h1 { font-size: $jumbotron-heading-font-size; }
+  }
+}
+  /* END jumbotron========================================================
+  */
+}
+
+
+@if $thumbnails == true {
+  /* BEGIN thumbnails ========================================================
+  */
+  // Mixin and adjust the regular image class
+  .thumbnail {
+    display: block; padding: $thumbnail-padding; margin-bottom: $line-height-computed;
+    line-height: $line-height-base; background-color: $thumbnail-bg;
+    border: 1px solid $thumbnail-border; border-radius: $thumbnail-border-radius;
+    @include transition(border .2s ease-in-out);
+  
+    > img, a > img { @include img-responsive; margin-left: auto; margin-right: auto; }
+  
+    // [converter] extracted a&:hover, a&:focus, a&.active to a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active
+    // Image captions
+    .caption { padding: $thumbnail-caption-padding; color: $thumbnail-caption-color; }
+  }
+  
+  // Add a hover state for linked versions only
+  a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {  border-color: $link-color; }
+
+  /* END thumbnails ========================================================
+  */
+}
+
+
+@if $alerts == true {
+  /* BEGIN alerts ==============================================================
+  */
+  // Base styles
+  %alert {
+    padding: $alert-padding;
+    margin-bottom: $line-height-computed;
+    border: 1px solid transparent;
+    border-radius: $alert-border-radius;
+    
+    h4 { margin-top: 0; // Headings for larger alerts
+      color: inherit;} // Specified for the h4 to prevent conflicts of changing $headings-color
+    .alert-link { font-weight: $alert-link-font-weight; } // Provide class for links that match alerts
+    // Improve alignment and spacing of inner content
+    > p, > ul { margin-bottom: 0;}
+    > p + p   { margin-top: 5px;}
+  }
+  // Dismissible alerts
+  
+  // Expand the right padding and account for the close button's positioning.
+  %alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
+  %alert-dismissible { padding-right: ($alert-padding + 20);
+    // Adjust close link position
+    .close { position: relative; top: -2px; right: -21px; color: inherit; }
+  }
+  // Alternate styles
+  // Generate contextual modifier classes for colorizing the alert.
+  %alert-success { @include alert-variant($alert-success-bg, $alert-success-border, $alert-success-text); }
+  %alert-info    { @include alert-variant($alert-info-bg,    $alert-info-border,    $alert-info-text); }
+  %alert-warning { @include alert-variant($alert-warning-bg, $alert-warning-border, $alert-warning-text); }
+  %alert-danger  { @include alert-variant($alert-danger-bg,  $alert-danger-border,  $alert-danger-text); }
+  
+  /* END alerts ========================================================
+  */
+}
+@mixin make_alert_classes ($classes...) {
+	@if nth($classes, 1) != false {
+		@if nth($classes, 1) == all or nth($classes, 1) == true {
+			$classes: alert alert-dismissable alert-dismissible 
+			          alert-success alert-info alert-warning alert-danger;
+		}
+		@each $class in $classes {
+			.#{$class} { @extend%#{$class};}
+		}
+	}
+} 

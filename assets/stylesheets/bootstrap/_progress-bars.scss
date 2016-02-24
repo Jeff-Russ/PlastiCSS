@@ -1,13 +1,8 @@
-// Progress bars
-// --------------------------------------------------
-@if $progress-bar == true {
+@if $progress-bars == true {
   /* BEGIN progress-bar ========================================================
   */
-
-// Bar animations
-// -------------------------
-  
-  
+  // Bar animations
+  // -------------------------
   @-webkit-keyframes progress-bar-stripes { // WebKit
     from  { background-position: 40px 0; }
     to    { background-position: 0 0; }
@@ -62,7 +57,8 @@
 @mixin make_progress-bar_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: ?????;
+			$classes: progress progress-bar progress-striped progress-bar-success 
+			          progress-bar-info progress-bar-warning progress-bar-danger ;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

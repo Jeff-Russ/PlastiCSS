@@ -6,10 +6,13 @@
 // In this case commas or spaces can be used as delimiters and quotes are optional.
 // variables starting with include_col accept lists of integers, typically 1 - 12.
 
+// Reset and dependencies
 $browser_normalize: false;
 $print_styles: false;
-$include_glyphs: false;
-$include_scaffolds: false;
+$INCLUDE_glyphs: false;
+
+// Core CSS
+$INCLUDE_scaffolds: false;
 $html_h_size: false; 
 $twbs_h_size: false; 
 $html_p_small_mark: false; 
@@ -19,53 +22,59 @@ $html_blockquote_w_reverse: false;
 $html_abbr_address: false; 
 $text_helpers_classes: false; 
 $html_code_tags: false;
+
 $grid_system: false;
-$include_col-xs: false;
-$include_col-sm: false;
-$include_col-md: false;
-$include_col-lg: false;
-$include_col-xs-push: false;
-$include_col-sm-push: false;
-$include_col-md-push: false;
-$include_col-lg-push: false;
-$include_col-xs-pull: false;
-$include_col-sm-pull: false;
-$include_col-md-pull: false;
-$include_col-lg-pull: false;
-$include_col-xs-offset: false;
-$include_col-sm-offset: false;
-$include_col-md-offset: false;
-$include_col-lg-offset: false;
-$include_table_classes: false;
-$forms: false;
-$buttons: false;
-$include_animation_classes: false;
-$include_dropdown_classes: false;
-$include_btn-group_classes: false;
-$include_input-group_classes: false;
-$include_nav_classes: false;
-$include_navbar_classes: false;
+$GENERATE_col-xs: false;
+$GENERATE_col-sm: false;
+$GENERATE_col-md: false;
+$GENERATE_col-lg: false;
+$GENERATE_col-xs-push: false;
+$GENERATE_col-sm-push: false;
+$GENERATE_col-md-push: false;
+$GENERATE_col-lg-push: false;
+$GENERATE_col-xs-pull: false;
+$GENERATE_col-sm-pull: false;
+$GENERATE_col-md-pull: false;
+$GENERATE_col-lg-pull: false;
+$GENERATE_col-xs-offset: false;
+$GENERATE_col-sm-offset: false;
+$GENERATE_col-md-offset: false;
+$GENERATE_col-lg-offset: false;
+
+$INCLUDE_table_classes: false;
+$INCLUDE_form_classes: false;
+$INCLUDE_button_classes: false;
+
+// Components
+$INCLUDE_animation_classes: false;
+$INCLUDE_dropdown_classes: false;
+$INCLUDE_btn-group_classes: false;
+$INCLUDE_input-group_classes: false;
+$INCLUDE_nav_classes: false;
 $breadcrumbs: false;
 $pagination: false;
 $pager: false;
-$include_label_classes: false;
-$badge: false;
+$INCLUDE_label_classes: false;
+$badges: false;
 $jumbotron: false;
 $thumbnails: false;
-$include_alert_classes: false;
-$include_progress-bar_classes: false;
-$include_media_classes: false;
-$include_list-group_classes: false;
-$include_panel_classes: false;
+$INCLUDE_alert_classes: false;
+$INCLUDE_progress-bar_classes: false;
+$INCLUDE_media_classes: false;
+$INCLUDE_list-group_classes: false;
+$INCLUDE_panel_classes: false;
 $embed-responsive: false;
 $wells: false;
 $close: false;
-$include_modal_classes: false;
+$INCLUDE_modal_classes: false;
 $tooltip: false;
+
+// Components w/ JavaScript
 $popovers: false;
-$include_carousel_classes: false;
-$include_utility_classes: false;
-$include_responsive-util_classes: false;
+$INCLUDE_carousel_classes: false;
+$INCLUDE_utility_classes: false;
+
+// add theme here=================
 
 // user config
 // @import "install_config";
@@ -82,124 +91,104 @@ $include_responsive-util_classes: false;
 @import "bootstrap/import/mixin-6-layout"; 
 @import "bootstrap/import/mixin-7-grid"; 
 
-// Reset and dependencies
-@import "bootstrap/normalize";
-@import "bootstrap/print";
+// scss won't let me initilize these variables later inside the @if's!?!?
+// Without this I get a sass compile error saying they are not found.
+$glyphicons:"";$scaffolding:"";$tables:"";$forms:"";$buttons:"";
+$component-animations:"";$dropdowns:"";$btn-groups:"";$input-groups:"";
+$navs:"";$labels:"";$alerts:"";$progress-bars:"";$media:"";$list-groups:"";
+$panels:"";$modals:"";$carousel:"";$utilities:"";
 
-@if nth($include_glyphs, 1) != false {$glyphicons: true;} @else { $glyphicons: false; }
-@import "bootstrap/glyphicons"; 
-@include make_glyphs($include_glyphs);
+// Reset and dependencies
+@if nth($INCLUDE_glyphs, 1) != false {$glyphicons: true;} @else { $glyphicons: false; }
+@import "bootstrap/_normalize_print_glyphs"; 
+@include make_glyphicon_classes($INCLUDE_glyphs);
 	
 // Core CSS
-@if nth($include_scaffolds, 1) != false { $scaffolding: true;} @else { $scaffolding: false; }
-@import "bootstrap/scaffolding";
-@include make_scaffolds($include_scaffolds);
+@if nth($INCLUDE_scaffolds, 1) != false { $scaffolding: true;} @else { $scaffolding: false; }
+@import "bootstrap/_scaffolding_type_code";
+@include make_scaffold_classes($INCLUDE_scaffolds);
 
-@import "bootstrap/type";
-@import "bootstrap/code";
-@import "bootstrap/grid"; // has a little output
-@include make_cols("xs", $include_col-xs);
-@include make_cols("sm", $include_col-sm);
-@include make_cols("md", $include_col-md);
-@include make_cols("lg", $include_col-lg);
-@include make_cols("xs-push", $include_col-xs-push);
-@include make_cols("sm-push", $include_col-sm-push);
-@include make_cols("md-push", $include_col-md-push);
-@include make_cols("lg-push", $include_col-lg-push);
-@include make_cols("xs-pull", $include_col-xs-pull);
-@include make_cols("sm-pull", $include_col-sm-pull);
-@include make_cols("md-pull", $include_col-md-pull);
-@include make_cols("lg-pull", $include_col-lg-pull);
-@include make_cols("xs-offset", $include_col-xs-offset);
-@include make_cols("sm-offset", $include_col-sm-offset);
-@include make_cols("md-offset", $include_col-md-offset);
-@include make_cols("lg-offset", $include_col-lg-offset);
+@import "bootstrap/grid";
+@include make_cols("xs", $GENERATE_col-xs);
+@include make_cols("sm", $GENERATE_col-sm);
+@include make_cols("md", $GENERATE_col-md);
+@include make_cols("lg", $GENERATE_col-lg);
+@include make_cols("xs-push", $GENERATE_col-xs-push);
+@include make_cols("sm-push", $GENERATE_col-sm-push);
+@include make_cols("md-push", $GENERATE_col-md-push);
+@include make_cols("lg-push", $GENERATE_col-lg-push);
+@include make_cols("xs-pull", $GENERATE_col-xs-pull);
+@include make_cols("sm-pull", $GENERATE_col-sm-pull);
+@include make_cols("md-pull", $GENERATE_col-md-pull);
+@include make_cols("lg-pull", $GENERATE_col-lg-pull);
+@include make_cols("xs-offset", $GENERATE_col-xs-offset);
+@include make_cols("sm-offset", $GENERATE_col-sm-offset);
+@include make_cols("md-offset", $GENERATE_col-md-offset);
+@include make_cols("lg-offset", $GENERATE_col-lg-offset);
 
-@if nth($include_table_classes, 1) != false { $tables: true;} @else { $tables: false; }
-@import "bootstrap/tables"; 
-@include make_table_classes($include_table_classes);
-
-@import "bootstrap/forms";
-@import "bootstrap/buttons";
+@if nth($INCLUDE_table_classes, 1) != false { $tables: true;} @else { $tables: false; }
+@if nth($INCLUDE_form_classes, 1) != false { $forms: true;} @else { $forms: false; }
+@if nth($INCLUDE_button_classes, 1) != false { $buttons: true;} @else { $buttons: false; }
+@import "bootstrap/tables_forms_buttons"; 
+@include make_table_classes($INCLUDE_table_classes);
+@include make_form_classes($INCLUDE_form_classes);
+@include make_button_classes($INCLUDE_button_classes);
 
 // Components
-@if nth($include_animation_classes, 1) != false { $component-animations: true;} @else { $component-animations: false; }
+@if nth($INCLUDE_animation_classes, 1) != false { $component-animations: true;} @else { $component-animations: false; }
 @import "bootstrap/component-animations";
-@include make_component_animations_classes($include_animation_classes);
+@include make_component_animations_classes($INCLUDE_animation_classes);
 
-@if nth($include_dropdown_classes, 1) != false { $dropdowns: true;} @else { $dropdowns: false; }
+@if nth($INCLUDE_dropdown_classes, 1) != false { $dropdowns: true;} @else { $dropdowns: false; }
 @import "bootstrap/dropdowns";
-@include make_dropdown_classes($include_dropdown_classes);
+@include make_dropdown_classes($INCLUDE_dropdown_classes);
 
-@if nth($include_btn-group_classes, 1) != false { $button-groups: true;} @else { $button-groups: false; }
+@if nth($INCLUDE_btn-group_classes, 1) != false { $btn-groups: true;} @else { $btn-groups: false; }
 @import "bootstrap/button-groups";
-@include make_btn-group_classes($include_btn-group_classes);
+@include make_btn-group_classes($INCLUDE_btn-group_classes);
 
-@if nth($include_input-group_classes, 1) != false { $input-groups: true;} @else { $input-groups: false; }
+@if nth($INCLUDE_input-group_classes, 1) != false { $input-groups: true;} @else { $input-groups: false; }
 @import "bootstrap/input-groups";
-@include make_input-group_classes($include_input-group_classes);
+@include make_input-group_classes($INCLUDE_input-group_classes);
 
-@if nth($include_nav_classes, 1) != false { $navs: true;} @else { $navs: false; }
-@import "bootstrap/navs";
-@include make_nav_classes($include_nav_classes);
+@if nth($INCLUDE_nav_classes, 1) != false { $navs: true;} @else { $navs: false; }
+@import "bootstrap/navs_navbar";
+@include make_nav_classes($INCLUDE_nav_classes);
 
-@if nth($include_navbar_classes, 1) != false { $navbar: true;} @else { $navbar: false; }
-@import "bootstrap/navbar";
-@include make_navbar_classes($include_navbar_classes);
+@if nth($INCLUDE_label_classes, 1) != false { $labels: true;} @else { $labels: false; }
+@import "bootstrap/breadcrumbs_paginate_labels";
+@include make_label_classes($INCLUDE_label_classes);
 
-@import "bootstrap/breadcrumbs";
-@import "bootstrap/pagination";
-@import "bootstrap/pager";
+@if nth($INCLUDE_alert_classes, 1) != false { $alerts: true;} @else { $alerts: false; }
+@import "bootstrap/badges_jumbot_tnails_alerts";
+@include make_alert_classes($INCLUDE_alert_classes);
 
-@if nth($include_label_classes, 1) != false { $labels: true;} @else { $: false; }
-@import "bootstrap/labels";
-@include make_label_classes($include_label_classes);
-
-@import "bootstrap/badges";
-@import "bootstrap/jumbotron";
-@import "bootstrap/thumbnails";
-
-@if nth($include_alert_classes, 1) != false { $alerts: true;} @else { $alerts: false; }
-@import "bootstrap/alerts";
-@include make_alert_classes($include_alert_classes);
-
-@if nth($include_progress-bar_classes, 1) != false { $progress-bars: true;} @else { $progress-bars: false; }
+@if nth($INCLUDE_progress-bar_classes, 1) != false { $progress-bars: true;} @else { $progress-bars: false; }
 @import "bootstrap/progress-bars";
-@include make_progress-bar_classes($include_progress-bar_classes);
+@include make_progress-bar_classes($INCLUDE_progress-bar_classes);
 
-@if nth($include_media_classes, 1) != false { $media: true;} @else { $media: false; }
+@if nth($INCLUDE_media_classes, 1) != false { $media: true;} @else { $media: false; }
 @import "bootstrap/media";
-@include make_media_classes($include_media_classes);
+@include make_media_classes($INCLUDE_media_classes);
 
-@if nth($include_list-group_classes, 1) != false { $list-group: true;} @else { $list-group: false; }
+@if nth($INCLUDE_list-group_classes, 1) != false { $list-groups: true;} @else { $list-groups: false; }
 @import "bootstrap/list-group";
-@include make_list-groups_classes($include_list-group_classes);
+@include make_list-groups_classes($INCLUDE_list-group_classes);
 
-@if nth($include_panel_classes, 1) != false { $panels: true;} @else { $panels: false; }
-@import "bootstrap/panels";
-@include make_panel_classes($include_panel_classes);
-
-@import "bootstrap/responsive-embed";
-@import "bootstrap/wells";
-@import "bootstrap/close";
+@if nth($INCLUDE_panel_classes, 1) != false { $panels: true;} @else { $panels: false; }
+@import "bootstrap/panels_resp-embed_wells_close";
+@include make_panel_classes($INCLUDE_panel_classes);
 
 // Components w/ JavaScript
-@if nth($include_modal_classes, 1) != false { $modals: true;} @else { $modals: false; }
-@import "bootstrap/modals";
-@include make_modal_classes($include_modal_classes);
+@if nth($INCLUDE_modal_classes, 1) != false { $modals: true;} @else { $modals: false; }
+@import "bootstrap/modals_tooltip_popovers";
+@include make_modal_classes($INCLUDE_modal_classes);
 
-@import "bootstrap/tooltip";
-@import "bootstrap/popovers";
-
-@if nth($include_carousel_classes, 1) != false { $carousel: true;} @else { $carousel: false; }
+@if nth($INCLUDE_carousel_classes, 1) != false { $carousel: true;} @else { $carousel: false; }
 @import "bootstrap/carousel";
-@include make_carousel_classes($include_carousel_classes);
+@include make_carousel_classes($INCLUDE_carousel_classes);
 
-// Utility classes
-@if nth($include_utility_classes, 1) != false { $utilities: true;} @else { $utilities: false; }
+// Utility classes (with reponsive ultilities)
+@if nth($INCLUDE_utility_classes, 1) != false { $utilities: true;} @else { $utilities: false; }
 @import "bootstrap/utilities";
-@include make_utility_classes($include_utility_classes);
-
-@if nth($include_responsive-util_classes, 1) != false { $responsive-utils: true;} @else { $responsive-utils: false; }
-@import "bootstrap/responsive-utilities";
-@include make_responsive-util_classes($include_responsive-util_classes);
+@include make_utility_classes($INCLUDE_utility_classes);
