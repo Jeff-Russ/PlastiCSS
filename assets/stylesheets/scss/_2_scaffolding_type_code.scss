@@ -125,9 +125,9 @@
   /* Emphasis & misc
      -------------------------
      Ex: (12px small font / 14px base font) * 100% = about 85% */
-  small, %small { font-size: floor((100% * $font-size-small / $font-size-base)); }
+  small, .small { font-size: floor((100% * $font-size-small / $font-size-base)); }
   
-  mark, %mark { background-color: $state-warning-bg; padding: .2em; }
+  mark, .mark { background-color: $state-warning-bg; padding: .2em; }
 }
 
 @if $text-color_classes == true {
@@ -193,7 +193,7 @@
     p, ul, ol { &:last-child { margin-bottom: 0; } }
     /* Note: Deprecated small and .small as of v3.1.0 */
     /* Context: https://github.com/twbs/bootstrap/issues/11660 */
-    footer,   small,   %small { display: block; 
+    footer, small, .small { display: block; 
       /* back to default font-size */
       font-size: 80%; 
       line-height: $line-height-base; color: $blockquote-small-color;
@@ -206,7 +206,7 @@
     padding-right: 15px; padding-left: 0; border-right: 5px solid $blockquote-border-color;
     border-left: 0; text-align: right;
     /* Account for citation */
-    footer, small, %small {
+    footer, small, .small {
       &:before { content: ''; }
       &:after { 
         /* nbsp, em dash */
