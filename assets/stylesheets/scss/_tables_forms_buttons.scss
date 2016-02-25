@@ -1,100 +1,103 @@
-// _tables.scss, _forms.scss and _buttons.scss in one file.
+// _tables.scss, _forms.scss and _buttons.scss in one file. 
 
 @if $tables == true {
-  /* BEGIN Tables ===============================================================
-  */
+  /* BEGIN Tables ##############################################################*/
   table { background-color: $table-bg; }
   caption { padding-top: $table-cell-padding; padding-bottom: $table-cell-padding; color: $text-muted; text-align: left;}
   th { text-align: left; }
   
-  // Baseline styles
+  /* Baseline styles */
   %table { width: 100%; max-width: 100%; margin-bottom: $line-height-computed;
-    // Cells
+    /* Cells */
     > thead, > tbody, > tfoot { > tr { > th, > td {
           padding: $table-cell-padding; line-height: $line-height-base;
           vertical-align: top; border-top: 1px solid $table-border-color; } } }
-    // Bottom align for column headings
+    /* Bottom align for column headings */
     > thead > tr > th { vertical-align: bottom; border-bottom: 2px solid $table-border-color; }
-    // Remove top border from thead by default
+    /* Remove top border from thead by default */
     > caption + thead, > colgroup + thead, > thead:first-child { > tr:first-child { > th, > td { border-top: 0; } } }
-    > tbody + tbody { border-top: 2px solid $table-border-color; } // Account for multiple tbody instances
-    .table { background-color: $body-bg; } // Nesting
+   /* Account for multiple tbody instances */
+    > tbody + tbody { border-top: 2px solid $table-border-color; } 
+    /* Nesting */
+    .table { background-color: $body-bg; } 
   }
   
-  // Condensed table w/ half padding
+  /* Condensed table w/ half padding */
   
   %table-condensed { > thead, > tbody, > tfoot { > tr { > th, > td { padding: $table-condensed-cell-padding; } } } }
   
-  // Bordered version
-  // Add borders all around the table and between all the columns.
+  /* Bordered version */
+  /* Add borders all around the table and between all the columns. */
   %table-bordered { border: 1px solid $table-border-color;
     > thead, > tbody, > tfoot {  > tr {  > th, > td { border: 1px solid $table-border-color; } } }
     > thead > tr { > th, > td { border-bottom-width: 2px; } }
   }
   
-  // Zebra-striping
-  // Default zebra-stripe styles (alternating gray and transparent backgrounds)
+  /* Zebra-striping */
+  /* Default zebra-stripe styles (alternating gray and transparent backgrounds) */
   
   %table-striped { > tbody > tr:nth-of-type(odd) { background-color: $table-bg-accent; } }
   
-  // Hover effect
-  // Placed here since it has to come after the potential zebra striping
+  /* Hover effect */
+  /* Placed here since it has to come after the potential zebra striping */
   
   %table-hover { > tbody > tr:hover { background-color: $table-bg-hover; } }
   
-  // Table cell sizing
-  // Reset default table behavior
+  /* Table cell sizing */
+  /* Reset default table behavior */
   table col[class*="col-"] {
-    position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+    /* Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623) */
+    position: static; 
     float: none; display: table-column;
   }
   table { td, th { &[class*="col-"] {
-        position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
+        /* Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623) */
+        position: static; 
         float: none; display: table-cell; } }
   }
   
-  // Table backgrounds
-  // Exact selectors below required to override `.table-striped` and prevent
-  // inheritance to nested tables.
+  /* Table backgrounds */
+  /* Exact selectors below required to override `.table-striped` and prevent */
+  /* inheritance to nested tables. */
   
-  // Generate the contextual variants
+  /* Generate the contextual variants */
   @include table-row-variant('active', $table-bg-active);
   @include table-row-variant('success', $state-success-bg);
   @include table-row-variant('info', $state-info-bg);
   @include table-row-variant('warning', $state-warning-bg);
   @include table-row-variant('danger', $state-danger-bg);
   
-  // Responsive tables
-  // Wrap your tables in `.table-responsive` and we'll make them mobile friendly
-  // by enabling horizontal scrolling. Only applies <768px. Everything above that
-  // will display normally.
+  /* Responsive tables */
+  /* Wrap your tables in `.table-responsive` and we'll make them mobile friendly */
+  /* by enabling horizontal scrolling. Only applies <768px. Everything above that */
+  /* will display normally. */
   
   %table-responsive { overflow-x: auto;
-    min-height: 0.01%; // Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837)
+    /* Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837) */
+    min-height: 0.01%; 
   
     @media screen and (max-width: $screen-xs-max) {
       width: 100%; margin-bottom: ($line-height-computed * 0.75); overflow-y: hidden;
       -ms-overflow-style: -ms-autohiding-scrollbar; border: 1px solid $table-border-color;
   
-      // Tighten up spacing
+      /* Tighten up spacing */
       > .table { margin-bottom: 0;
-        // Ensure the content doesn't wrap
+        /* Ensure the content doesn't wrap */
         > thead, > tbody, > tfoot { > tr { > th, > td { white-space: nowrap; } } } }
-      // Special overrides for the bordered tables
+      /* Special overrides for the bordered tables */
       > .table-bordered { border: 0;
-        // Nuke the appropriate borders so that the parent can handle them
+        /* Nuke the appropriate borders so that the parent can handle them */
         > thead, > tbody, > tfoot { > tr {
             > th:first-child, > td:first-child {
               border-left: 0; }
             > th:last-child, > td:last-child {
               border-right: 0; } } }
-        // Only nuke the last row's bottom-border in `tbody` and `tfoot` since
-        // chances are there will be only one `tr` in a `thead` and that would
-        // remove the border altogether.
+        /* Only nuke the last row's bottom-border in `tbody` and `tfoot` since */
+        /* chances are there will be only one `tr` in a `thead` and that would */
+        /* remove the border altogether. */
         > tbody, > tfoot { > tr:last-child { > th, > td { border-bottom: 0; } } } } }
   }
-  /* END Tables ========================================================
-  */
+  /* END Tables ----------------------------------------------------------------*/
 }
 
 @mixin make_table_classes ($classes...) {
@@ -112,15 +115,14 @@
 // _forms.scss and _buttons.scss in one file.
 
 @if $forms == true {
-  /* BEGIN forms ===============================================================
-  */
-  // Normalize non-controls
-  // Restyle and baseline non-control form elements.
+  /* BEGIN forms################################################################*/
+  /* Normalize non-controls */
+  /* Restyle and baseline non-control form elements. */
   fieldset {
     padding: 0; margin: 0; border: 0;
-    // Chrome and Firefox set a `min-width: min-content;` on fieldsets,
-    // so we reset that to ensure it behaves more like a standard block element.
-    // See https://github.com/twbs/bootstrap/issues/12359.
+    /* Chrome and Firefox set a `min-width: min-content;` on fieldsets, */
+    /* so we reset that to ensure it behaves more like a standard block element. */
+    /* See https://github.com/twbs/bootstrap/issues/12359. */
     min-width: 0;
   }
   legend {
@@ -133,106 +135,113 @@
     display: inline-block; max-width: 100%; 
     margin-bottom: 5px; font-weight: bold;
   }
-  // Normalize form controls
-  // While most of our form styles require extra classes, some basic normalization
-  // is required to ensure optimum display with or without those classes to better
-  // address browser inconsistencies.
+  /* Normalize form controls */
+  /* While most of our form styles require extra classes, some basic normalization */
+  /* is required to ensure optimum display with or without those classes to better */
+  /* address browser inconsistencies. */
   
-  // Override content-box in Normalize (* isn't specific enough)
+  /* Override content-box in Normalize (* isn't specific enough) */
   input[type="search"] {
     @include box-sizing(border-box);
   }
-  // Position radios and checkboxes better
+  /* Position radios and checkboxes better */
   input[type="radio"], input[type="checkbox"] {
     margin: 4px 0 0;
-    margin-top: 1px \9; // IE8-9
+    /* IE8-9 */
+    margin-top: 1px \9; 
     line-height: normal;
   }
   
   input[type="file"] { display: block; }
   
-  // Make range inputs behave like textual form controls
+  /* Make range inputs behave like textual form controls */
   input[type="range"] { display: block; width: 100%; }
   
-  // Make multiple select elements height not fixed
+  /* Make multiple select elements height not fixed */
   select[multiple], select[size] { height: auto; }
   
-  // Focus for file, radio, and checkbox
+  /* Focus for file, radio, and checkbox */
   input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus {
     @include tab-focus; }
   
-  // Adjust output element
+  /* Adjust output element */
   output {
     display: block; padding-top: ($padding-base-vertical + 1); font-size: $font-size-base;
     line-height: $line-height-base; color: $input-color;
   }
   
-  // Common form controls
-  // Shared size and type resets for form controls. Apply `.form-control` to any
-  // of the following form controls:
-  // select
-  // textarea
-  // input[type="text"]
-  // input[type="password"]
-  // input[type="datetime"]
-  // input[type="datetime-local"]
-  // input[type="date"]
-  // input[type="month"]
-  // input[type="time"]
-  // input[type="week"]
-  // input[type="number"]
-  // input[type="email"]
-  // input[type="url"]
-  // input[type="search"]
-  // input[type="tel"]
-  // input[type="color"]
+  /* Common form controls */
+  /* Shared size and type resets for form controls. Apply `.form-control` to any */
+  /* of the following form controls: */
+  /* select */
+  /* textarea */
+  /* input[type="text"] */
+  /* input[type="password"] */
+  /* input[type="datetime"] */
+  /* input[type="datetime-local"] */
+  /* input[type="date"] */
+  /* input[type="month"] */
+  /* input[type="time"] */
+  /* input[type="week"] */
+  /* input[type="number"] */
+  /* input[type="email"] */
+  /* input[type="url"] */
+  /* input[type="search"] */
+  /* input[type="tel"] */
+  /* input[type="color"] */
   
   %form-control {
     display: block; width: 100%;
-    height: $input-height-base; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+    /* Make inputs at least the height of their button counterpart (base line-height + padding + border) */
+    height: $input-height-base; 
     padding: $padding-base-vertical $padding-base-horizontal; font-size: $font-size-base;
     line-height: $line-height-base; color: $input-color; background-color: $input-bg;
-    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    /* Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214 */
+    background-image: none; 
     border: 1px solid $input-border;
-    border-radius: $input-border-radius; // Note: This has no effect on <select>s in some browsers, due to the limited stylability of <select>s in CSS.
+    /* Note: This has no effect on <select>s in some browsers, due to the limited stylability of <select>s in CSS. */
+    border-radius: $input-border-radius; 
     @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
     @include transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s);
-    @include form-control-focus; // Customize the `:focus` state to imitate native WebKit styles.
-    @include placeholder; // Placeholder
+    /* Customize the `:focus` state to imitate native WebKit styles. */
+    @include form-control-focus; 
+    /* Placeholder */
+    @include placeholder; 
   
-    // Unstyle the caret on `<select>`s in IE10+.
+    /* Unstyle the caret on `<select>`s in IE10+. */
     &::-ms-expand { border: 0; background-color: transparent; }
   
-    // Disabled and read-only inputs
-      // HTML5 says that controls under a fieldset > legend:first-child won't be
-    // disabled if the fieldset is disabled. Due to implementation difficulty, we
-    // don't honor that edge case; we style them as disabled anyway.
+    /* Disabled and read-only inputs */
+      /* HTML5 says that controls under a fieldset > legend:first-child won't be */
+    /* disabled if the fieldset is disabled. Due to implementation difficulty, we */
+    /* don't honor that edge case; we style them as disabled anyway. */
     &[disabled], &[readonly], fieldset[disabled] & {
       background-color: $input-bg-disabled;
-      opacity: 1; // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655
+      /* iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655 */
+      opacity: 1; 
     }
     &[disabled], fieldset[disabled] & { cursor: $cursor-disabled; }
     
-    // [converter] extracted textarea& to textarea.form-control
+    /* [converter] extracted textarea& to textarea.form-control */
   }
   
-  // Reset height for `textarea`s
+  /* Reset height for `textarea`s */
   textarea.form-control { height: auto; }
   
-  // Search inputs in iOS
-  // This overrides the extra rounded corners on search inputs in iOS so that our
-  // `.form-control` class can properly style them. Note that this cannot simply
-  // be added to `.form-control` as it's not specific enough. For details, see
-  // https://github.com/twbs/bootstrap/issues/11586.
+  /* Search inputs in iOS */
+  /* This overrides the extra rounded corners on search inputs in iOS so that our */
+  /* `.form-control` class can properly style them. Note that this cannot simply */
+  /* be added to `.form-control` as it's not specific enough. For details, see */
+  /* https://github.com/twbs/bootstrap/issues/11586. */
   
   input[type="search"] {-webkit-appearance: none; }
   
-  // Special styles for iOS temporal inputs
-  // In Mobile Safari, setting `display: block` on temporal inputs causes the
-  // text within the input to become vertically misaligned. As a workaround, we
-  // set a pixel line-height that matches the given height of the input, but only
-  // for Safari. See https://bugs.webkit.org/show_bug.cgi?id=139848
-  // Note that as of 8.3, iOS doesn't support `datetime` or `week`.
+  /* Special styles for iOS temporal inputs */
+  /* In Mobile Safari, setting `display: block` on temporal inputs causes the */
+  /* text within the input to become vertically misaligned. As a workaround, we */
+  /* set a pixel line-height that matches the given height of the input, but only */
+  /* for Safari. See https://bugs.webkit.org/show_bug.cgi?id=139848 */
+  /* Note that as of 8.3, iOS doesn't support `datetime` or `week`. */
   
   @media screen and (-webkit-min-device-pixel-ratio: 0) {
     input[type="date"], input[type="time"],input[type="datetime-local"],
@@ -243,74 +252,76 @@
     }
   }
   
-  // Form groups
-  // Designed to help with the organization and spacing of vertical forms. For
-  // horizontal forms, use the predefined grid classes.
+  /* Form groups */
+  /* Designed to help with the organization and spacing of vertical forms. For */
+  /* horizontal forms, use the predefined grid classes. */
   
   %form-group { margin-bottom: $form-group-margin-bottom; }
   
-  // Checkboxes and radios
-  // Indent the labels to position radios/checkboxes as hanging controls.
+  /* Checkboxes and radios */
+  /* Indent the labels to position radios/checkboxes as hanging controls. */
   
   %radio,%checkbox {
     position: relative; display: block; margin-top: 10px; margin-bottom: 10px;
   
     label {
-      min-height: $line-height-computed; // Ensure the input doesn't jump when there is no text
+      /* Ensure the input doesn't jump when there is no text */
+      min-height: $line-height-computed; 
       padding-left: 20px; margin-bottom: 0; font-weight: normal; cursor: pointer; }
   }
   %radio input[type="radio"],%radio-inline input[type="radio"],
   %checkbox input[type="checkbox"], %checkbox-inline input[type="checkbox"] {
     position: absolute; margin-left: -20px; margin-top: 4px \9;
   }
-  // Move up sibling radios or checkboxes for tighter spacing
+  /* Move up sibling radios or checkboxes for tighter spacing */
   %radio + %radio, %checkbox + %checkbox { margin-top: -5px; }
   
-  // Radios and checkboxes on same line
+  /* Radios and checkboxes on same line */
   %radio-inline, %checkbox-inline {
     position: relative; display: inline-block; padding-left: 20px; margin-bottom: 0;
     vertical-align: middle; font-weight: normal; cursor: pointer;
   }
   %radio-inline + %radio-inline, %checkbox-inline + %checkbox-inline {
-    margin-top: 0; margin-left: 10px; // space out consecutive inline controls
+     /* space out consecutive inline controls */
+    margin-top: 0; margin-left: 10px;
   }
   
-  // Apply same disabled cursor tweak as for inputs
-  // Some special care is needed because <label>s don't inherit their parent's `cursor`.
-  // Note: Neither radios nor checkboxes can be readonly.
+  /* Apply same disabled cursor tweak as for inputs */
+  /* Some special care is needed because <label>s don't inherit their parent's `cursor`. */
+  /* Note: Neither radios nor checkboxes can be readonly. */
   input[type="radio"], input[type="checkbox"] {
     &[disabled], &.disabled, fieldset[disabled] & {
       cursor: $cursor-disabled; }
   }
-  // These classes are used directly on <label>s
+  /* These classes are used directly on <label>s */
   %radio-inline, %checkbox-inline {
     &.disabled, fieldset[disabled] & {
       cursor: $cursor-disabled; }
   }
-  // These classes are used on elements with <label> descendants
+  /* These classes are used on elements with <label> descendants */
   %radio, %checkbox {
     &.disabled, fieldset[disabled] & {
       label {cursor: $cursor-disabled; } }
   }
   
-  // Static form control text
-  // Apply class to a `p` element to make any string of text align with labels in
-  // a horizontal form layout.
+  /* Static form control text */
+  /* Apply class to a `p` element to make any string of text align with labels in */
+  /* a horizontal form layout. */
   
   %form-control-static {
-    // Size it appropriately next to real form controls
+    /* Size it appropriately next to real form controls */
     padding-top: ($padding-base-vertical + 1); padding-bottom: ($padding-base-vertical + 1);
-    // Remove default margin from `p`
+    /* Remove default margin from `p` */
     margin-bottom: 0; min-height: ($line-height-computed + $font-size-base);
   
     &.input-lg, &.input-sm { padding-left: 0; padding-right: 0; }
   }
   
-  // Form control sizing
-  // Build on `.form-control` with modifier classes to decrease or increase the
-  // height and font-size of form controls.
-  // The `.form-group-* form-control` variations are sadly duplicated to avoid the
-  // issue documented in https://github.com/twbs/bootstrap/issues/15074.
+  /* Form control sizing */
+  /* Build on `.form-control` with modifier classes to decrease or increase the */
+  /* height and font-size of form controls. */
+  /* The `.form-group-* form-control` variations are sadly duplicated to avoid the */
+  /* issue documented in https://github.com/twbs/bootstrap/issues/15074. */
   
   @include input-size('.input-sm', $input-height-small, $padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $input-border-radius-small);
   %form-group-sm {
@@ -348,15 +359,20 @@
     }
   }
   
-  // Form control feedback states
-  // Apply contextual and semantic states to individual form controls.
+  /* Form control feedback states */
+  /* Apply contextual and semantic states to individual form controls. */
   
   %has-feedback {
-    position: relative; // Enable absolute positioning
-    %form-control { padding-right: ($input-height-base * 1.25); } // Ensure icons don't overlap text
+    /* Enable absolute positioning */
+    position: relative; 
+    /* Ensure icons don't overlap text */
+    %form-control { padding-right: ($input-height-base * 1.25); } 
   }
-  %form-control-feedback { // Feedback icon (requires .glyphicon classes)
-    position: absolute; top: 0; right: 0; z-index: 2; // Ensure icon is above input groups
+  /* Feedback icon (requires .glyphicon classes) */
+  %form-control-feedback { 
+    position: absolute; top: 0; right: 0; 
+    /* Ensure icon is above input groups */
+    z-index: 2; 
     display: block; width: $input-height-base; height: $input-height-base;
     line-height: $input-height-base; text-align: center; pointer-events: none;
   }
@@ -369,7 +385,7 @@
     width: $input-height-small; height: $input-height-small; line-height: $input-height-small;
   }
   
-  // Feedback states
+  /* Feedback states */
   %has-success {
     @include form-control-validation($state-success-text, $state-success-text, $state-success-bg);
   }
@@ -380,62 +396,66 @@
     @include form-control-validation($state-danger-text, $state-danger-text, $state-danger-bg);
   }
   
-  // Reposition feedback icon if input has visible label above
+  /* Reposition feedback icon if input has visible label above */
   %has-feedback label {
     & ~ %form-control-feedback {
-      top: ($line-height-computed + 5); } // Height of the `label` and its margin
+      /* Height of the `label` and its margin */
+      top: ($line-height-computed + 5); } 
     &.sr-only ~ %form-control-feedback {
       top: 0; }
   }
   
-  // Help text
-  // Apply to any element you wish to create light text for placement immediately
-  // below a form control. Use for general help, formatting, or instructional text.
+  /* Help text */
+  /* Apply to any element you wish to create light text for placement immediately */
+  /* below a form control. Use for general help, formatting, or instructional text. */
   %help-block {
-    display: block; // account for any element using help-block
+    /* account for any element using help-block */
+    display: block;
     margin-top: 5px; margin-bottom: 10px;
-    color: lighten($text-color, 25%); // lighten the text some for contrast
+    /* lighten the text some for contrast */
+    color: lighten($text-color, 25%); 
   }
   
-  // [converter] extracted as `@mixin form-inline` for libsass compatibility
+  /* [converter] extracted as `@mixin form-inline` for libsass compatibility */
   %form-inline {  @include form-inline; }
   
   
-  // Horizontal forms
-  // Horizontal forms are built on grid classes and allow you to create forms with
-  // labels on the left and inputs on the right.
+  /* Horizontal forms */
+  /* Horizontal forms are built on grid classes and allow you to create forms with */
+  /* labels on the left and inputs on the right. */
   
   %form-horizontal {
   
-    // Consistent vertical alignment of radios and checkboxes
-      // Labels also get some reset styles, but that is scoped to a media query below.
+    /* Consistent vertical alignment of radios and checkboxes */
+      /* Labels also get some reset styles, but that is scoped to a media query below. */
     %radio, %checkbox, %radio-inline,  %checkbox-inline {
       margin-top: 0; margin-bottom: 0;
       padding-top: ($padding-base-vertical + 1); // Default padding plus a border
     }
-    // Account for padding we're adding to ensure the alignment and of help text
-    // and other content below items
+    /* Account for padding we're adding to ensure the alignment and of help text */
+    /* and other content below items */
     %radio, %checkbox { min-height: ($line-height-computed + ($padding-base-vertical + 1)); }
+    /* Make form groups behave like rows */
+    %form-group { @include make-row; } 
   
-    %form-group { @include make-row; } // Make form groups behave like rows
-  
-    // Reset spacing and right align labels, but scope to media queries so that
-    // labels on narrow viewports stack the same as a default form example.
+    /* Reset spacing and right align labels, but scope to media queries so that */
+    /* labels on narrow viewports stack the same as a default form example. */
     @media (min-width: $screen-sm-min) {
       %control-label {  text-align: right; margin-bottom: 0;
-        padding-top: ($padding-base-vertical + 1); // Default padding plus a border
+       /* Default padding plus a border */
+        padding-top: ($padding-base-vertical + 1); 
       }
     }
   
-    // Validation states
-      // Reposition the icon because it's now within a grid column and columns have
-    // `position: relative;` on them. Also accounts for the grid gutter padding.
+    /* Validation states */
+      /* Reposition the icon because it's now within a grid column and columns have */
+    /* `position: relative;` on them. Also accounts for the grid gutter padding. */
     %has-feedback %form-control-feedback {
       right: floor(($grid-gutter-width / 2)); }
   
-    // Form group sizes
-      // Quick utility class for applying `.input-lg` and `.input-sm` styles to the
-    // inputs and labels within a `.form-group`.
+    /* Form group sizes */
+      /* Quick utility class for applying `.input-lg` and `.input-sm` styles to the */
+    /* inputs and labels within a `.form-group`. */
     %form-group-lg {
       @media (min-width: $screen-sm-min) {
         %control-label {
@@ -445,8 +465,7 @@
         %control-label {
           padding-top: ($padding-small-vertical + 1); font-size: $font-size-small; }}}
   }
-  /* END forms ===============================================================
-  */
+  /* END forms -----------------------------------------------------------------*/
 }
 @mixin make_form_classes ($classes...) {
 	@if nth($classes, 1) != false {
@@ -464,15 +483,16 @@
 } 
   
 @if $buttons == true {
-  /* BEGIN buttons ===============================================================
-  */
-  // Base styles
+  /* BEGIN buttons #############################################################*/
+  /* Base styles */
   %btn {
     display: inline-block;
-    margin-bottom: 0; // For input.btn
+    /* For input.btn */
+    margin-bottom: 0; 
     font-weight: $btn-font-weight;  text-align: center; 
     vertical-align: middle; touch-action: manipulation; cursor: pointer;
-    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    /* Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214 */
+    background-image: none; 
     border: 1px solid transparent; white-space: nowrap;
     @include button-size($padding-base-vertical, $padding-base-horizontal, 
                       $font-size-base, $line-height-base, $btn-border-radius-base);
@@ -488,44 +508,45 @@
     &.disabled, &[disabled], fieldset[disabled] & { cursor: $cursor-disabled;
       @include opacity(.65);  @include box-shadow(none); }
   
-    // [converter] extracted a& to a.btn
+    /* [converter] extracted a& to a.btn */
   }
   
   a.btn {
     &.disabled, fieldset[disabled] & {
-      pointer-events: none; // Future-proof disabling of clicks on `<a>` elements
+      /* Future-proof disabling of clicks on `<a>` elements */
+      pointer-events: none; 
     }
   }
   
-  // Alternate buttons
-  // --------------------------------------------------
+  /* Alternate buttons */
+  /* -------------------------------------------------- */
   %btn-default {
     @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border);
   }
   %btn-primary {
     @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
   }
-  // Success appears as green
+  /* Success appears as green */
   %btn-success {
     @include button-variant($btn-success-color, $btn-success-bg, $btn-success-border);
   }
-  // Info appears as blue-green
+  /* Info appears as blue-green */
   %btn-info {
     @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
   }
-  // Warning appears as orange
+  /* Warning appears as orange */
   %btn-warning {
     @include button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border);
   }
-  // Danger and error appear as red
+  /* Danger and error appear as red */
   %btn-danger {
     @include button-variant($btn-danger-color, $btn-danger-bg, $btn-danger-border);
   }
   
-  // Link buttons
-  // -------------------------
+  /* Link buttons */
+  /* ------------------------- */
   
-  // Make a button look and behave like a link
+  /* Make a button look and behave like a link */
   %btn-link { color: $link-color; font-weight: normal; border-radius: 0;
   
     &, &:active, &.active, &[disabled], fieldset[disabled] & {
@@ -540,32 +561,32 @@
     }
   }
   
-  // Button Sizes
-  // --------------------------------------------------
+  /* Button Sizes */
+  /* -------------------------------------------------- */
   
   %btn-lg {
-    // line-height: ensure even-numbered height of button next to large input
+    /* line-height: ensure even-numbered height of button next to large input */
     @include button-size($padding-large-vertical, $padding-large-horizontal, 
             $font-size-large, $line-height-large, $btn-border-radius-large); }
   %btn-sm {
-    // line-height: ensure proper height of button next to small input
+    /* line-height: ensure proper height of button next to small input */
     @include button-size($padding-small-vertical, $padding-small-horizontal, 
             $font-size-small, $line-height-small, $btn-border-radius-small); }
   %btn-xs {
     @include button-size($padding-xs-vertical, $padding-xs-horizontal, 
             $font-size-small, $line-height-small, $btn-border-radius-small); }
   
-  // Block button
-  // --------------------------------------------------
+  /* Block button */
+  /* -------------------------------------------------- */
   %btn-block { display: block; width: 100%; }
-  %btn-block + %btn-block { margin-top: 5px; } // Vertically space out multiple block buttons
+  /* Vertically space out multiple block buttons */
+  %btn-block + %btn-block { margin-top: 5px; } 
   
-  // Specificity overrides
+  /* Specificity overrides */
   input[type="submit"], input[type="reset"], input[type="button"] {
     &.btn-block { width: 100%; }
   }
-  /* END buttons ===============================================================
-  */
+  /* END buttons --------------------------------------------------------------*/
 }
 @mixin make_button_classes ($classes...) {
 	@if nth($classes, 1) != false {

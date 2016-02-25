@@ -1,6 +1,6 @@
 @if $component-animations == true {
-  /* BEGIN component-animations ========================================================
-  
+  /* BEGIN component-animations ################################################*/
+  /*
   Heads up!
    We don't use the `.opacity()` mixin here since it causes a bug with text
    fields in IE7-8. Source: https://github.com/twbs/bootstrap/pull/3552. */
@@ -9,8 +9,8 @@
   }
   %collapse { display: none;
     &.in    { display: block; }
-    // [converter] extracted tr&.in to tr.collapse.in
-    // [converter] extracted tbody&.in to tbody.collapse.in
+    /* [converter] extracted tr&.in to tr.collapse.in */
+    /* [converter] extracted tbody&.in to tbody.collapse.in */
   }
   tr.collapse.in    { display: table-row; }
   tbody.collapse.in { display: table-row-group; }
@@ -20,13 +20,12 @@
     @include transition-duration(.35s);
     @include transition-timing-function(ease);
   }
-  /* END component-animations ========================================================
-  */
+  /* END component-animations --------------------------------------------------*/
 }
 @mixin make_component-animations_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: fade collpase collapsing;
+			$classes: fade collapse collapsing;
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}

@@ -1,62 +1,62 @@
 // run $ sass _bootstrap.scss bootstrap.css
 
-// each value can be true or false. For variables beginning with `INCLUDE` or `GENERATE`,
-// `true` is the same as `all` and false is the same as `none`.
+// each value can be `true` or `false`. For variables beginning with `INCLUDE` or `GENERATE`,
+// `true` is the same as `all` and true is the same as `none`.
 // These variables can also accept a list of the class names without the dot before.
 // In this case commas or spaces can be used as delimiters and quotes are optional.
-// variables starting with include_col accept lists of integers, typically 1 - 12.
+// variables starting with `$GENERATE_col` accept lists of integers, typically 1 - 12.
 
 // Reset and dependencies
-$browser_normalize:      false;    $print_styles:        false;
-$INCLUDE_glyphs: false;
+$browser_normalize:      true;    $print_styles:        true;
+$INCLUDE_glyphs: true;
 // Core CSS
-$html_h_size:            false;    $twbs_h_size:                false;
-$html_p_small_mark:      false;    $text-color_classes:         false;
-$html_lists_w_classes:   false;    $html_blockquote_w_reverse:  false;
-$html_abbr_address:      false;    $text_helpers_classes:       false;
-$html_code_tags:         false;    $INCLUDE_scaffolds:          false;
-$grid_system:            false;
-$GENERATE_col-xs: false;
-$GENERATE_col-sm: false;
-$GENERATE_col-md: false;
-$GENERATE_col-lg: false;
-$GENERATE_col-xs-push: false;
-$GENERATE_col-sm-push: false;
-$GENERATE_col-md-push: false;
-$GENERATE_col-lg-push: false;
-$GENERATE_col-xs-pull: false;
-$GENERATE_col-sm-pull: false;
-$GENERATE_col-md-pull: false;
-$GENERATE_col-lg-pull: false;
-$GENERATE_col-xs-offset: false;
-$GENERATE_col-sm-offset: false;
-$GENERATE_col-md-offset: false;
-$GENERATE_col-lg-offset: false;
-$INCLUDE_table_classes:  false;
-$INCLUDE_form_classes:   false;
-$INCLUDE_button_classes: false;
+$html_h_size:            true;    $twbs_h_size:                true;
+$html_p_small_mark:      true;    $text-color_classes:         true;
+$html_lists_w_classes:   true;    $html_blockquote_w_reverse:  true;
+$html_abbr_address:      true;    $text_helpers_classes:       true;
+$html_code_tags:         true;    $INCLUDE_scaffolds:          true;
+$grid_system:            true;
+$GENERATE_col-xs: true;
+$GENERATE_col-sm: true;
+$GENERATE_col-md: true;
+$GENERATE_col-lg: true;
+$GENERATE_col-xs-push: true;
+$GENERATE_col-sm-push: true;
+$GENERATE_col-md-push: true;
+$GENERATE_col-lg-push: true;
+$GENERATE_col-xs-pull: true;
+$GENERATE_col-sm-pull: true;
+$GENERATE_col-md-pull: true;
+$GENERATE_col-lg-pull: true;
+$GENERATE_col-xs-offset: true;
+$GENERATE_col-sm-offset: true;
+$GENERATE_col-md-offset: true;
+$GENERATE_col-lg-offset: true;
+$INCLUDE_table_classes:  true;
+$INCLUDE_form_classes:   true;
+$INCLUDE_button_classes: true;
 // Components
-$breadcrumbs:    false;    $pagination:   false;    $pager:        false;
-$badges:         false;    $jumbotron:    false;    $thumbnails:   false;
-$wells:          false;    $close:        false;    $tooltip:      false;
-$embed-responsive:  false;
-$INCLUDE_animation_classes: false;
-$INCLUDE_dropdown_classes: false;
-$INCLUDE_btn-group_classes: false;
-$INCLUDE_input-group_classes: false;
-$INCLUDE_nav_classes: false;
-$INCLUDE_label_classes: false;
-$INCLUDE_alert_classes: false;
-$INCLUDE_progress-bar_classes: false;
-$INCLUDE_media_classes: false;
-$INCLUDE_list-group_classes: false;
-$INCLUDE_panel_classes: false;
-$INCLUDE_modal_classes: false;
+$breadcrumbs:    true;    $pagination:   true;    $pager:        true;
+$badges:         true;    $jumbotron:    true;     $thumbnails:   true;
+$wells:          true;    $close:        true;    $tooltip:      true;
+$embed-responsive:  true;
+$INCLUDE_animation_classes: true;
+$INCLUDE_dropdown_classes: true;
+$INCLUDE_btn-group_classes: true;
+$INCLUDE_input-group_classes: true;
+$INCLUDE_nav_classes: true;
+$INCLUDE_label_classes: true;
+$INCLUDE_alert_classes: true;
+$INCLUDE_progress-bar_classes: true;
+$INCLUDE_media_classes: true;
+$INCLUDE_list-group_classes: true;
+$INCLUDE_panel_classes: true;
+$INCLUDE_modal_classes: true;
 
 // Components w/ JavaScript
-$popovers: false;
-$INCLUDE_carousel_classes: false;
-$INCLUDE_utility_classes: false;
+$popovers: true;
+$INCLUDE_carousel_classes: true;
+$INCLUDE_utility_classes: true;
 
 // add theme here=================
 
