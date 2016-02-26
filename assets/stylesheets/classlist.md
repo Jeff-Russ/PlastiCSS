@@ -13,6 +13,7 @@
 `1_normalize_print_glyphs `
 .glyphicon
 `2_scaffolding_type_code`
+img-responsive img-rounded img-thumbnail img-circle sr-only sr-only-focusable
 
 `4_tables_forms_buttons `
 

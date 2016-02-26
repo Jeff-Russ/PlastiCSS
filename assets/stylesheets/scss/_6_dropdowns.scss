@@ -132,7 +132,7 @@
 @mixin make_dropdown_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: caret dropup dropdown dropdown-toggle divider open pull-right caret
+			$classes: caret dropup dropdown dropdown-toggle divider open pull-right
       dropdown-menu dropdown-menu-right dropdown-menu-left dropdown-header dropdown-backdrop;
 		}
 		@each $class in $classes {

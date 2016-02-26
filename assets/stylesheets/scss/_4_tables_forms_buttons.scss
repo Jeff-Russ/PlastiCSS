@@ -7,7 +7,7 @@
   th { text-align: left; }
   
   /* Baseline styles */
-  %table { width: 100%; max-width: 100%; margin-bottom: $line-height-computed;
+  .table { width: 100%; max-width: 100%; margin-bottom: $line-height-computed;
     /* Cells */
     > thead, > tbody, > tfoot { > tr { > th, > td {
           padding: $table-cell-padding; line-height: $line-height-base;
@@ -71,7 +71,6 @@
   /* Wrap your tables in `.table-responsive` and we'll make them mobile friendly */
   /* by enabling horizontal scrolling. Only applies <768px. Everything above that */
   /* will display normally. */
-  
   %table-responsive { overflow-x: auto;
     /* Workaround for IE9 bug (see https://github.com/twbs/bootstrap/issues/14837) */
     min-height: 0.01%; 
@@ -85,13 +84,11 @@
         /* Ensure the content doesn't wrap */
         > thead, > tbody, > tfoot { > tr { > th, > td { white-space: nowrap; } } } }
       /* Special overrides for the bordered tables */
-      > .table-bordered { border: 0;
+      > %table-bordered { border: 0;
         /* Nuke the appropriate borders so that the parent can handle them */
         > thead, > tbody, > tfoot { > tr {
-            > th:first-child, > td:first-child {
-              border-left: 0; }
-            > th:last-child, > td:last-child {
-              border-right: 0; } } }
+            > th:first-child, > td:first-child { border-left: 0; }
+            > th:last-child, > td:last-child { border-right: 0; } } }
         /* Only nuke the last row's bottom-border in `tbody` and `tfoot` since */
         /* chances are there will be only one `tr` in a `thead` and that would */
         /* remove the border altogether. */
@@ -111,11 +108,8 @@
 	}
 } 
 
-
-// _forms.scss and _buttons.scss in one file.
-
 @if $forms == true {
-  /* BEGIN forms################################################################*/
+  /* BEGIN forms ###############################################################*/
   /* Normalize non-controls */
   /* Restyle and baseline non-control form elements. */
   fieldset {
@@ -261,7 +255,7 @@
   /* Checkboxes and radios */
   /* Indent the labels to position radios/checkboxes as hanging controls. */
   
-  %radio,%checkbox {
+  %radio, %checkbox {
     position: relative; display: block; margin-top: 10px; margin-bottom: 10px;
   
     label {
@@ -269,7 +263,7 @@
       min-height: $line-height-computed; 
       padding-left: 20px; margin-bottom: 0; font-weight: normal; cursor: pointer; }
   }
-  %radio input[type="radio"],%radio-inline input[type="radio"],
+  %radio input[type="radio"], %radio-inline input[type="radio"],
   %checkbox input[type="checkbox"], %checkbox-inline input[type="checkbox"] {
     position: absolute; margin-left: -20px; margin-top: 4px \9;
   }
@@ -416,10 +410,80 @@
     color: lighten($text-color, 25%); 
   }
   
-  /* [converter] extracted as `@mixin form-inline` for libsass compatibility */
-  %form-inline {  @include form-inline; }
+  // NOPE: [converter] extracted as `@mixin form-inline` for libsass compatibility 
   
+  /* Kick in the inline*/
+  @media (min-width: $screen-sm-min) {
+    /* Inline-block all the things for "inline"*/
+    %form-group {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+    
+    /* In navbar-form, allow folks to *not* use `.form-group`*/
+    %form-control {
+      display: inline-block;
+      width: auto; // Prevent labels from stacking above inputs in `.form-group`
+      vertical-align: middle;
+    }
+    
+    /* Make static controls behave like regular ones*/
+    %form-control-static {
+      display: inline-block;
+    }
+    
+    %input-group {
+      display: inline-table;
+      vertical-align: middle;
+    
+      %input-group-addon,
+      %input-group-btn,
+      %form-control {
+        width: auto;
+      }
+    }
+    
+    /* Input groups need that 100% width though*/
+    %input-group > %form-control {
+      width: 100%;
+    }
+    
+    %control-label {
+      margin-bottom: 0;
+      vertical-align: middle;
+    }
+    
+    /* Remove default margin on radios/checkboxes that were used for stacking, and*/
+    /* then undo the floating of radios and checkboxes to match.*/
+    %radio,
+    %checkbox {
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: middle;
+    
+      label {
+        padding-left: 0;
+      }
+    }
+    %radio input[type="radio"],
+    %checkbox input[type="checkbox"] {
+      position: relative;
+      margin-left: 0;
+    }
+    
+    /* Re-override the feedback icon.*/
+    %has-feedback %form-control-feedback {
+      top: 0;
+    }
+  }
   
+  // [converter] extracted as `@mixin form-inline` for libsass compatibility
+    %form-inline {
+      @include form-inline;
+    }
+
   /* Horizontal forms */
   /* Horizontal forms are built on grid classes and allow you to create forms with */
   /* labels on the left and inputs on the right. */
@@ -470,11 +534,11 @@
 @mixin make_form_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: form-control form-control-feedback form-control-static control-label 
-			form-group form-group-lg form-group-sm form-horizontal form-inline input-lg 
-			input-sm input-group input-group-addon input-group-btn input-group-lg 
-			input-group-sm checkbox checkbox-inline radio radio-inline help-block 
-			has-error has-feedback has-success has-warning;
+			$classes: form-control form-control-feedback form-control-static
+        form-group form-group-lg form-group-sm form-horizontal form-inline 
+        checkbox checkbox-inline radio radio-inline help-block input-lg input-sm
+        control-label has-error has-feedback has-success has-warning
+        input-group input-group-addon input-group-btn input-group-lg input-group-sm
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}
@@ -591,8 +655,8 @@
 @mixin make_button_classes ($classes...) {
 	@if nth($classes, 1) != false {
 		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: btn btn-default btn-primary btn-success btn-info btn-warning 
-			          btn-danger btn-link btn-lg btn-sm btn-xs btn-block;
+			$classes: btn btn-default btn-block btn-link btn-lg btn-sm btn-xs 
+			          btn-primary btn-success btn-info btn-warning btn-danger 
 		}
 		@each $class in $classes {
 			.#{$class} { @extend%#{$class};}
