@@ -1,6 +1,4 @@
-// _navs.scss and _navbar.scss in one file. 
-
-@if $navs != "" {
+@if nth($INCLUDE_nav_classes, 1) != "" {
   /* BEGIN navs ################################################################*/
   /* Base class */
   %nav {
@@ -408,17 +406,12 @@
   /* END navbar --------------------------------------------------------
   */
 }
-@mixin make_nav_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: active disabled divider icon-bar nav nav-divider nav-justified nav-pills 
+$names: ''; 
+@if nth($INCLUDE_nav_classes, 1) == all or nth($INCLUDE_nav_classes, 1) == complete {
+  $names: active disabled divider icon-bar nav nav-divider nav-justified nav-pills 
         nav-stacked nav-tabs-justified navbar navbar-brand navbar-btn navbar-collapse 
         navbar-default navbar-fixed-bottom navbar-fixed-top navbar-form navbar-header 
         navbar-inverse navbar-left navbar-link navbar-nav navbar-right navbar-static-top 
         navbar-text navbar-toggle open tab-content tab-pane;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+}
+@include extend_placeholders($names);

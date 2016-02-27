@@ -1,4 +1,4 @@
-@if $list-groups != "" {
+@if nth($INCLUDE_list-group_classes, 1) != "" {
   /* BEGIN list-groups #########################################################*/
  
   /* Base class */
@@ -76,13 +76,8 @@
 
   /* END list-groups -----------------------------------------------------------*/
 }
-@mixin make_list-groups_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: list-group list-group-item list-group-item-heading list-group-item-text;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
+$names: ''; 
+@if nth($INCLUDE_list-group_classes, 1) == all or nth($INCLUDE_list-group_classes, 1) == complete {
+  $names: list-group list-group-item list-group-item-heading list-group-item-text;
 }
+@include extend_placeholders($names);

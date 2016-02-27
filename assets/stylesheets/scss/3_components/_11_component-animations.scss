@@ -1,4 +1,4 @@
-@if $component-animations != "" {
+@if nth($INCLUDE_animation_classes, 1) != "" {
   /* BEGIN component-animations ################################################*/
   /*
   Heads up!
@@ -22,13 +22,8 @@
   }
   /* END component-animations --------------------------------------------------*/
 }
-@mixin make_component-animations_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: fade collapse collapsing;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_animation_classes, 1) == all or nth($INCLUDE_animation_classes, 1) == complete {
+  $names: fade collapse collapsing;
+}
+@include extend_placeholders($names);

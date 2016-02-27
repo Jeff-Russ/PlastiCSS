@@ -1,6 +1,6 @@
 // _utilities.scss and _responsive-utilities.scss in one file.
 
-@if $utilities != "" {
+@if nth($INCLUDE_utility_classes, 1) != "" {
   /* BEGIN utilities ###########################################################*/
   /* Floats */
   /* - - - - - - - - - - - - - */
@@ -106,19 +106,14 @@
   
   /* END responsive-util ----------------------------------------------------===*/
 }
-@mixin make_utility_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: hidden hide show invisible text-hide
+$names: ''; 
+@if nth($INCLUDE_utility_classes, 1) == all or nth($INCLUDE_utility_classes, 1) == complete {
+  $names: hidden hide show invisible text-hide
 			    affix center-block clearfix pull-left pull-right 
 			    visible-print-block visible-print-inline visible-print-inline-block 
           visible-lg-block visible-lg-inline visible-lg-inline-block 
           visible-md-block visible-md-inline visible-md-inline-block 
           visible-sm-block visible-sm-inline visible-sm-inline-block 
           visible-xs-block visible-xs-inline visible-xs-inline-block;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+}
+@include extend_placeholders($names);

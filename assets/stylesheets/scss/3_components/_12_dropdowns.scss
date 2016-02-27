@@ -1,4 +1,4 @@
-@if $dropdowns != "" {
+@if nth($INCLUDE_dropdown_classes, 1) != "" {
   /* BEGIN dropdowns ###########################################################*/
   /* Dropdown arrow/caret */
   %caret {
@@ -129,14 +129,9 @@
   }
   /* END dropdowns -------------------------------------------------------------*/
 }
-@mixin make_dropdown_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: caret dropup dropdown dropdown-toggle divider open pull-right
+$names: ''; 
+@if nth($INCLUDE_dropdown_classes, 1) == all or nth($INCLUDE_dropdown_classes, 1) == complete {
+  $names: caret dropup dropdown dropdown-toggle divider open pull-right
       dropdown-menu dropdown-menu-right dropdown-menu-left dropdown-header dropdown-backdrop;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+}
+@include extend_placeholders($names);

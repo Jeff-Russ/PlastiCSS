@@ -1,4 +1,4 @@
-@if $progress-bars != "" {
+@if nth($INCLUDE_progress-bar_classes, 1) != "" {
   /* BEGIN progress-bar #######################################################*/
   /* Bar animations */
   /* ------------------------- */
@@ -52,14 +52,45 @@
 
   /* END progress-bar ----------------------------------------------------------*/
 }
-@mixin make_progress-bar_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: progress progress-bar progress-striped progress-bar-success 
-			          progress-bar-info progress-bar-warning progress-bar-danger ;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_progress-bar_classes, 1) == all or nth($INCLUDE_progress-bar_classes, 1) == complete {
+  $names: progress progress-bar progress-striped progress-bar-success 
+			    progress-bar-info progress-bar-warning progress-bar-danger ;
+}
+@include extend_placeholders($names);
+
+@if nth($INCLUDE_media_classes, 1) != "" {
+  /* BEGIN media ###############################################################*/
+  %media {
+    /* Proper spacing between instances of .media */
+    margin-top: 15px; 
+    &:first-child { margin-top: 0; }
+  }
+  %media, %media-body { zoom: 1; overflow: hidden; }
+  %media-body { width: 10000px; }
+  
+  %media-object { display: block;
+    /* Fix collapse in webkit from max-width: 100% and display: table-cell. */
+    &.img-thumbnail { max-width: none;  }
+  }
+  
+  %media-right, %media > %pull-right { padding-left: 10px;  }
+  %media-left, %media > %pull-left   { padding-right: 10px; }
+  %media-left, %media-right, %media-body { display: table-cell; vertical-align: top; }
+  %media-middle { vertical-align: middle; }
+  %media-bottom { vertical-align: bottom; }
+  /* Reset margins on headings for tighter default spacing */
+  %media-heading { margin-top: 0; margin-bottom: 5px; }
+  
+  /* Media list variation */
+  /* Undo default ul/ol styles */
+  %media-list { padding-left: 0; list-style: none; }
+
+  /* END media -----------------------------------------------------------------*/
+}
+$names: ''; 
+@if nth($INCLUDE_media_classes, 1) == all or nth($INCLUDE_media_classes, 1) == complete {
+  $names: media media-body media-object media-right media-left 
+          media-middle media-bottom media-heading media-list;
+}
+@include extend_placeholders($names);

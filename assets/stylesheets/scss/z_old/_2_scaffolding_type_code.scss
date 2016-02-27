@@ -72,16 +72,12 @@
   /* END Scaffolding ----------------------------------------------------------- */
 }
 
-@mixin make_scaffold_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: img-responsive img-rounded img-thumbnail img-circle sr-only sr-only-focusable;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_glyphs, 1) == all or nth($INCLUDE_glyphs, 1) == complete {
+  $names: img-responsive img-rounded img-thumbnail img-circle sr-only sr-only-focusable;
+}
+@include extend_placeholders($names);
+
 
 /* BEGIN _type.scss (typography ) ##############################################*/
 // used only here in this file:

@@ -13,5 +13,9 @@ This makes for cleaner, smaller stylesheets and less unexpected behavior.
 
 ### Status
 
-* file _1_ is bug free
+* file _1_ is identical to twbs when everything is selected
+* file _2_ is theoretically bug free. it's identical but rearranged slightly
+* file _3_ grids are identical to twbs when everything is selected
+* file _4_ tables fixed. problem was a placeholder in a mixin!
+* file _4_ forms is functionally identical
 * the rest? not.

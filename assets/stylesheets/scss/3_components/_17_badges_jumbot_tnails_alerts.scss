@@ -1,6 +1,4 @@
-// _badges.scss, _jumbotron.scss, _thumbnails.scss and _alerts in one file 
-
-@if $badges != "" {
+@if nth($INCLUDE_alert_classes, 1) != "" {
   /* BEGIN badges ##############################################################
    Base class */
   .badge {
@@ -136,14 +134,9 @@
   
   /* END alerts ----------------------------------------------------------------*/
 }
-@mixin make_alert_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: alert alert-dismissable alert-dismissible 
-			          alert-success alert-info alert-warning alert-danger;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_alert_classes, 1) == all or nth($INCLUDE_alert_classes, 1) == complete {
+  $names: alert alert-dismissable alert-dismissible 
+			    alert-success alert-info alert-warning alert-danger;
+}
+@include extend_placeholders($names);

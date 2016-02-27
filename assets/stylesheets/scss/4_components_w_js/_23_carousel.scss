@@ -1,4 +1,4 @@
-@if $carousel != "" {
+@if nth($INCLUDE_carousel_classes, 1) != "" {
   /* BEGIN carousel ############################################################*/
   /* Wrapper for the slide container and indicators */
   %carousel       { position: relative; }
@@ -136,15 +136,10 @@
   }
   /* END carousel --------------------------------------------------------------*/
 }
-@mixin make_carousel_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: carousel carousel-inner carousel-caption carousel-control 
-            carousel-indicators item active next prev next icon-prev icon-next
-            glyphicon-chevron-left glyphicon-chevron-right;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_carousel_classes, 1) == all or nth($INCLUDE_carousel_classes, 1) == complete {
+  $names: carousel carousel-inner carousel-caption carousel-control 
+          carousel-indicators item active next prev next icon-prev icon-next
+          glyphicon-chevron-left glyphicon-chevron-right;
+}
+@include extend_placeholders($names);

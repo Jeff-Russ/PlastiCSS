@@ -1,6 +1,4 @@
-// _breadcrumbs.scss, _pagination.scss, _pager.scss and _labels.scss in one file.
-
-@if $breadcrumbs != "" {
+@if nth($INCLUDE_label_classes, 1) != "" {
   /* BEGIN breadcrumb ##########################################################*/
   .breadcrumb {
     padding: $breadcrumb-padding-vertical $breadcrumb-padding-horizontal;
@@ -112,14 +110,9 @@
   %label-danger  { @include label-variant($label-danger-bg); }
   /* END labels ----------------------------------------------------------------*/
 }
-@mixin make_label_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: label label-default label-primary label-success 
-			              label-info label-warning label-danger ;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_label_classes, 1) == all or nth($INCLUDE_label_classes, 1) == complete {
+  $names: label label-default label-primary label-success 
+			              label-info label-warning label-danger;
+}
+@include extend_placeholders($names);

@@ -35,68 +35,68 @@ $INCLUDE_glyphs: complete;
 //######### _2_ CORE CSS #######################################################
 
 //========= Scaffolding ========================================================
-$INCLUDE_scaffolds: "";
+// $INCLUDE_scaffolds: all;
 //	type any of:	img-responsive img-rounded img-thumbnail,img-circle
 //					sr-only sr-only-focusable .... `false` or `all` for all
 //	if non-false:	*  *:before *:after <html> <body> <input> <button>
 //					<select> <textarea> <a> :hover> :focus> <figure> <img> <hr>
 
 //========= Typography =========================================================
-$html_h_size: "";
+// $html_h_size: true;
 //	targets:		<h1> <h2> <h3> <h4> <h5> <h6> ...and nested <small> in each
-$twbs_h_size: "";
+// $twbs_h_size: true;
 //	targets:		.h1 .h2 .h3 .h4 .h5 .h6 and a nested .small in each
-$html_p_small_mark: "";
+// $html_p_small_mark: true;
 //	targets:		<p> <small> <mark> .small .mark
-$text-color_classes: "";
+// $text-color_classes: true;
 //	targets:		.text-primary .text-success .text-info .text-warning .text-danger
 //					.bg-primary .bg-success .bg-info .bg-warning .bg-danger
-$html_lists_w_classes: "";
+// $html_lists_w_classes: true;
 //	targets:		<ul> <ol> <dl> <dt> <dd>
 //					list-unstyled .list-inline .dl-horizontal
-$html_blockquote_w_reverse: "";
+// $html_blockquote_w_reverse: true;
 //	targets:		<p> <ul> <ol> <footer> <small> <blockquote> 
 //					.small .blockquote-reverse <blockquote>.pull-right
-$html_abbr_address: "";
+// $html_abbr_address: true;
 //	targets:		<abbr>[title] <abbr>[data-original-title] <address>
-$text_helpers_classes: "";
+// $text_helpers_classes: true;
 //	targets:		.text-muted .bg-primary .page-header .lead .text-left 
 //					.text-right .text-center .text-justify .text-nowrap 
 //					.text-lowercase .text-uppercase .text-capitalize .initialism
 
 //========= Code ===============================================================
-$html_code_tags: "";
+// $html_code_tags: all;
 //	targets: code kbd pre samp .pre-scrollable
 
 //===== _3_ Grids ==============================================================
-$grid_system: "";
+// $grid_system: all;
 //	creates:		.container .container-fluid .row
 	
-$GENERATE_col-xs: "";
-$GENERATE_col-sm: "";
-$GENERATE_col-md: "";
-$GENERATE_col-lg: "";
-$GENERATE_col-xs-push: "";
-$GENERATE_col-sm-push: "";
-$GENERATE_col-md-push: "";
-$GENERATE_col-lg-push: "";
-$GENERATE_col-xs-pull: "";
-$GENERATE_col-sm-pull: "";
-$GENERATE_col-md-pull: "";
-$GENERATE_col-lg-pull: "";
-$GENERATE_col-xs-offset: "";
-$GENERATE_col-sm-offset: "";
-$GENERATE_col-md-offset: "";
-$GENERATE_col-lg-offset: "";
+// $GENERATE_col-xs: all;
+// $GENERATE_col-sm: all;
+// $GENERATE_col-md: all;
+// $GENERATE_col-lg: all;
+// $GENERATE_col-xs-push: all;
+// $GENERATE_col-sm-push: all;
+// $GENERATE_col-md-push: all;
+// $GENERATE_col-lg-push: all;
+// $GENERATE_col-xs-pull: all;
+// $GENERATE_col-sm-pull: all;
+// $GENERATE_col-md-pull: all;
+// $GENERATE_col-lg-pull: all;
+// $GENERATE_col-xs-offset: all;
+// $GENERATE_col-sm-offset: all;
+// $GENERATE_col-md-offset: all;
+// $GENERATE_col-lg-offset: all;
 
 //========= Tables =============================================================
-$INCLUDE_table_classes: "";
+// $INCLUDE_table_classes: all;
 //	type any of:	table-condensed table-bordered table-striped
 //					table-hover table-responsive
 //	if non-false:	.table
 	
 //========= Forms ==============================================================
-$INCLUDE_form_classes: "";
+// $INCLUDE_form_classes: all;
 //	type any of:	form-control form-control-feedback form-control-static
 //					form-group form-group-lg form-group-sm form-horizontal 
 //					form-inline checkbox checkbox-inline radio radio-inline
@@ -107,7 +107,7 @@ $INCLUDE_form_classes: "";
 //	targets:		<input> <fieldset> <label> <select> <output> <textarea> 
 
 //========= Buttons ============================================================
-$INCLUDE_button_classes: "";
+$INCLUDE_button_classes: all;
 //	type any of:	btn btn-default btn-block btn-link btn-lg btn-sm btn-xs 
 //					btn-primary btn-success btn-info btn-warning btn-danger
 //	targets:		<fieldset> <a>
@@ -220,4 +220,5 @@ $INCLUDE_utility_classes: "";
 
 //########## THEME #############################################################
 
-@import "scss/generate/run_all";
+@import "scss/00_initialize/import_all";
+

@@ -1,6 +1,6 @@
 // _modals.scss _tooltip.scss and _popovers.scss in one file 
 
-@if $modals != "" {
+@if nth($INCLUDE_modal_classes, 1) != "" {
   /* BEGIN modals ##############################################################*/
 
   /* .modal-open      - body class for killing the scroll */
@@ -92,17 +92,12 @@
 
   /* END modals ----------------------------------------------------------------*/
 }
-@mixin make_modal_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: modal modal-sm modal-lg modal-open modal-dialog modal-header modal-title 
-        modal-body modal-content modal-footer modal-backdrop modal-scrollbar-measure;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_modal_classes, 1) == all or nth($INCLUDE_modal_classes, 1) == complete {
+  $names: modal modal-sm modal-lg modal-open modal-dialog modal-header modal-title 
+          modal-body modal-content modal-footer modal-backdrop modal-scrollbar-measure;
+}
+@include extend_placeholders($names);
 
 
 @if $tooltip != "" {

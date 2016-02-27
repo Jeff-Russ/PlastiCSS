@@ -1,4 +1,4 @@
-@if $input-groups != "" {
+@if nth($INCLUDE_input-group_classes, 1) != "" {
   /* BEGIN input-groups ########################################################*/
 
   /* Base styles */
@@ -116,13 +116,8 @@
   }
   /* END input-groups ----------------------------------------------------------*/
 }
-@mixin make_input-group_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: input-group input-group-lg input-group-sm input-group-addon input-group-btn;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_input-group_classes, 1) == all or nth($INCLUDE_input-group_classes, 1) == complete {
+  $names: input-group input-group-lg input-group-sm input-group-addon input-group-btn;
+}
+@include extend_placeholders($names);
