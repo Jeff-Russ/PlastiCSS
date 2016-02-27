@@ -1,4 +1,4 @@
-@if $dropdowns == true {
+@if $dropdowns != "" {
   /* BEGIN dropdowns ###########################################################*/
   /* Dropdown arrow/caret */
   %caret {

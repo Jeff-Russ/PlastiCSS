@@ -1,6 +1,6 @@
 // _tables.scss, _forms.scss and _buttons.scss in one file. 
 
-@if $tables == true {
+@if $tables != "" {
   /* BEGIN Tables ##############################################################*/
   table { background-color: $table-bg; }
   caption { padding-top: $table-cell-padding; padding-bottom: $table-cell-padding; color: $text-muted; text-align: left;}
@@ -108,7 +108,7 @@
 	}
 } 
 
-@if $forms == true {
+@if $forms != "" {
   /* BEGIN forms ###############################################################*/
   /* Normalize non-controls */
   /* Restyle and baseline non-control form elements. */
@@ -546,7 +546,7 @@
 	}
 } 
   
-@if $buttons == true {
+@if $buttons != "" {
   /* BEGIN buttons #############################################################*/
   /* Base styles */
   %btn {

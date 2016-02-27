@@ -1,6 +1,6 @@
 // _utilities.scss and _responsive-utilities.scss in one file.
 
-@if $utilities == true {
+@if $utilities != "" {
   /* BEGIN utilities ###########################################################*/
   /* Floats */
   /* - - - - - - - - - - - - - */

@@ -10,141 +10,133 @@
 @import "../import/mixin-6-layout"; 
 @import "../import/mixin-7-grid"; 
 
-// scss won't let me initilize these variables later inside the @if's!?!?
-// Without this I get a sass compile error saying they are not found.
-$glyphicons:"";$scaffolding:"";$tables:"";$forms:"";$buttons:"";
-$component-animations:"";$dropdowns:"";$btn-groups:"";$input-groups:"";
-$navs:"";$labels:"";$alerts:"";$progress-bars:"";$media:"";$list-groups:"";
-$panels:"";$modals:"";$carousel:"";$utilities:"";
 
 // Reset and dependencies
-@if nth($INCLUDE_glyphs, 1) != false {$glyphicons: true;
-} @else { $glyphicons: false; }
+@if nth($INCLUDE_glyphs, 1) != "" {$glyphicons: true;}
 @import "../1_normalize_print_glyphs"; 
-@include make_glyphicon_classes($INCLUDE_glyphs);
+
+// // Core CSS
+// @if nth($INCLUDE_scaffolds, 1) != false {
+//     $scaffolding: true;
+// } @else { $scaffolding: false; }
+// @import "../2_scaffolding_type_code";
+// @include make_scaffold_classes($INCLUDE_scaffolds);
+
+// @import "../3_grid";
+// @include make_cols("xs", $GENERATE_col-xs);
+// @include make_cols("sm", $GENERATE_col-sm);
+// @include make_cols("md", $GENERATE_col-md);
+// @include make_cols("lg", $GENERATE_col-lg);
+// @include make_cols("xs-push", $GENERATE_col-xs-push);
+// @include make_cols("sm-push", $GENERATE_col-sm-push);
+// @include make_cols("md-push", $GENERATE_col-md-push);
+// @include make_cols("lg-push", $GENERATE_col-lg-push);
+// @include make_cols("xs-pull", $GENERATE_col-xs-pull);
+// @include make_cols("sm-pull", $GENERATE_col-sm-pull);
+// @include make_cols("md-pull", $GENERATE_col-md-pull);
+// @include make_cols("lg-pull", $GENERATE_col-lg-pull);
+// @include make_cols("xs-offset", $GENERATE_col-xs-offset);
+// @include make_cols("sm-offset", $GENERATE_col-sm-offset);
+// @include make_cols("md-offset", $GENERATE_col-md-offset);
+// @include make_cols("lg-offset", $GENERATE_col-lg-offset);
+
+// @if nth($INCLUDE_table_classes, 1) != false {
+//     $tables: true;
+// } @else { $tables: false; }
+// @if nth($INCLUDE_form_classes, 1) != false {
+//     $forms: true;
+// } @else { $forms: false; }
+// @if nth($INCLUDE_button_classes, 1) != false {
+//     $buttons: true;
+// } @else { $buttons: false; }
+// @import "../4_tables_forms_buttons"; 
+// @include make_table_classes($INCLUDE_table_classes);
+// @include make_form_classes($INCLUDE_form_classes);
+// @include make_button_classes($INCLUDE_button_classes);
 	
-// Core CSS
-@if nth($INCLUDE_scaffolds, 1) != false {
-    $scaffolding: true;
-} @else { $scaffolding: false; }
-@import "../2_scaffolding_type_code";
-@include make_scaffold_classes($INCLUDE_scaffolds);
+// // Components
+// @if nth($INCLUDE_animation_classes, 1) != false {
+//     $component-animations: true;
+// } @else { $component-animations: false; }
+// @import "../5_component-animations";
+// @include make_component_animations_classes($INCLUDE_animation_classes);
 
-@import "../3_grid";
-@include make_cols("xs", $GENERATE_col-xs);
-@include make_cols("sm", $GENERATE_col-sm);
-@include make_cols("md", $GENERATE_col-md);
-@include make_cols("lg", $GENERATE_col-lg);
-@include make_cols("xs-push", $GENERATE_col-xs-push);
-@include make_cols("sm-push", $GENERATE_col-sm-push);
-@include make_cols("md-push", $GENERATE_col-md-push);
-@include make_cols("lg-push", $GENERATE_col-lg-push);
-@include make_cols("xs-pull", $GENERATE_col-xs-pull);
-@include make_cols("sm-pull", $GENERATE_col-sm-pull);
-@include make_cols("md-pull", $GENERATE_col-md-pull);
-@include make_cols("lg-pull", $GENERATE_col-lg-pull);
-@include make_cols("xs-offset", $GENERATE_col-xs-offset);
-@include make_cols("sm-offset", $GENERATE_col-sm-offset);
-@include make_cols("md-offset", $GENERATE_col-md-offset);
-@include make_cols("lg-offset", $GENERATE_col-lg-offset);
+// @if nth($INCLUDE_dropdown_classes, 1) != false {
+//     $dropdowns: true;
+// } @else { $dropdowns: false; }
+// @import "../6_dropdowns";
+// @include make_dropdown_classes($INCLUDE_dropdown_classes);
 
-@if nth($INCLUDE_table_classes, 1) != false {
-    $tables: true;
-} @else { $tables: false; }
-@if nth($INCLUDE_form_classes, 1) != false {
-    $forms: true;
-} @else { $forms: false; }
-@if nth($INCLUDE_button_classes, 1) != false {
-    $buttons: true;
-} @else { $buttons: false; }
-@import "../4_tables_forms_buttons"; 
-@include make_table_classes($INCLUDE_table_classes);
-@include make_form_classes($INCLUDE_form_classes);
-@include make_button_classes($INCLUDE_button_classes);
-	
-// Components
-@if nth($INCLUDE_animation_classes, 1) != false {
-    $component-animations: true;
-} @else { $component-animations: false; }
-@import "../5_component-animations";
-@include make_component_animations_classes($INCLUDE_animation_classes);
+// @if nth($INCLUDE_btn-group_classes, 1) != false {
+//     $btn-groups: true;
+// } @else { $btn-groups: false; }
+// @import "../7_button-groups";
+// @include make_btn-group_classes($INCLUDE_btn-group_classes);
 
-@if nth($INCLUDE_dropdown_classes, 1) != false {
-    $dropdowns: true;
-} @else { $dropdowns: false; }
-@import "../6_dropdowns";
-@include make_dropdown_classes($INCLUDE_dropdown_classes);
+// @if nth($INCLUDE_input-group_classes, 1) != false {
+//     $input-groups: true;
+// } @else { $input-groups: false; }
+// @import "../8_input-groups";
+// @include make_input-group_classes($INCLUDE_input-group_classes);
 
-@if nth($INCLUDE_btn-group_classes, 1) != false {
-    $btn-groups: true;
-} @else { $btn-groups: false; }
-@import "../7_button-groups";
-@include make_btn-group_classes($INCLUDE_btn-group_classes);
+// @if nth($INCLUDE_nav_classes, 1) != false {
+//     $navs: true;
+// } @else { $navs: false; }
+// @import "../9_navs_navbar";
+// @include make_nav_classes($INCLUDE_nav_classes);
 
-@if nth($INCLUDE_input-group_classes, 1) != false {
-    $input-groups: true;
-} @else { $input-groups: false; }
-@import "../8_input-groups";
-@include make_input-group_classes($INCLUDE_input-group_classes);
+// @if nth($INCLUDE_label_classes, 1) != false {
+//     $labels: true;
+// } @else { $labels: false; }
+// @import "../10_breadcrumbs_paginate_labels";
+// @include make_label_classes($INCLUDE_label_classes);
 
-@if nth($INCLUDE_nav_classes, 1) != false {
-    $navs: true;
-} @else { $navs: false; }
-@import "../9_navs_navbar";
-@include make_nav_classes($INCLUDE_nav_classes);
+// @if nth($INCLUDE_alert_classes, 1) != false {
+//     $alerts: true;
+// } @else { $alerts: false; }
+// @import "../11_badges_jumbot_tnails_alerts";
+// @include make_alert_classes($INCLUDE_alert_classes);
 
-@if nth($INCLUDE_label_classes, 1) != false {
-    $labels: true;
-} @else { $labels: false; }
-@import "../10_breadcrumbs_paginate_labels";
-@include make_label_classes($INCLUDE_label_classes);
+// @if nth($INCLUDE_progress-bar_classes, 1) != false {
+//     $progress-bars: true;
+// } @else { $progress-bars: false; }
+// @import "../12_progress-bars";
+// @include make_progress-bar_classes($INCLUDE_progress-bar_classes);
 
-@if nth($INCLUDE_alert_classes, 1) != false {
-    $alerts: true;
-} @else { $alerts: false; }
-@import "../11_badges_jumbot_tnails_alerts";
-@include make_alert_classes($INCLUDE_alert_classes);
+// @if nth($INCLUDE_media_classes, 1) != false {
+//     $media: true;
+// } @else { $media: false; }
+// @import "../13_media";
+// @include make_media_classes($INCLUDE_media_classes);
 
-@if nth($INCLUDE_progress-bar_classes, 1) != false {
-    $progress-bars: true;
-} @else { $progress-bars: false; }
-@import "../12_progress-bars";
-@include make_progress-bar_classes($INCLUDE_progress-bar_classes);
+// @if nth($INCLUDE_list-group_classes, 1) != false {
+//     $list-groups: true;
+// } @else { $list-groups: false; }
+// @import "../14_list-group";
+// @include make_list-groups_classes($INCLUDE_list-group_classes);
 
-@if nth($INCLUDE_media_classes, 1) != false {
-    $media: true;
-} @else { $media: false; }
-@import "../13_media";
-@include make_media_classes($INCLUDE_media_classes);
+// @if nth($INCLUDE_panel_classes, 1) != false {
+//     $panels: true;
+// } @else { $panels: false; }
+// @import "../15_panels_resp-embed_wells_close";
+// @include make_panel_classes($INCLUDE_panel_classes);
 
-@if nth($INCLUDE_list-group_classes, 1) != false {
-    $list-groups: true;
-} @else { $list-groups: false; }
-@import "../14_list-group";
-@include make_list-groups_classes($INCLUDE_list-group_classes);
+// // Components w/ JavaScript
+// @if nth($INCLUDE_modal_classes, 1) != false {
+//     $modals: true;
+// } @else { $modals: false; }
+// @import "../16_modals_tooltip_popovers";
+// @include make_modal_classes($INCLUDE_modal_classes);
 
-@if nth($INCLUDE_panel_classes, 1) != false {
-    $panels: true;
-} @else { $panels: false; }
-@import "../15_panels_resp-embed_wells_close";
-@include make_panel_classes($INCLUDE_panel_classes);
+// @if nth($INCLUDE_carousel_classes, 1) != false {
+//     $carousel: true;
+// } @else { $carousel: false; }
+// @import "../17_carousel";
+// @include make_carousel_classes($INCLUDE_carousel_classes);
 
-// Components w/ JavaScript
-@if nth($INCLUDE_modal_classes, 1) != false {
-    $modals: true;
-} @else { $modals: false; }
-@import "../16_modals_tooltip_popovers";
-@include make_modal_classes($INCLUDE_modal_classes);
-
-@if nth($INCLUDE_carousel_classes, 1) != false {
-    $carousel: true;
-} @else { $carousel: false; }
-@import "../17_carousel";
-@include make_carousel_classes($INCLUDE_carousel_classes);
-
-// Utility classes (with reponsive ultilities)
-@if nth($INCLUDE_utility_classes, 1) != false {
-    $utilities: true;
-} @else { $utilities: false; }
-@import "../18_utilities";
-@include make_utility_classes($INCLUDE_utility_classes);
+// // Utility classes (with reponsive ultilities)
+// @if nth($INCLUDE_utility_classes, 1) != false {
+//     $utilities: true;
+// } @else { $utilities: false; }
+// @import "../18_utilities";
+// @include make_utility_classes($INCLUDE_utility_classes);

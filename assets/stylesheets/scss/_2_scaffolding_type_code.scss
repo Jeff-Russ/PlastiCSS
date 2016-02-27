@@ -1,6 +1,6 @@
 // _scaffolding.scss, _type.scss and code.scss in one file
 
-@if $scaffolding == true {
+@if $scaffolding != "" { // set from $INCLUDE_scaffolds
   /* BEGIN Scaffolding #########################################################*/
     
   /* Reset the box-sizing
@@ -92,7 +92,7 @@
 %h1-h3_temp-class { margin-top: $line-height-computed; margin-bottom: ($line-height-computed / 2); }
 %h4-h6_temp-class { margin-top: ($line-height-computed / 2); margin-bottom: ($line-height-computed / 2); }
 
-@if $html_h_size == true {
+@if $html_h_size != "" {
   /* Headings (Typography) */
   h1, h2, h3, h4, h5, h6 { @extend%h_temp-class; small { @extend%small_temp-class; }}
   h1, h2, h3 { @extend%h1-h3_temp-class; small { font-size: 65%; } }
@@ -105,7 +105,7 @@
   h6 { font-size: $font-size-h6; }
 }
 
-@if $twbs_h_size == true {
+@if $twbs_h_size != "" {
   .h1, .h2, .h3, .h4, .h5, .h6 {
     @extend%h_temp-class; .small { @extend%small_temp-class; }}
   .h1, .h2, .h3 { @extend%h1-h3_temp-class; .small { font-size: 65%; } }
@@ -118,7 +118,7 @@
   .h6 { font-size: $font-size-h6; }
 }
 
-@if $html_p_small_mark == true {
+@if $html_p_small_mark != "" {
   /* Body text (Typography) */
   p { margin: 0 0 ($line-height-computed / 2); }
   
@@ -130,7 +130,7 @@
   mark, .mark { background-color: $state-warning-bg; padding: .2em; }
 }
 
-@if $text-color_classes == true {
+@if $text-color_classes != "" {
   /* begin text-color_classes (Typography) */
   @include text-emphasis-variant('.text-primary', $brand-primary);
   @include text-emphasis-variant('.text-success', $state-success-text);
@@ -146,7 +146,7 @@
   /* end text-color_classes */
 }
 
-@if $html_lists_w_classes == true {
+@if $html_lists_w_classes != "" {
   /* Lists (Typography)
      Unordered and Ordered lists */
   ul, ol { margin-top: 0; margin-bottom: ($line-height-computed / 2);
@@ -185,7 +185,7 @@
   }
 }
   
-@if $html_blockquote_w_reverse == true {
+@if $html_blockquote_w_reverse != "" {
   /* blockquote (Typography) */
   blockquote {
     padding: ($line-height-computed / 2) $line-height-computed; margin: 0 0 $line-height-computed;
@@ -213,7 +213,7 @@
         content: '\00A0 \2014'; } } } 
 }
 
-@if $html_abbr_address == true {
+@if $html_abbr_address != "" {
   /* Misc (Typography)
      -------------------------
      Abbreviations and acronyms */
@@ -225,7 +225,7 @@
   address { margin-bottom: $line-height-computed; font-style: normal; line-height: $line-height-base; }
 }
 
-@if $text_helpers_classes == true {
+@if $text_helpers_classes != "" {
   /* Contextual colors (Typography) */
   .text-muted { color: $text-muted; }
   
@@ -264,7 +264,7 @@
 }
   /* END typography ------------------------------------------------------------*/
 
-@if $html_code_tags == true {
+@if $html_code_tags != "" {
   /* BEGIN code.scss
     html_code_tags (inline and block) ##########################################*/
   /* Inline and block code styles */

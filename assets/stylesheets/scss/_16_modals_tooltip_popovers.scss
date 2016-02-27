@@ -1,6 +1,6 @@
 // _modals.scss _tooltip.scss and _popovers.scss in one file 
 
-@if $modals == true {
+@if $modals != "" {
   /* BEGIN modals ##############################################################*/
 
   /* .modal-open      - body class for killing the scroll */
@@ -105,7 +105,7 @@
 } 
 
 
-@if $tooltip == true {
+@if $tooltip != "" {
   /* BEGIN tooltip #############################################################*/
   /* Base class */
   .tooltip {
@@ -165,7 +165,7 @@
   /* END tooltip ---------------------------------------------------------------*/
 }
 
-@if $popovers == true {
+@if $popovers != "" {
   /* BEGIN popovers ############################################################
   */
   .popover {

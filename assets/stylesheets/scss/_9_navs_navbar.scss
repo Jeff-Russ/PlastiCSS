@@ -1,6 +1,6 @@
 // _navs.scss and _navbar.scss in one file. 
 
-@if $navs == true {
+@if $navs != "" {
   /* BEGIN navs ################################################################*/
   /* Base class */
   %nav {

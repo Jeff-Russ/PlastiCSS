@@ -1,4 +1,4 @@
-@if $carousel == true {
+@if $carousel != "" {
   /* BEGIN carousel ############################################################*/
   /* Wrapper for the slide container and indicators */
   %carousel       { position: relative; }

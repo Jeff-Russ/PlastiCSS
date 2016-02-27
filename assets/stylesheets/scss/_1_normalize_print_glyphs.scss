@@ -1,10 +1,9 @@
 // _normalize.scss, _print.scss and _glyphicons.scss together in one file.
-
-@if $browser_normalize == true {
+@if $browser_normalize != "" {
   /* BEGIN browser_normalize ###################################################*/
   /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css 
      1. Set default font family to sans-serif.
-     2. Prevent iOS and IE text size adjust after device orientation change, without disabling user zoom. */
+     2. Prevent iOS and IE text size adjust after device orientation change, without disabling user zoom.*/
   
   html { 
     /* 1 */
@@ -200,7 +199,7 @@
   */
 }
 
-@if $print_styles == true {
+@if $print_styles != "" {
   /* BEGIN print_styles ########################################################*/
   
   /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
@@ -235,9 +234,14 @@
   }
   /* END print_styles --------------------------------------------------------=
   */
+  $names: ''; 
+  @if nth($print_styles, 1) == complete {
+    $names: navbar btn dropup caret label table table-bordered;
+  }
+  @include extend_placeholders($names)
 }
 
-@if $glyphicons == true {
+@if $glyphicons != "" {
   /* BEGIN glyphicons ##########################################################*/
   @at-root {
     /* Import the fonts */
@@ -619,13 +623,8 @@ $all_glyphs: glyphicon-asterisk glyphicon-plus glyphicon-euro glyphicon-eur
     glyphicon-superscript glyphicon-subscript glyphicon-menu-left 
     glyphicon-menu-right glyphicon-menu-down glyphicon-menu-up;
 
-@mixin make_glyphicon_classes ($classes...) {
-	@if nth($classes, 1) != false {
-		@if nth($classes, 1) == all or nth($classes, 1) == true {
-			$classes: $all_glyphs;
-		}
-		@each $class in $classes {
-			.#{$class} { @extend%#{$class};}
-		}
-	}
-} 
+$names: ''; 
+@if nth($INCLUDE_glyphs, 1) == all or nth($INCLUDE_glyphs, 1) == complete {
+  $names: $all_glyphs;
+}
+@include extend_placeholders($names)

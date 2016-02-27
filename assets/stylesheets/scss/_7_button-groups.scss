@@ -1,4 +1,4 @@
-@if $btn-groups == true {
+@if $btn-groups != "" {
   /* BEGIN btn-groups ##########################################################*/
   /* Make the div behave like a button */
   %btn-group,

@@ -1,6 +1,6 @@
 // _panels.scss _responsive-embed.scss _wells.scss and _close.scss in one file
 
-@if $panels == true {
+@if $panels != "" {
   /* BEGIN panels #############################################################*/
   /* Base class */
   %panel { 
@@ -116,7 +116,7 @@
 	}
 } 
   
-@if $embed-responsive == true {
+@if $embed-responsive != "" {
   /* BEGIN #####################################################################*/
   /* Embeds responsive */
   /* Credit: Nicolas Gallagher and SUIT CSS. */
@@ -133,7 +133,7 @@
   /* END embed-responsive ------------------------------------------------------*/
 }
 
-@if $wells == true {
+@if $wells != "" {
   /* BEGIN wells ###############################################################*/
   /* Base class */
   .well {
@@ -149,7 +149,7 @@
   /* END wells ----------------------------------------------------------------*/
 }
 
-@if $close == true {
+@if $close != "" {
   /* BEGIN close ##############################################################*/
   .close {
     float: right; font-size: ($font-size-base * 1.5); 

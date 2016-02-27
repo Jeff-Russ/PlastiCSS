@@ -1,6 +1,6 @@
 // _badges.scss, _jumbotron.scss, _thumbnails.scss and _alerts in one file 
 
-@if $badges == true {
+@if $badges != "" {
   /* BEGIN badges ##############################################################
    Base class */
   .badge {
@@ -40,7 +40,7 @@
   /* END badges ----------------------------------------------------------------*/
 }
 
-@if $jumbotron == true {
+@if $jumbotron != "" {
   /* BEGIN jumbotron ###########################################################*/
 .jumbotron {
   padding-top:    $jumbotron-padding; padding-bottom: $jumbotron-padding;
@@ -77,7 +77,7 @@
 }
   /* END jumbotron -------------------------------------------------------------*/
 }
-@if $thumbnails == true {
+@if $thumbnails != "" {
   /* BEGIN thumbnails ##########################################################*/
   /* Mixin and adjust the regular image class */
   .thumbnail {
@@ -99,7 +99,7 @@
   /* END thumbnails ------------------------------------------------------------*/
 }
 
-@if $alerts == true {
+@if $alerts != "" {
   /* BEGIN alerts ##############################################################*/
   /* Base styles */
   %alert {

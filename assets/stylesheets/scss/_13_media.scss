@@ -1,4 +1,4 @@
-@if $media == true {
+@if $media != "" {
   /* BEGIN media ###############################################################*/
   %media {
     /* Proper spacing between instances of .media */
