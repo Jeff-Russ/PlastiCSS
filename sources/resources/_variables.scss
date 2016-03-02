@@ -1,0 +1,38 @@
+$brkpnt-list: (
+// label min    max   vp-px (for math)
+  ( xs, 0px,    599px,  500  ), ( sm, 600px,  759px,  675  ), ( md, 750px,  899px,  825  ),
+  ( lg, 900px,  1099px, 1000 ), ( xl, 1100px, 9999px, 1300 ) 
+);
+
+$nearly-black: #2a2a2a;
+$raised-black: #333333;
+$warmth-black: #333232;
+$swampy-black: #3e423e;
+$darkest-grey: #404040;
+
+$pastel-green: #b0cfaa;
+
+$electo-green: #94ba65;
+$lowbat-green: #670;
+
+$spring-green: #b0bfaa;
+
+
+
+$body-tx-col: $spring-green;
+$body-bg-col: $nearly-black;
+
+$hbar-bg-col: $raised-black;
+$hbar-br-col: $lowbat-green;
+
+$tbbn-tx-col: $pastel-green;
+$tbbn-bg-col: $swampy-black;
+$tbbn-br-col: $electo-green;
+
+$tile-tx-col: $pastel-green;
+$tile-bg-col: $swampy-black;
+
+$panh-bg-col: $darkest-grey;
+$panb-bg-col: $warmth-black;
+$panb-br-col: $electo-green;
+

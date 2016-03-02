@@ -1,0 +1,57 @@
+@function glow ($color, $amt) {
+  @if $amt == 0  {  @return $color;
+  } @else if $amt > 0 {@return adjust_hue(saturate(lighten($color,$amt),$amt),$amt);
+  } @else if $amt < 0 {@return adjust_hue(desaturate(darken($color,$amt),$amt),$amt);}
+}
+// add unit to the end of number without having those dumb quotes.
+@function vh($percent){ @return unquote($percent+'vh'); }
+@function vw($percent){ @return unquote($percent+'vw'); }
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp > 0      { @for $i from 1 through $exp  { $value: $value * $number; } }
+  @else if $exp < 0 { @for $i from 1 through -$exp { $value: $value / $number; } }
+  @return $value;
+}
+@function trunc($input, $num_of_dec_places: 3) {
+  $up: pow(10, $num_of_dec_places);
+  $dn: 1 / $up;
+  @return floor($input * $up) * $dn;
+}
+// Caculate a larger spacer with larger viewport and scale the actual length of item
+// (without spacer) proportionally so that the item always take the same space with spacer. 
+// When viewport is 300px there is no spacer
+// When viewport is 980px, you have roughly: 1%spacer 98%item 1%spacer
+// When viewport is 2900px: 25%spacer 50%item 25%spacer
+// The curve is a sigmoidal function: y=x/(x+1) I used in audio processing
+@function natural-spacer ($vport-dimen-px, $item-dimen) { 
+  $spacer-factor: abs(($vport-dimen-px - 300) / 2600);
+  $spacer-factor: $spacer-factor / ($spacer-factor + 1);
+  $dimen-factor: 1 - $spacer-factor;
+  $spacer: $spacer-factor * $item-dimen * 0.5; 
+  $new-dimen: $dimen-factor + $item-dimen;
+  @return trunc($new-dimen), trunc($spacer);
+}
+// Usefull for things you want to expand and shrink 
+// with viewport but never get extreme values.
+// Proportion put in is the same as out when the viewport is 1000px
+// but when the viewport is halved, the item is 75%, not 50%
+// when viewport is doubled, the item is 150% not 200%
+// All of this is when $curve == 0.5, when $curve is 0...no effect
+@function natural-scaler ($item-dimen, $vport-dimen-px, $curve: 0.5) {
+  $curve: 1 - $curve;
+  $factor: (($vport-dimen-px / 1000 - 1) * $curve ) + 1;
+  $new-dimen: $item-dimen * $factor;
+  @return trunc($new-dimen);
+}
+// Inverted version of natural-sclaler. 
+// Use this fuction to tame values that normally scale in a 
+// 1:1 ratio with viewport when you don't want extremes. 
+@function natural-scaler-inv ($item-dimen, $vport-dimen-px, $curve: 0.5) {
+  $factor: ((1000 / $vport-dimen-px - 1) * $curve ) + 1;
+  $new-dimen: $item-dimen * $factor;
+  @return trunc($new-dimen);
+}
+// Calculate the available space inside container as percentage of vw
+@function calc-inner-width ($cont-right, $cont-left, $cont-pad-left, $cont-pad-right) {
+  @return $cont-right + $cont-left + $cont-pad-left + $cont-pad-right;
+}

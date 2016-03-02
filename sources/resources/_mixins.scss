@@ -1,0 +1,82 @@
+@mixin border-rad($radius: 0.8em) {
+   -moz-border-radius: $radius; -khtml-border-radius: $radius;
+   -webkit-border-radius: $radius; border-radius: $radius;
+}
+@mixin transition ($sec: 0.3s) { 
+-webkit-transition: background $sec ease-in-out, border $sec ease-in-out, color $sec ease-in-out;
+   -moz-transition: background $sec ease-in-out, border $sec ease-in-out, color $sec ease-in-out;
+    -ms-transition: background $sec ease-in-out, border $sec ease-in-out, color $sec ease-in-out;
+     -o-transition: background $sec ease-in-out, border $sec ease-in-out, color $sec ease-in-out;
+        transition: background $sec ease-in-out, border $sec ease-in-out, color $sec ease-in-out;
+}
+
+@mixin set_tile_row_media_dimen ( $cont-w_low: 95,  $tiles-x_low: 7, $tile-h_low: 9,
+                        $cont-w_high: 95, $tiles-x_high: 9, $tile-h_high: 8,
+                        $base_font-size: 1.4, $curve: 0.3 ) {
+  @each $label, $min-px, $max-px, $vp-px in $brkpnt-list {
+    @media (min-width: $min-px) and (max-width: $max-px) {
+      $total-width: 0;
+      @if $label == xs or $label == sm {
+        $total-width: $cont-w_low / $tiles-x_low;
+        height: vh($tile-h_low); line-height: vh($tile-h_low);
+      } @else {
+        $total-width: $cont-w_high / $tiles-x_high;
+        height: vh($tile-h_high); line-height: vh($tile-h_high);
+      }
+      $w_m: natural-spacer($vp-px, $total-width);
+      width: vw(nth($w_m, 1));
+      margin-left: vw(nth($w_m, 2)); margin-right: vw(nth($w_m, 2));
+      $font-size_factor: $base_font-size * 0.088;
+      font-size: vw(trunc(nth($w_m, 1) * $font-size_factor));
+    }
+  }
+}
+@mixin set_tile_basic_props () {
+  display: inline-block; position: relative; overflow: hidden;
+  text-align: center; vertical-align: middle;
+}
+@mixin set_all_colors ($text-col: black, $bg-col: white,
+      $bord-col: black, $bord-width: 1px, $bord-style: solid, $glow-amt: 5) {
+  &, &:link, &:visited, &:active {
+    color: $text-col; background-color: $bg-col; border-color: $bord-col;
+    border-width: $bord-width; border-style: $bord-style; text-decoration:none;
+  }
+  &:hover, &:focus {
+    color: glow($text-col, $glow-amt);
+    background-color: glow($bg-col, $glow-amt);
+    border-color: glow($bord-col, $glow-amt);
+    border-width: $bord-width; border-style: $bord-style; text-decoration:none;
+  }
+}
+
+// @mixin tile ($cont-width: 95, $tiles-x: 9, $font-size: 1.6, $height: 8) {
+//   display: inline-block; position: relative; overflow: hidden;
+//   height: unquote($height + 'vh');
+//   width: unquote($cont-width / $tiles-x + 'vw');
+//   line-height: unquote($height + 'vh');
+//   font-size: unquote($font-size + 'vw');
+//   text-align: center; vertical-align: middle;
+// }
+
+// // has expandable height, full-viewport width
+// @mixin topbar-full ($top:9, $side-margin: 0.75, $padding: 0.25) {
+//   top: vh($top);
+//   left: vw($side-margin);
+//   right: vw($side-margin);
+//   padding: vh($padding) vw($padding) vh($padding) vw($padding);
+//   border: 5px solid red;
+// }
+
+// @mixin tile ($container-width: 95, $numofchild: 9, $font-size: 1.6, $height: 8) {
+//   display: inline-block; position: relative; overflow: hidden;
+//   height: unquote($height + 'vh');
+//   width: unquote($container-width / $numofchild + 'vw');
+//   line-height: unquote($height + 'vh');
+//   font-size: unquote($font-size + 'vw');
+//   text-align: center; vertical-align: middle;
+// }
+
+// @mixin styled-box ($bg-col: #444, $txt-col: #aaaafa){
+//   color: $txt-col;
+//   background-color: $bg-col;
+// }
