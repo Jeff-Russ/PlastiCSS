@@ -1,43 +1,7 @@
-@import "sources/imports"
+@import "sources/imports";
 
-
-.tile {
-  @include set_tile_basic_props;
-  @include set_all_colors;
-  @include border-rad;
-  @include set_tile_row_media_dimen;
-}
-
-.topbar {
-  @include topbar-full(9, 1, 0.5);
-  position:fixed;
-}
-$items-9: hbar-item-sizer (100, 8, 1, 0.5, 9);
 
 // Remove default margin.
 body {
   border: 5px solid black;
-}
-
-.tile-c {  @include tile; @include styled-box;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.tile-l { @include tile; @include styled-box;
-  float: left;
-  margin-right: 0.25vw;
-  margin-left: 0; 
-}
-.tile-r { @include tile; @include styled-box;
-  float: right;
-  margin-left: 0.25vw;
-  margin-right: 0;
-}
-
-.dummy {
-  margin-top: 18%;
-  height: 300px;
-  border: 5px solid blue;
 }

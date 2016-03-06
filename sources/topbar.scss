@@ -1,0 +1,19 @@
+$topbar-full-width: 98;
+
+.topbar-full-fixed {
+  overflow: scroll;
+  position: fixed;
+  @include center_by_width($topbar-full-width);
+  @include set_basic_colors($tbbn-tx-col, $hbar-bg-col, $hbar-br-col);
+  font-size: 1vmin; // needed to scale border radius
+  @include border_radius;
+}
+%topbar-bn {
+  @include set_tile_basic_props;
+  @include set_all_colors($tbbn-tx-col, $tbbn-bg-col, $tbbn-br-col);
+  @include border-radius;
+  @include set_tile_row_media_dimen;
+}
+.topbar-bn-l { @extend%topbar-bn; float: left; }
+.topbar-bn-r { @extend%topbar-bn; float: right; }
+.topbar-bn-c { @extend%topbar-bn; display: table!important; }

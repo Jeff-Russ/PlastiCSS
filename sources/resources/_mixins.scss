@@ -1,4 +1,4 @@
-@mixin border-rad($radius: 0.8em) {
+@mixin border_radius($radius: 0.8em) {
    -moz-border-radius: $radius; -khtml-border-radius: $radius;
    -webkit-border-radius: $radius; border-radius: $radius;
 }
@@ -9,13 +9,16 @@
      -o-transition: background $sec ease-in-out, border $sec ease-in-out, color $sec ease-in-out;
         transition: background $sec ease-in-out, border $sec ease-in-out, color $sec ease-in-out;
 }
-
-@mixin set_tile_row_media_dimen ( $cont-w_low: 95,  $tiles-x_low: 7, $tile-h_low: 9,
-                        $cont-w_high: 95, $tiles-x_high: 9, $tile-h_high: 8,
-                        $base_font-size: 1.4, $curve: 0.3 ) {
+@mixin center_by_width ($width_1to100) {
+  $sides: vw((100 - $width_1to100) * 0.5);
+  left: $sides; right: $sides;
+}
+@mixin set_tile_row_media_dimen ( $cont-w_low: 94,  $tiles-x_low: 7, $tile-h_low: 9,
+                                  $cont-w_high: 94, $tiles-x_high: 9, $tile-h_high: 8,
+                                  $base_font-size: 1.6, $curve: 0.2 ) {
   @each $label, $min-px, $max-px, $vp-px in $brkpnt-list {
     @media (min-width: $min-px) and (max-width: $max-px) {
-      $total-width: 0;
+      $total-width: "";
       @if $label == xs or $label == sm {
         $total-width: $cont-w_low / $tiles-x_low;
         height: vh($tile-h_low); line-height: vh($tile-h_low);
@@ -48,6 +51,12 @@
     border-width: $bord-width; border-style: $bord-style; text-decoration:none;
   }
 }
+@mixin set_basic_colors ($text-col: black, $bg-col: white, $bord-col: black,
+                        $bord-width: 1px, $bord-style: solid) {
+  color: $text-col; background-color: $bg-col; border-color: $bord-col;
+  border-width: $bord-width; border-style: $bord-style; 
+}
+
 
 // @mixin tile ($cont-width: 95, $tiles-x: 9, $font-size: 1.6, $height: 8) {
 //   display: inline-block; position: relative; overflow: hidden;
@@ -80,3 +89,14 @@
 //   color: $txt-col;
 //   background-color: $bg-col;
 // }
+
+}
+
+@mixin test () {
+  @include set_basic_colors(red, green, blue)
+  @each $label, $min-px, $max-px, $vp-px in $brkpnt-list {
+    @media (min-width: $min-px) and (max-width: $max-px) {
+        
+    }
+  }
+}

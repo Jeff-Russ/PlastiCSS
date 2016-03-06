@@ -1,0 +1,91 @@
+//## Media queries breakpoints
+$sm-min: 768px !default;
+$md-min: 992px !default;
+$lg-min: 1200px !default;
+$xs-max: ($sm-min - 1) !default;
+$sm-max: ($md-min - 1) !default;
+$md-max: ($lg-min - 1) !default;
+//## Define your custom responsive grid.
+$n-cols: 12 !default; // Number of columns in the grid.
+$gutter-w: 30px !default; // Padding between columns. Gets divided in half for the left and right.
+//== Container sizes
+//## Define the maximum width of `.container` for different screen sizes.
+$cont-sm: (720px  + $gutter-w) !default; // For `$sm-min` and up.
+$cont-md: (940px  + $gutter-w) !default; // For `$md-min` and up.
+$cont-lg: (1140px + $gutter-w) !default; // For `$lg-min` and up.
+
+@mixin gutters($gutter-width: $gutter-w) {
+  padding-left:  ceil(($gutter-width / 2));
+  padding-right: floor(($gutter-width / 2));
+}
+@function pct($numer) { @return percentage(($numer / $n-cols)); }
+
+// Clearfix from twbs 3 For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the contenteditable 
+//    attribute is included anywhere else in the document. Otherwise it causes 
+//    space to appear at the top and bottom of elements that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+@mixin clearfix_b3() {
+  &:before, &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after { clear: both; }
+}
+// Framework grid generation
+//*****************************************************************************
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$n-cols`.
+@mixin init_cols($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+  @for $i from (1 + 1) through $n-cols {
+    $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+  }
+  #{$list} { @include gutters; position: relative; min-height: 1px; } // 1px: prevent collapse
+}
+@mixin float_cols($size, $i: 1, $list: ".col-#{$size}-#{$i}") {
+  @for $i from (1 + 1) through $n-cols { $list: "#{$list}, .col-#{$size}-#{$i}"; }
+  #{$list} { float: left; }
+}
+@mixin calc_grid_col($idx, $size, $type) {
+  @if ($type == width) and ($idx > 0) {.col-#{$size}-#{$idx}      { width: pct($idx); } }
+  @if ($type == push)  and ($idx > 0) {.col-#{$size}-push-#{$idx} { left: pct($idx); } }
+  @if ($type == push) and ($idx == 0) {.col-#{$size}-push-0       { left: auto; } }
+  @if ($type == pull) and  ($idx > 0) {.col-#{$size}-pull-#{$idx} { right: pct($idx); } }
+  @if ($type == pull) and ($idx == 0) {.col-#{$size}-pull-0       { right: auto; } }
+  @if ($type == offset) { .col-#{$size}-offset-#{$idx}            { margin-left: pct($idx); } }
+}
+@mixin loop_cols($cols, $size, $type) {
+  @for $i from 0 through $cols { @include calc_grid_col($i, $size, $type);}
+}
+// Create grid for specific size
+@mixin make_cols($size) {
+  @include float_cols($size);
+  @include loop_cols($n-cols, $size, width);
+  @include loop_cols($n-cols, $size, pull);
+  @include loop_cols($n-cols, $size, push);
+  @include loop_cols($n-cols, $size, offset);
+}
+//*****************************************************************************
+// Creates a wrapper for a series of columns
+@mixin make_row($gutter: $gutter-w) { @include gutters($gutter); @include clearfix_b3; }
+// Centered container element
+@mixin cont_fixed($gutter: $gutter-w) {
+  margin-right: auto; margin-left: auto;
+  @include gutters($gutter); @include clearfix_b3;
+}
+// Set the container width, and override it for fixed navbars in media queries.
+.container { @include cont_fixed;
+  @media (min-width: $sm-min) { width: $cont-sm; }
+  @media (min-width: $md-min) { width: $cont-md; }
+  @media (min-width: $lg-min) { width: $cont-lg; }
+}
+.container-fluid { @include cont_fixed; } // full width containers
+.row { @include make_row; } // Rows contain and clear the floats of your columns.
+@include init_cols; // Common styles for small and large grid columns
+// Make columns, offsets, pushes, and pulls for different sizes
+@include make_cols(xs);
+@media (min-width: $sm-min) { @include make_cols(sm); }
+@media (min-width: $md-min) { @include make_cols(md); }
+@media (min-width: $lg-min) { @include make_cols(lg); }
