@@ -1,0 +1,197 @@
+$bp-map: (
+  xs: 0,     // Extra small screen / phone
+  sm: 544px, // Small screen / phone
+  md: 768px, // Medium screen / tablet
+  lg: 992px, // Large screen / desktop
+  xl: 1200px // Extra large screen / wide desktop
+) !default;
+
+$container-max-widths: (
+  sm: 576px,
+  md: 720px,
+  lg: 940px,
+  xl: 1140px
+) !default;
+
+// Set the number of columns and specify the width of the gutters.
+$n-cols: 12 !default;
+$gutter-w: 1.875rem !default; // 30px
+$gutter-half: $gutter-w / 2;
+$gutter-inv: $gutter-w / -2;
+
+$enable-flex: false !default;
+$enable-grid-classes: true !default;
+
+
+// @import "variables";
+
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@function pct($numer) { @return percentage($numer / $n-cols); }
+
+@function bp-next($name) {
+  $bp-names: map-keys($bp-map);
+  $n: index($bp-names, $name);
+  @return if($n < length($bp-names), nth($bp-names, $n + 1), null);
+}
+// Minimum breakpoint width. Null for the smallest (first) breakpoint.
+@function bp-min($name) {
+  $min: map-get($bp-map, $name);
+  @return if($min != 0, $min, null);
+}
+// Maximum breakpoint width. Null for the largest (last) breakpoint.
+// The maximum value is calculated as the minimum of the next one less 0.1.
+@function bp-max($name) {
+  $next: bp-next($name, $bp-map);
+  @return if($next, bp-min($next, $bp-map) - 1px, null);
+}
+// Media of at least the minimum breakpoint width. No query for the smallest breakpoint.
+// Makes the @content apply to the given breakpoint and wider.
+@mixin media-bp-up($name) {
+  $min: bp-min($name);
+  @if $min { @media (min-width: $min) { @content;} }
+  @else { @content; }
+}
+// Media of at most the maximum breakpoint width. No query for the largest breakpoint.
+// Makes the @content apply to the given breakpoint and narrower.
+@mixin media-bp-down($name) {
+  $max: bp-max($name);
+  @if $max { @media (max-width: $max) { @content; } }
+  @else { @content; }
+}
+// Media between the breakpoint's minimum and maximum widths.
+// No minimum for the smallest breakpoint, and no maximum for the largest one.
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin media-bp-only($name) {
+  @include media-bp-up($name, $bp-map) {
+    @include media-bp-down($name, $bp-map) { @content; }
+  }
+}
+// Media that spans multiple breakpoint widths.
+// Makes the @content apply between the min and max breakpoints
+@mixin media-bp-between($lower, $upper) {
+  @include media-bp-up($lower, $bp-map) {
+    @include media-bp-down($upper, $bp-map) { @content; }
+  }
+}
+@mixin gutters ($invert: false){
+  @if $invert {
+    padding-left: $gutter-inv;
+    padding-right: $gutter-inv;
+  } @else {
+    padding-left: $gutter-half;
+    padding-right: $gutter-half;
+  }
+}
+
+// Framework gridmake-col-span generation
+@mixin make-grid-columns() {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    min-height: 1px; // Prevent columns from collapsing when empty
+    // Inner gutter via padding
+    @include gutters;
+  }
+  @each $bp in map-keys($bp-map) {
+    @for $i from 1 through $n-cols {.col-#{$bp}-#{$i} { @extend %grid-column; } }
+    @include media-bp-up($bp) {
+      // Work around cross-media @extend (https://github.com/sass/sass/issues/1050)
+      %grid-column-float-#{$bp} { float: left; }
+      @for $i from 1 through $n-cols {
+        .col-#{$bp}-#{$i} {
+          @if not $enable-flex { @extend %grid-column-float-#{$bp }; }
+          @include make-col-span($i);
+        }
+      }
+      @each $modifier in (pull, push, offset) {
+        @for $i from 0 through $n-cols {
+          .col-#{$bp}-#{$modifier}-#{$i} {
+            @include make-col-modifier($modifier, $i)
+          }
+        }
+      }
+    }
+  }
+}
+/// Grid system
+// Generate semantic grid columns with these mixins.
+@mixin make-container() {
+  margin-left: auto;
+  margin-right: auto;
+  @include gutters;
+  @if not $enable-flex { @include clearfix(); }
+}
+// For each breakpoint, define the maximum width of the container in a media query
+@mixin make-container-max-widths($max-widths: $container-max-widths) {
+  @each $bp, $container-max-width in $max-widths {
+    @include media-bp-up($bp) { max-width: $container-max-width; }
+  }
+}
+@mixin make-row() {
+  @if $enable-flex { display: flex; flex-wrap: wrap; }
+  @else { @include clearfix(); }
+  @include gutters(true);
+}
+@mixin make-col {
+  position: relative;
+  @if not $enable-flex { float: left; }
+  min-height: 1px;
+  @include gutters();
+}
+@mixin make-col-span($size) {
+  @if $enable-flex { flex: 0 0 pct($size); }
+  @else { width: pct($size); }
+}
+@mixin make-col-offset($size) { margin-left: pct($size); }
+@mixin make-col-push($size)   { left: if($size > 0, pct($size), auto); }
+@mixin make-col-pull($size)   { right: if($size > 0, pct($size), auto); }
+@mixin make-col-modifier($type, $size) {
+  // Work around the lack of dynamic mixin @include support (https://github.com/sass/sass/issues/626)
+  @if      $type == push   { @include make-col-push($size);   }
+  @else if $type == pull   { @include make-col-pull($size);   }
+  @else if $type == offset { @include make-col-offset($size); }
+}
+// Container widths
+// Set the container width, and override it for fixed navbars in media queries.
+.container { @include make-container(); @include make-container-max-widths();}
+// Fluid container - Utilizes the mixin meant for fixed width containers, 
+// but without any defined width for fluid, full width layouts.
+.container-fluid { @include make-container(); }
+// Rows contain and clear the floats of your columns.
+@if $enable-grid-classes { .row { @include make-row(); } }
+// Columns - Common styles for small and large grid columns
+@if $enable-grid-classes { @include make-grid-columns(); }
+
+// Flex variation
+// Custom styles for additional flex alignment options.
+@if $enable-flex and $enable-grid-classes {
+  // Flex column reordering
+  @each $bp in map-keys($bp-map) {
+    @include media-bp-up($bp) {
+      .col-#{$bp}-first { order: -1; }
+      .col-#{$bp}-last  { order: 1; }
+    }
+  }
+  // Alignment for every column in row
+  @each $bp in map-keys($bp-map) {
+    @include media-bp-up($bp) {
+      .row-#{$bp}-top    { align-items: flex-start; }
+      .row-#{$bp}-center { align-items: center; }
+      .row-#{$bp}-bottom { align-items: flex-end; }
+    }
+  }
+  // Alignment per column
+  @each $bp in map-keys($bp-map) {
+    @include media-bp-up($bp) {
+      .col-#{$bp}-top    { align-self: flex-start; }
+      .col-#{$bp}-center { align-self: center; }
+      .col-#{$bp}-bottom { align-self: flex-end; }
+    }
+  }
+}

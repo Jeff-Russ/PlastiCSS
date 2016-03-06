@@ -1,20 +1,3 @@
-@import "resources/normalize";
 @import "resources/variables";
 @import "resources/functions";
 @import "resources/mixins";
-
-//## Media queries breakpoints
-$sm-min: 768px;
-$md-min: 992px;
-$lg-min: 1200px;
-$n-cols: 12; // Number of columns in the grid.
-// Padding between columns. Gets divided in half for the left and right.
-$gutter-w: 30px;
-//== Container sizes
-//## Define the maximum width of `.container` for different screen sizes.
-$cont-sm: (720px  + $gutter-w); // For `$sm-min` and up.
-$cont-md: (940px  + $gutter-w); // For `$md-min` and up.
-$cont-lg: (1140px + $gutter-w); // For `$lg-min` and up.lg
-@import "resources/b3_grids";
-
-@import "topbar";
