@@ -1,3 +1,10 @@
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
 @mixin border_radius($radius: 0.8em) {
    -moz-border-radius: $radius; -khtml-border-radius: $radius;
    -webkit-border-radius: $radius; border-radius: $radius;
