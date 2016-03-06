@@ -1,5 +1,7 @@
-@import "sources/resources";
-@import "sources/normalize";
+@import "resources/normalize";
+@import "resources/variables";
+@import "resources/functions";
+@import "resources/mixins";
 
 //## Media queries breakpoints
 $sm-min: 768px;
@@ -13,11 +15,6 @@ $gutter-w: 30px;
 $cont-sm: (720px  + $gutter-w); // For `$sm-min` and up.
 $cont-md: (940px  + $gutter-w); // For `$md-min` and up.
 $cont-lg: (1140px + $gutter-w); // For `$lg-min` and up.lg
-@import "sources/b3_grids";
+@import "resources/b3_grids";
 
 @import "topbar";
-
-// Remove default margin.
-body {
-  border: 5px solid black;
-}
